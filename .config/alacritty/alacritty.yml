@@ -1,0 +1,64 @@
+# Setting up fonts in Alacritty is simple - just throw in the name
+# and variation, and you're in. Iosevka is probably *the* best font
+# for terminals, hence here we declare we want to use Iosevka. Note
+# the last line of the chunk, where we mention the font size.
+font:
+  normal:
+    family: Iosevka
+    style: Regular
+  bold:
+    family: Iosevka
+    style: Bold
+  italic:
+    family: Iosevka
+    style: Italic
+  size: 10.0
+
+# Here we declare the padding - self-explanatory for most people. I like
+# having a super-duper small amount of padding, just to make sure the
+# setup looks clean, but not stuffy.
+padding:
+  x: 2
+  y: 2
+
+
+# Here we set the scrolling settings. The maximum history is 10 000, so
+# we set it as much. Then, we have the scroll multiplier - how much does
+# one scroll from our mouse affect the layout scroll shift? Thanks to my
+# awesome, 1000-line-scrolling mouse, I keep this at 1, nice and low.
+scrolling:
+  history: 100000
+  multiplier: 1
+
+# Here, we declare us some colors. This is my slightly modified Base16
+# Gruvbox Dark theme. It looks sexy, and is super light.
+colors:
+  normal:
+    black: "#fbf1c7"
+    red: "#af3a03"
+    orange: "#b57614"
+    yellow: "#79740e"
+    green: "#427b58"
+    cyan: "#076678"
+    magenta: "#8f3f71"
+    blue: "#076678"
+    white: "#ffffff"
+
+# Here we can declare keybindings. I generally don't need these - but
+# just for the idea, I've added a Ctrl+N binding. I personally admire how
+# well these are managed by alacritty.
+key_bindings:
+ - { key: N,             mods: Control,         action: SpawnNewInstance     }
+
+# Here, we declare the cursor style - in this case, The Beam. It looks
+# clean and gets the job done well. The cursor, by default, will become
+# a hollow square when the window is unfocused.
+cursor:
+  style: Beam
+
+# Debugging isn't really something you'd see in most setups -
+# but I thought I'd give it a try. This small, and final, section
+# declares persistent logging. This way, alacritty won't delete its
+# log files when quitting.
+debug:
+  persistent_logging: true
