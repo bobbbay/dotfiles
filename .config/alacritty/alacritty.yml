@@ -21,7 +21,6 @@ padding:
   x: 2
   y: 2
 
-
 # Here we set the scrolling settings. The maximum history is 10 000, so
 # we set it as much. Then, we have the scroll multiplier - how much does
 # one scroll from our mouse affect the layout scroll shift? Thanks to my
