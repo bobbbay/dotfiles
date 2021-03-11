@@ -1,11 +1,12 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.git pkgs.gnumake pkgs.nasm pkgs.qemu
+  home.packages = with pkgs; [
+    git gnumake nasm qemu llvm patchelf gcc
+    gcc-arm-embedded go
   ];
 
-  programs = {
-    emacs.enable = true;
-  };
+  imports = [
+  #  ./programs/emacs.nix
+  ];
 }

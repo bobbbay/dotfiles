@@ -45,16 +45,7 @@
     };
   };
 
-  services.screen-locker = {
-    enable = true;
-    inactiveInterval = 1;
-    lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen -l dim";
-    xautolockExtraOptions = [
-      "Xautolock.killer: systemctl suspend"
-    ];
-  };
-
-  home.packages = [
-    pkgs.dmenu
+  home.packages = with pkgs; [
+    dmenu xmobar
   ];
 }

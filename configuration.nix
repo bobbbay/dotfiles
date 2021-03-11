@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "btrfs" ];
@@ -42,7 +44,7 @@
 
   # TODO: Maybe, this should be inside an hm config
   fonts.fonts = with pkgs; [
-    iosevka
+    iosevka nerdfonts
   ];
 
   # Enable sound.
@@ -64,7 +66,7 @@
 
   networking.firewall.allowedTCPPorts = [ 8080 ];
   networking.firewall.allowedUDPPorts = [ 8080 ];
-  
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
@@ -72,9 +74,9 @@
     '';
   };
 
-  #home-manager.users.bobbbay = { ... }: {
-  #  imports = [ ../home-manager/bobbbay ];
-  #};
+  home-manager.users.bobbbay = { ... }: {
+    imports = [ ./home-manager/bobbbay ];
+  };
 
   # Darling erasure
   environment.etc = {
@@ -94,7 +96,7 @@
 
   security.sudo = {
     extraConfig = ''
-      # rollback results in sudo lectures after each reboot
+      # Rollback results in sudo lectures after each reboot
       Defaults lecture = never
     '';
     wheelNeedsPassword = false;
@@ -119,5 +121,5 @@
     umount /mnt
   '';
 
-  system.stateVersion = "unstable"; # Did you read the comment?
+  system.stateVersion = "unstable";
 }
