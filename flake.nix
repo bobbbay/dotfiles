@@ -1,47 +1,83 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = github:nixos/nixpkgs/nixos-20.09;
+    unstable.url = github:nixos/nixpkgs/nixos-unstable;
+    nur.url = github:nix-community/NUR;
+    home-manager.url = github:nix-community/home-manager;
     emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
+      url = github:nix-community/emacs-overlay;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-doom-emacs = {
-      url = "github:vlaci/nix-doom-emacs";
+      url = github:vlaci/nix-doom-emacs;
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.emacs-overlay.follows = "emacs-overlay";
     };
 
     flake-utils = {
-      url = "github:numtide/flake-utils";
+      url = github:numtide/flake-utils;
     };
 
-    comma = {
-      url = "github:shopify/comma";
-      flake = false;
-    };
+    utils.url = github:gytis-ivaskevicius/flake-utils-plus;
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, nix-doom-emacs, comma, ... }: 
+  outputs = inputs@{ self, home-manager, nixpkgs, nix-doom-emacs, nur, unstable, utils, ... }: 
   let
+    pkgs = self.pkgs.nixpkgs;
     hmImports = with inputs; [ nix-doom-emacs.hmModule ];
-  in {
-    nixosConfigurations = {
-      NotYourPC = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ 
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.bobbbay.imports = hmImports ++ [ ./home-manager/bobbbay ];
-          } 
-        ];
+  in
+    utils.lib.systemFlake {
+      inherit self inputs;
+
+      defaultSystem = "x86_64-linux";
+
+      channels.nixpkgs = {
+        input = nixpkgs;
+        overlays = [];
       };
+
+      channels.unstable.input = unstable;
+
+      channelsConfig = {
+        allowUnfree = true;
+      };
+
+      nixosProfiles = {
+        NotYourPC = {
+          nixpkgs = self.pkgs.unstable;
+          modules = [
+            (import ./configuration.nix)
+          ];
+        };
+      };
+
+      sharedModules = [
+        home-manager.nixosModules.home-manager
+        {
+          nix = utils.lib.nixDefaultsFromInputs inputs;
+
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.bobbbay.imports = hmImports ++ [ ./home-manager/bobbbay ];
+        }
+      ];
     };
-  };
+
+#    nixosConfigurations = {
+#      NotYourPC = nixpkgs.lib.nixosSystem {
+#        system = "x86_64-linux";
+#        modules = [ 
+#          ./configuration.nix
+#          home-manager.nixosModules.home-manager
+#          {
+#            home-manager.useGlobalPkgs = true;
+#            home-manager.useUserPackages = true;
+#            home-manager.users.bobbbay.imports = hmImports ++ [ ./home-manager/bobbbay ];
+#          } 
+#        ];
+#      };
+#    };
 
 #    let
 #      pkgs = (import nixpkgs) {

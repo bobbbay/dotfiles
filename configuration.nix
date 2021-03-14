@@ -47,6 +47,10 @@
     iosevka nerdfonts
   ];
 
+  environment.systemPackages = with pkgs; [
+    git
+  ];
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
