@@ -125,5 +125,5 @@
     umount /mnt
   '';
 
-  system.stateVersion = "unstable";
+  system.stateVersion = "20.09";
 }

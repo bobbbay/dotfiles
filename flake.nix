@@ -3,7 +3,7 @@
     nixpkgs.url = github:nixos/nixpkgs/nixos-20.09;
     unstable.url = github:nixos/nixpkgs/nixos-unstable;
     nur.url = github:nix-community/NUR;
-    home-manager.url = github:nix-community/home-manager;
+    home-manager.url = github:nix-community/home-manager/release-20.09;
     emacs-overlay = {
       url = github:nix-community/emacs-overlay;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +45,7 @@
 
       nixosProfiles = {
         NotYourPC = {
-          nixpkgs = self.pkgs.unstable;
+          nixpkgs = pkgs;
           modules = [
             (import ./configuration.nix)
           ];
@@ -55,11 +55,11 @@
       sharedModules = [
         home-manager.nixosModules.home-manager
         {
-          nix = utils.lib.nixDefaultsFromInputs inputs;
+          # nix = utils.lib.nixDefaultsFromInputs inputs;
 
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.bobbbay.imports = hmImports ++ [ ./home-manager/bobbbay ];
+          # home-manager.users.bobbbay.imports = hmImports ++ [ ./home-manager/bobbbay ];
         }
       ];
     };
