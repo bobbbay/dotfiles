@@ -31,10 +31,10 @@
       inherit self inputs;
 
       defaultSystem = "x86_64-linux";
+      overlays = import ./overlays;
 
       channels.nixpkgs = {
         input = nixpkgs;
-        overlays = [];
       };
 
       channels.unstable.input = unstable;
@@ -51,6 +51,11 @@
           ];
         };
       };
+
+      sharedOverlays = [
+        self.overlays
+        nur.overlay
+      ];
 
       sharedModules = [
         home-manager.nixosModules.home-manager
