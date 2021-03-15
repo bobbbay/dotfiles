@@ -20,9 +20,14 @@
     };
 
     utils.url = github:gytis-ivaskevicius/flake-utils-plus;
+
+    neovim = {
+      url = github:neovim/neovim?dir=contrib;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, nix-doom-emacs, nur, unstable, utils, ... }: 
+  outputs = inputs@{ self, home-manager, nixpkgs, nix-doom-emacs, nur, unstable, utils, neovim, ... }: 
   let
     pkgs = self.pkgs.nixpkgs;
     hmImports = with inputs; [ nix-doom-emacs.hmModule ];
@@ -38,6 +43,11 @@
       };
 
       channels.unstable.input = unstable;
+      channels.unstable.overlaysFunc = channels: [
+        (final: prev: {
+          neovim-nightly = neovim.defaultPackage.${prev.system};
+        })
+      ];
 
       channelsConfig = {
         allowUnfree = true;
