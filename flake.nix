@@ -36,14 +36,14 @@
       inherit self inputs;
 
       defaultSystem = "x86_64-linux";
-      overlays = import ./overlays;
+      overlay = import ./overlays;
 
       channels.nixpkgs = {
         input = nixpkgs;
       };
 
       channels.unstable.input = unstable;
-      channels.unstable.overlaysFunc = channels: [
+      channels.pkgs.overlaysFunc = channels: [
         (final: prev: {
           neovim-nightly = neovim.defaultPackage.${prev.system};
         })
@@ -63,7 +63,7 @@
       };
 
       sharedOverlays = [
-        self.overlays
+        self.overlay
         nur.overlay
       ];
 

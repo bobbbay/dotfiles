@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    git gnumake nasm qemu llvm patchelf gcc
+    neovim-nightly git gnumake nasm qemu llvm patchelf gcc
     gcc-arm-embedded go
   ];
 
