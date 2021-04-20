@@ -3,7 +3,7 @@
 with lib;
 let
   defaultUser = "bobbbay";
-  syschdemd = import ./syschdemd.nix { inherit lib pkgs config defaultUser; };
+  syschdemd = import ./wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
 in
 {
   imports = [
@@ -15,6 +15,7 @@ in
 
   environment.etc.hosts.enable = false;
   environment.etc."resolv.conf".enable = false;
+  environment.noXlibs = lib.mkForce false;
 
   networking.dhcpcd.enable = false;
 
@@ -31,9 +32,18 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
     git
   ];
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   # Disable systemd units that don't make sense on WSL
   systemd.services."serial-getty@ttyS0".enable = false;
