@@ -5,7 +5,10 @@ let
   defaultUser = "bobbbay";
   syschdemd =
     import ./wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
-  settings = { wsl = true; username = "bob"; };
+  settings = {
+    wsl = true;
+    username = "bob";
+  };
 in {
   imports = [ "${modulesPath}/profiles/minimal.nix" ../modules/settings.nix ];
 

@@ -3,12 +3,9 @@
 with builtins;
 with lib;
 
-let
-  cfg = config.profiles.cli;
+let cfg = config.profiles.cli;
 in {
-  options.profiles.cli = {
-    enable = mkEnableOption "CLI Utilities";
-  };
+  options.profiles.cli = { enable = mkEnableOption "CLI Utilities"; };
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [

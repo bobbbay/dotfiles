@@ -72,7 +72,7 @@ in {
         userName = "Bobbbay";
       };
     };
-    
+
     home.packages = [
       latexmk # Compile LaTeX + vimtex compiler support
     ];

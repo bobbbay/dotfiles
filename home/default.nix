@@ -1,6 +1,1 @@
-{ ... }:
-{
-  imports = [
-    ./cli.nix
-  ];
-}
+{ ... }: { imports = [ ./cli.nix ]; }
