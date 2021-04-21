@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -22,9 +20,11 @@
 
   security.doas = {
     enable = true;
-    extraRules = [
-      { groups = ["wheel"]; noPass = true; keepEnv = true; }
-    ];
+    extraRules = [{
+      groups = [ "wheel" ];
+      noPass = true;
+      keepEnv = true;
+    }];
   };
 
   # TODO: This should be inside an hm config
@@ -43,13 +43,9 @@
   services.xserver.displayManager.defaultSession = "none+xmonad";
 
   # TODO: Maybe, this should be inside an hm config
-  fonts.fonts = with pkgs; [
-    iosevka nerdfonts
-  ];
+  fonts.fonts = with pkgs; [ iosevka nerdfonts ];
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
+  environment.systemPackages = with pkgs; [ git ];
 
   # Enable sound.
   sound.enable = true;
@@ -85,7 +81,8 @@
   # Darling erasure
   environment.etc = {
     nixos.source = "/persist/etc/nixos";
-    "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections";
+    "NetworkManager/system-connections".source =
+      "/persist/etc/NetworkManager/system-connections";
     adjtime.source = "/persist/etc/adjtime";
     NIXOS.source = "/persist/etc/NIXOS";
     machine-id.source = "/persist/etc/machine-id";

@@ -3,12 +3,19 @@
 with lib;
 let
   defaultUser = "bobbbay";
-  syschdemd = import ./wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
-in
-{
-  imports = [
-    "${modulesPath}/profiles/minimal.nix"
-  ];
+  syschdemd =
+    import ./wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
+  settings = { wsl = true; username = "bob"; };
+in {
+  imports = [ "${modulesPath}/profiles/minimal.nix" ../modules/settings.nix ];
+
+  # --- fooling around with modules
+
+  # home-manager.users.${settings.username} = { ... }: {
+  #   imports = [ ../home ];
+  # };
+
+  # ---
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
@@ -23,6 +30,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
+  nix.trustedUsers = [ "root" "bobbbay" ];
 
   users.users.root = {
     shell = "${syschdemd}/bin/syschdemd";
@@ -34,16 +42,14 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    git
-  ];
+  environment.systemPackages = with pkgs; [ git ];
 
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
+  # nix = {
+  #  package = pkgs.nixFlakes;
+  #  extraOptions = ''
+  #    experimental-features = nix-command flakes
+  #  '';
+  # };
 
   # Disable systemd units that don't make sense on WSL
   systemd.services."serial-getty@ttyS0".enable = false;
