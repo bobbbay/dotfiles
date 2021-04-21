@@ -17,8 +17,16 @@ in {
       tokei # Like wc but better
       exa # ls for cool people
       cachix # Cache them binaries
-      gitAndTools.gitui # UI for Git!
       nodePackages.insect # Calculator REPL
+      skim # fzf in Rust
     ];
+
+    programs.bash = {
+      enable = true;
+      shellAliases = {
+        nrs = "sudo nixos-rebuild switch";
+        lsa = "rga --files | sk --preview=\"bat {} --color=always\"";
+      };
+    };
   };
 }

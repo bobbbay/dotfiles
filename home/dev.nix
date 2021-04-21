@@ -75,6 +75,7 @@ in {
 
     home.packages = [
       latexmk # Compile LaTeX + vimtex compiler support
+      pkgs.gitAndTools.tig # Text-mode interface for Git
     ];
   };
 }

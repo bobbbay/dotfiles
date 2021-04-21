@@ -3,9 +3,12 @@ set spell
 set spelllang=en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-" Auto-save
+" Auto-save on LaTeX files
 autocmd BufNewFile,BufRead *.tex set updatetime=100
 autocmd BufNewFile,BufRead *.tex autocmd CursorHold,CursorHoldI * update
 
 " Add an underline under the cursor in Startify
 autocmd User Startified setlocal cursorline
+
+" Add mouse support so we can scroll and select
+set mouse=a

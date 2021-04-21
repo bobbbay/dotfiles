@@ -3,13 +3,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    home-manager.url = "github:nix-community/home-manager/release-20.09";
+    home.url = "github:nix-community/home-manager/release-20.09";
+
+    mozpkgs = {
+      url = github:mozilla/nixpkgs-mozilla;
+      flake = false;
+    };
 
     flake-utils.url = "github:numtide/flake-utils";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, nur, unstable, utils, ... }:
+  outputs = inputs@{ self, utils, home, nixpkgs, unstable, mozpkgs, nur, ... }:
     with builtins;
     let pkgs = self.pkgs.nixpkgs;
     in utils.lib.systemFlake {
@@ -31,10 +36,13 @@
         };
       };
 
-      sharedOverlays = [ nur.overlay ];
+      sharedOverlays = [ 
+        nur.overlay
+        (import mozpkgs)
+      ];
 
       sharedModules = with self.nixosModules; [
-        home-manager.nixosModules.home-manager
+        home.nixosModules.home-manager
         utils.nixosModules.saneFlakeDefaults
         {
           home-manager.useGlobalPkgs = true;
