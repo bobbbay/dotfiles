@@ -7,5 +7,8 @@
     fd          # A simple, fast and friendly alternative to find
     hyperfine   # Benchmark your executables!
     tokei       # Like wc but better
+    exa         # ls for cool people
+    gitAndTools.gitui   # UI for Git!
+    nodePackages.insect # Calculator REPL
   ];
 }
