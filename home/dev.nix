@@ -73,9 +73,9 @@ in {
       };
     };
 
-    home.packages = [
+    home.packages = with pkgs; [
       latexmk # Compile LaTeX + vimtex compiler support
-      pkgs.gitAndTools.tig # Text-mode interface for Git
+      rustc   # Rust compiler
     ];
   };
 }

@@ -18,8 +18,11 @@ in {
       exa # ls for cool people
       nodePackages.insect # Calculator REPL
       skim # fzf in Rust
+
+      # Pulled in from /pkgs
       comma # Run any command, anywhere
       xplr # The hackable file explorer
+      bobtools # Custom useful binaries
     ];
 
     programs.bash = {
