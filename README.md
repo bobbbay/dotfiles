@@ -34,6 +34,12 @@ Use cachix caches:
 nix develop -c use-caches
 ```
 
+Unlock the crypt:
+
+```
+nix develop -c git crypt unlock /path/to/symmetric_key
+```
+
 Update all inputs:
 
 ```
