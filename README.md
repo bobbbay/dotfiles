@@ -1,5 +1,7 @@
 ## Dotfiles
 
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
 This is my NixOS configuration for my desktop as well as my laptop<sup>1</sup>.
 
 ### Usage

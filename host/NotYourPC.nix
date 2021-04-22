@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ../misc/hardware-configurations/NotYourPC.nix ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -68,14 +68,10 @@
   networking.firewall.allowedUDPPorts = [ 8080 ];
 
   nix = {
-    package = pkgs.nixFlakes;
+    # package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-  };
-
-  home-manager.users.bobbbay = { ... }: {
-    imports = [ ./home-manager/bobbbay ];
   };
 
   # Darling erasure
