@@ -10,6 +10,8 @@ Show provided flakes:
 nix flake show
 ```
 
+> Note: you can use bin/nd instead of `nix develop -c ...`.
+
 Switch both system and home:
 
 ```
