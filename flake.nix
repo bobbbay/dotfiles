@@ -6,7 +6,7 @@
     home.url = "github:nix-community/home-manager/release-20.09";
 
     mozpkgs = {
-      url = github:mozilla/nixpkgs-mozilla;
+      url = "github:mozilla/nixpkgs-mozilla";
       flake = false;
     };
 
@@ -16,7 +16,7 @@
 
   outputs = inputs@{ self, utils, home, nixpkgs, unstable, mozpkgs, nur, ... }:
     with builtins;
-    let pkgs = self.pkgs.nixpkgs;
+    let pkgs = self.pkgs.x86_64-linux.nixpkgs;
     in utils.lib.systemFlake {
       inherit self inputs;
 
@@ -36,11 +36,7 @@
         };
       };
 
-      sharedOverlays = [ 
-        nur.overlay
-        (import mozpkgs)
-        self.overlay
-      ];
+      sharedOverlays = [ nur.overlay (import mozpkgs) self.overlay ];
 
       overlay = import ./pkgs;
 
@@ -55,5 +51,14 @@
       ];
 
       nixosModules = utils.lib.modulesFromList [ ];
+
+      devshellScripts = import ./lib/devshell.nix { inherit pkgs; };
+      devShellBuilder = channels:
+        with channels.nixpkgs.pkgs;
+        with self.devshellScripts;
+        mkShell {
+          buildInputs =
+            [ cachix fd nixfmt switchHome switchNixos useCaches lint ];
+        };
     };
 }

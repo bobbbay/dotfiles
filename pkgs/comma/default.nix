@@ -1,19 +1,13 @@
 { pkgs ? import <nixpkgs> { }
 
-, stdenv ? pkgs.stdenv
-, lib ? pkgs.lib
-, fetchurl ? pkgs.fetchurl
-, nix-index ? pkgs.nix-index
-, nix ? pkgs.nix
-, fzy ? pkgs.fzy
-, makeWrapper ? pkgs.makeWrapper
-, runCommand ? pkgs.runCommand
+, stdenv ? pkgs.stdenv, lib ? pkgs.lib, fetchurl ? pkgs.fetchurl
+, nix-index ? pkgs.nix-index, nix ? pkgs.nix, fzy ? pkgs.fzy
+, makeWrapper ? pkgs.makeWrapper, runCommand ? pkgs.runCommand
 
-# We use this to add matchers for stuff that's not in upstream nixpkgs, but is
-# in our own overlay. No fuzzy matching from multiple options here, it's just:
-# Was the command `, mything`? Run `nixpkgs.mything`.
-, overlayPackages ? []
-}:
+  # We use this to add matchers for stuff that's not in upstream nixpkgs, but is
+  # in our own overlay. No fuzzy matching from multiple options here, it's just:
+  # Was the command `, mything`? Run `nixpkgs.mything`.
+, overlayPackages ? [ ] }:
 
 let
 
@@ -27,14 +21,12 @@ let
 
   # nix-locate needs the --db argument to be a directory containing a file
   # named "files".
-  nixIndexDB = runCommand "nix-index-cache" {} ''
+  nixIndexDB = runCommand "nix-index-cache" { } ''
     mkdir $out
     ln -s ${indexCache.out} $out/files
   '';
 
-in
-
-stdenv.mkDerivation rec {
+in stdenv.mkDerivation rec {
   name = "comma";
 
   src = ./.;
@@ -43,7 +35,8 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ makeWrapper ];
 
   installPhase = let
-    caseCondition = lib.concatStringsSep "|" (overlayPackages ++ [ "--placeholder--" ]);
+    caseCondition =
+      lib.concatStringsSep "|" (overlayPackages ++ [ "--placeholder--" ]);
   in ''
     mkdir -p $out/bin
     sed -e 's/@OVERLAY_PACKAGES@/${caseCondition}/' < , > $out/bin/,

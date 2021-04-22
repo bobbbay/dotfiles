@@ -10,15 +10,7 @@ let
     username = "bob";
   };
 in {
-  imports = [ "${modulesPath}/profiles/minimal.nix" ../modules/settings.nix ];
-
-  # --- fooling around with modules
-
-  # home-manager.users.${settings.username} = { ... }: {
-  #   imports = [ ../home ];
-  # };
-
-  # ---
+  imports = [ "${modulesPath}/profiles/minimal.nix" ../lib/settings.nix ];
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
