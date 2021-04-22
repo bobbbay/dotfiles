@@ -7,7 +7,6 @@ This is my NixOS configuration for my desktop as well as my laptop<sup>1</sup>.
  - [ ] Set up cachix and create builds upon push to GitHub
  - [ ] Set up ssh keys to be declarative (try: SOPS?)
  - [ ] Read through [terlar's configs](https://github.com/terlar/nix-config) and take inspiration ~~basically steal~~ from his `nix` command bindings.
- - [ ] Add the `xplr` package
 
 ### Credits
 
@@ -19,4 +18,4 @@ A large thanks to:
 
 As well as the communities that always provide help in times of need.
 
-<sub>1</sub> Laptop is on NixOS WSL.
+<sup>1</sup> Laptop is on NixOS WSL.
