@@ -26,10 +26,13 @@ in {
       enable = true;
       shellAliases = {
         nrs = "sudo nixos-rebuild switch";
-        lsa = ''rga --files | sk --preview="bat {} --color=always"'';
+        ls = "exa --long --icons --header --git";
+        sk = ''rga --files | \sk --preview="bat {} --color=always"'';
+        ".." = "cd ..";
       };
       bashrcExtra = ''
         export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+        export TZ='America/Toronto';
       '';
     };
   };
