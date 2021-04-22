@@ -10,7 +10,7 @@ Show provided flakes:
 nix flake show
 ```
 
-> Note: you can use bin/nd instead of `nix develop -c ...`.
+> Note: you can use bin/nd instead of `nix develop -c ...`. The `nd` command will be available if you have installed this configuration.
 
 Switch both system and home:
 
@@ -57,8 +57,9 @@ nix flake update --update-input nixpkgs --commit-lock-file
 ### TODO
 
  - [ ] Set up ssh keys to be declarative (try: SOPS?)
- - [ ] Crete a list of what this config provides, potentially based off of Terlar's configs.
+ - [ ] Create a list of what this config provides, potentially based off of Terlar's configs.
  - [ ] Go through `lib/devshell.nix` and check if there are any unneeded commands/broken commands in there.
+ - [ ] Flake `pkgs/` - see Devos
 
 ### Credits
 
