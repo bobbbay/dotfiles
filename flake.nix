@@ -28,11 +28,11 @@
       nixosProfiles = {
         NotYourPC = {
           nixpkgs = pkgs;
-          modules = [ (import ./configuration.nix) ];
+          modules = [ (import ./host/NotYourPC.nix) ];
         };
         NotYourLaptop = {
           nixpkgs = pkgs;
-          modules = [ (import ./host/laptop.nix) ];
+          modules = [ (import ./host/NotYourLaptop.nix) ];
         };
       };
 

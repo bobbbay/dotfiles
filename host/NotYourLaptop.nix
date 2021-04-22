@@ -4,7 +4,7 @@ with lib;
 let
   defaultUser = "bobbbay";
   syschdemd =
-    import ./wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
+    import ../misc/wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
   settings = {
     wsl = true;
     username = "bob";

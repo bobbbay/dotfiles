@@ -28,10 +28,10 @@ Format/lint the project files with `nixfmt`:
 nix develop -c lint
 ```
 
-Run cachix commands:
+Use cachix caches:
 
 ```
-nix develop -c cachix --help
+nix develop -c use-caches
 ```
 
 Update all inputs:
