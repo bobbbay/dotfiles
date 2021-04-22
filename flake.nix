@@ -39,7 +39,10 @@
       sharedOverlays = [ 
         nur.overlay
         (import mozpkgs)
+        self.overlay
       ];
+
+      overlay = import ./pkgs;
 
       sharedModules = with self.nixosModules; [
         home.nixosModules.home-manager
