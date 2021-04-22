@@ -58,7 +58,7 @@
         with self.devshellScripts;
         mkShell {
           buildInputs =
-            [ cachix fd nixfmt switchHome switchNixos useCaches lint ];
+            [ cachix fd nixfmt git-crypt switchHome switchNixos useCaches lint ];
         };
     };
 }
