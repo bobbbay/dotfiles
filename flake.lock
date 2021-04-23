@@ -22,21 +22,6 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1618868421,
-        "narHash": "sha256-vyoJhLV6cJ8/tWz+l9HZLIkb9Rd9esE7p+0RL6zDR6Y=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "eed214942bcfb3a8cc09eb3b28ca7d7221e44a94",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_2": {
-      "locked": {
         "lastModified": 1614513358,
         "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
         "owner": "numtide",
@@ -152,7 +137,6 @@
     "root": {
       "inputs": {
         "fenix": "fenix",
-        "flake-utils": "flake-utils",
         "home": "home",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
@@ -195,7 +179,7 @@
     },
     "utils": {
       "inputs": {
-        "flake-utils": "flake-utils_2"
+        "flake-utils": "flake-utils"
       },
       "locked": {
         "lastModified": 1616328024,

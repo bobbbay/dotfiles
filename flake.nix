@@ -1,30 +1,28 @@
 {
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    home.url = "github:nix-community/home-manager/release-20.09";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
+    home.url = "github:nix-community/home-manager/release-20.09";
 
     fenix.url = "github:nix-community/fenix";
   };
 
-  outputs = inputs@{ self, utils, home, nixpkgs, unstable, nur, fenix, ... }:
+  outputs = inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, ... }:
     with builtins;
-    let
-      pkgs = self.pkgs.x86_64-linux.nixpkgs;
-      devshellScripts = import ./lib/devshell.nix { inherit pkgs; };
-      overlay-unstable = final: prev: {
-        unstable = unstable.legacyPackages.x86_64-linux;
-      };
+    let pkgs = self.pkgs.x86_64-linux.nixpkgs;
     in utils.lib.systemFlake {
       inherit self inputs;
 
+      supportedSystems = [ "x86_64-linux" ];
       defaultSystem = "x86_64-linux";
-      channels.nixpkgs = { input = nixpkgs; };
-      channelsConfig = { allowUnfree = true; };
+
+      channels.nixpkgs = {
+        input = nixpkgs;
+        config = { allowUnfree = true; };
+      };
 
       nixosProfiles = {
         NotYourPC = {
@@ -33,29 +31,36 @@
         };
         NotYourLaptop = {
           nixpkgs = pkgs;
-          modules = [ (import ./host/NotYourLaptop.nix) ];
+          modules = [
+            (import ./host/NotYourLaptop.nix)
+            ({ pkgs, config, ... }: {
+              home-manager.users.bobbbay = {
+                imports = [ ./profiles/cli ./profiles/dev ];
+              };
+            })
+          ];
         };
       };
 
-      sharedOverlays = [ self.overlay (final: prev: { unstable = unstable.legacyPackages.x86_64-linux; }) nur.overlay fenix.overlay ];
+      sharedOverlays = [
+        (import ./pkgs)
+        (final: prev: { unstable = unstable.legacyPackages.${prev.system}; })
+        nur.overlay
+        fenix.overlay
+      ];
 
-      overlay = import ./pkgs;
-
-      sharedModules = with self.nixosModules; [
+      sharedModules = [
         home.nixosModules.home-manager
         utils.nixosModules.saneFlakeDefaults
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.bobbbay = (import ./users/bobbbay.nix);
         }
       ];
 
-      nixosModules = utils.lib.modulesFromList [ ];
-
       devShellBuilder = channels:
         with channels.nixpkgs.pkgs;
-        with devshellScripts;
+        with (import ./lib/devshell.nix { inherit pkgs; });
         mkShell {
           buildInputs = [
             cachix
@@ -63,8 +68,7 @@
             nixfmt
             nixos-generators
             git-crypt
-            switchHome
-            switchNixos
+
             useCaches
             lint
           ];
