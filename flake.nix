@@ -69,7 +69,6 @@
             nixos-generators
             git-crypt
 
-            useCaches
             lint
           ];
         };

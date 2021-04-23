@@ -2,7 +2,24 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-This is my NixOS configuration for my desktop as well as my laptop<sup>1</sup>.
+
+
+### Features
+
+ - Nix declarative configurations
+   - Flakes
+   - Modules
+   - Cachix
+   - Private key protection with `git-crypt`
+   - WSL NixOS config-ready
+   - ["Erase Your Darlings"](https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html)
+   - `nix develop`: fully-featured dev shell
+   - Nightly Rust versions
+   - Custom packages:
+     - `bobtools`: A custom set of aliases and shell scripts for ease-of-use.
+     - `comma`: Run any command, without installing them!
+     - `xplr`: The hackable TUI File Explorer.
+ - LaTeX editing with neovim side-by-side with Zathura
 
 ### Usage
 
@@ -14,28 +31,10 @@ nix flake show
 
 > Note: you can use bin/nd instead of `nix develop -c ...`. The `nd` command will be available if you have installed this configuration.
 
-Switch both system and home:
-
-```
-nix develop -c switch-nixos
-```
-
-Switch home only:
-
-```
-nix develop -c switch-home
-```
-
 Format/lint the project files with `nixfmt`:
 
 ```
 nix develop -c lint
-```
-
-Use cachix caches:
-
-```
-nix develop -c use-caches
 ```
 
 Unlock the crypt:
@@ -58,10 +57,6 @@ nix flake update --update-input nixpkgs --commit-lock-file
 
 ### TODO
 
- - [ ] Set up ssh keys to be declarative (try: SOPS?)
- - [ ] Create a list of what this config provides, potentially based off of Terlar's configs.
- - [ ] Go through `lib/devshell.nix` and check if there are any unneeded commands/broken commands in there.
- - [ ] Flake `pkgs/` - see Devos
  - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
 
 ### Credits
