@@ -58,6 +58,7 @@ nix flake update --update-input nixpkgs --commit-lock-file
 ### TODO
 
  - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
+ - [ ] RPi 4 support
 
 ### Credits
 
