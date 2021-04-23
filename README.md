@@ -62,6 +62,7 @@ nix flake update --update-input nixpkgs --commit-lock-file
  - [ ] Create a list of what this config provides, potentially based off of Terlar's configs.
  - [ ] Go through `lib/devshell.nix` and check if there are any unneeded commands/broken commands in there.
  - [ ] Flake `pkgs/` - see Devos
+ - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
 
 ### Credits
 

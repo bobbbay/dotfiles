@@ -8,14 +8,11 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
-    mozpkgs = {
-      url = "github:mozilla/nixpkgs-mozilla";
-      flake = false;
-    };
+    fenix.url = "github:nix-community/fenix";
   };
 
-  outputs = inputs@{ self, utils, home, nixpkgs, unstable, nur, mozpkgs
-    , ... }:
+  outputs =
+    inputs@{ self, utils, home, nixpkgs, unstable, nur, fenix, ... }:
     with builtins;
     let
       pkgs = self.pkgs.x86_64-linux.nixpkgs;
@@ -39,7 +36,7 @@
         };
       };
 
-      sharedOverlays = [ nur.overlay (import mozpkgs) self.overlay ];
+      sharedOverlays = [ nur.overlay self.overlay fenix.overlay ];
 
       overlay = import ./pkgs;
 
@@ -63,6 +60,7 @@
             cachix
             fd
             nixfmt
+            nixos-generators
             git-crypt
             switchHome
             switchNixos

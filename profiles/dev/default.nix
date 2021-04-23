@@ -62,6 +62,13 @@ in {
 
   home.packages = with pkgs; [
     latexmk # Compile LaTeX + vimtex compiler support
-    rustc # Rust compiler
+    (rust-nightly.latest.withComponents [
+      "cargo"
+      "clippy-preview"
+      "rust-src"
+      "rust-std"
+      "rustc"
+      "rustfmt-preview"
+    ])
   ];
 }
