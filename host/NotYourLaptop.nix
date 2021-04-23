@@ -39,13 +39,6 @@ in {
 
   environment.systemPackages = with pkgs; [ git ];
 
-  # nix = {
-  #  package = pkgs.nixFlakes;
-  #  extraOptions = ''
-  #    experimental-features = nix-command flakes
-  #  '';
-  # };
-
   # Disable systemd units that don't make sense on WSL
   systemd.services."serial-getty@ttyS0".enable = false;
   systemd.services."serial-getty@hvc0".enable = false;

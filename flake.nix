@@ -11,18 +11,19 @@
     fenix.url = "github:nix-community/fenix";
   };
 
-  outputs =
-    inputs@{ self, utils, home, nixpkgs, unstable, nur, fenix, ... }:
+  outputs = inputs@{ self, utils, home, nixpkgs, unstable, nur, fenix, ... }:
     with builtins;
     let
       pkgs = self.pkgs.x86_64-linux.nixpkgs;
       devshellScripts = import ./lib/devshell.nix { inherit pkgs; };
+      overlay-unstable = final: prev: {
+        unstable = unstable.legacyPackages.x86_64-linux;
+      };
     in utils.lib.systemFlake {
       inherit self inputs;
 
       defaultSystem = "x86_64-linux";
       channels.nixpkgs = { input = nixpkgs; };
-      channels.unstable.input = unstable;
       channelsConfig = { allowUnfree = true; };
 
       nixosProfiles = {
@@ -36,7 +37,7 @@
         };
       };
 
-      sharedOverlays = [ nur.overlay self.overlay fenix.overlay ];
+      sharedOverlays = [ self.overlay (final: prev: { unstable = unstable.legacyPackages.x86_64-linux; }) nur.overlay fenix.overlay ];
 
       overlay = import ./pkgs;
 
@@ -46,7 +47,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.bobbbay = import ./users/bobbbay.nix;
+          home-manager.users.bobbbay = (import ./users/bobbbay.nix);
         }
       ];
 

@@ -8,13 +8,15 @@
     fd # A simple, fast and friendly alternative to find
     hyperfine # Benchmark your executables!
     tokei # Like wc but better
-    exa # ls for cool people
+    # exa # ls for cool people
     nodePackages.insect # Calculator REPL
     skim # fzf in Rust
 
     comma # Run any command, anywhere
     xplr # The hackable file explorer
     bobtools # Custom useful binaries
+
+    unstable.exa
   ];
 
   programs.bash = {
