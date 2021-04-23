@@ -62,6 +62,7 @@ in {
 
   home.packages = with pkgs; [
     latexmk # Compile LaTeX + vimtex compiler support
+    git-crypt # Encrypt those git files!
     (rust-nightly.latest.withComponents [
       "cargo"
       "clippy-preview"
