@@ -36,6 +36,7 @@ in {
   security.sudo.wheelNeedsPassword = false;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   environment.systemPackages = with pkgs; [ git ];
 

@@ -8,9 +8,11 @@
     home.url = "github:nix-community/home-manager/release-20.09";
 
     fenix.url = "github:nix-community/fenix";
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, ... }:
+  outputs =
+    inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs, ... }:
     with builtins;
     let pkgs = self.pkgs.x86_64-linux.nixpkgs;
     in utils.lib.systemFlake {
@@ -21,7 +23,10 @@
 
       channels.nixpkgs = {
         input = nixpkgs;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+          allowUnsupportedSystem = true;
+        };
       };
 
       nixosProfiles = {
@@ -39,6 +44,10 @@
               };
             })
           ];
+        };
+        NotYourServer = {
+          nixpkgs = pkgs;
+          modules = [ (import ./host/NotYourServer.nix) ];
         };
       };
 
@@ -72,5 +81,18 @@
             lint
           ];
         };
+
+      deploy.nodes.oracleyServer = {
+        hostname = "193.123.67.110";
+        profiles.main = {
+          user = "root";
+          sshUser = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos
+            self.nixosConfigurations.NotYourServer;
+        };
+      };
+
+      checks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }

@@ -19,6 +19,7 @@
      - `bobtools`: A custom set of aliases and shell scripts for ease-of-use.
      - `comma`: Run any command, without installing them!
      - `xplr`: The hackable TUI File Explorer.
+   - Deployment to Oracle Cloud NixOS Servers (with [deploy-rs](https://github.com/serokell/deploy-rs))
  - LaTeX editing with neovim side-by-side with Zathura
 
 ### Usage
@@ -41,6 +42,12 @@ Unlock the crypt:
 
 ```
 nix develop -c git crypt unlock /path/to/symmetric_key
+```
+
+Deploy to remote machine(s):
+
+```
+nix run github:serokell/deploy-rs
 ```
 
 Update all inputs:
