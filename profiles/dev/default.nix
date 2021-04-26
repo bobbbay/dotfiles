@@ -62,10 +62,12 @@ in {
         enable =
           true; # Git is already installed globally from within our root config
         aliases = { stat = "status"; };
-        # signing.key = null;
-        # signByDefault = true;
         userEmail = "abatterysingle@gmail.com";
         userName = "Bobbbay";
+        signing = {
+          signByDefault = true;
+          key = null;
+        };
       };
 
       gpg.enable = true;
