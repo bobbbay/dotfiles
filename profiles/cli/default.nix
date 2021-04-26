@@ -28,18 +28,20 @@ in {
       unstable.exa
     ];
 
-    programs.bash = {
-      enable = true;
-      shellAliases = {
-        nrs = "sudo nixos-rebuild switch";
-        ls = "exa --long --icons --header --git";
-        sk = ''rga --files | \sk --preview="bat {} --color=always"'';
-        ".." = "cd ..";
+    programs = {
+      bash = {
+        enable = true;
+        shellAliases = {
+          nrs = "nix develop -c lint && sudo nixos-rebuild switch";
+          ls = "exa --long --icons --header --git";
+          sk = ''rga --files | \sk --preview="bat {} --color=always"'';
+          ".." = "cd ..";
+        };
+        bashrcExtra = ''
+          export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+          export TZ='America/Toronto';
+        '';
       };
-      bashrcExtra = ''
-        export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
-        export TZ='America/Toronto';
-      '';
     };
   };
 }
