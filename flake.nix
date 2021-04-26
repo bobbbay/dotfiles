@@ -15,35 +15,28 @@
   outputs = inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs
     , doom, ... }:
     with builtins;
-    let pkgs = self.pkgs.x86_64-linux.nixpkgs;
-    in utils.lib.systemFlake {
+    utils.lib.systemFlake {
       inherit self inputs;
 
       supportedSystems = [ "x86_64-linux" ];
 
-      channels.nixpkgs = {
-        input = nixpkgs;
-        config = {
-          allowUnfree = true;
-          allowUnsupportedSystem = true;
-        };
-      };
+      channels.nixpkgs = { input = nixpkgs; };
+      channelsConfig.allowUnfree = true;
+      channelsConfig.allowUnsupportedSystem = true;
 
       hosts = {
-        NotYourPC.modules = [ (import ./host/NotYourPC.nix) ];
+        NotYourPC.modules = [ ./host/NotYourPC.nix ];
         NotYourLaptop.modules = [
-          (import ./host/NotYourLaptop.nix)
-          ({ pkgs, config, ... }: {
+          ./host/NotYourLaptop.nix
+          {
             home-manager.users.bobbbay = {
               imports = [ doom.hmModule ./suites/full ];
             };
-          })
+          }
         ];
         NotYourServer.modules = [
-          (import ./host/NotYourServer.nix)
-          ({ pkgs, config, ... }: {
-            home-manager.users.main = { imports = [ ./suites/minimal ]; };
-          })
+          ./host/NotYourServer.nix
+          { home-manager.users.main = { imports = [ ./suites/minimal ]; }; }
         ];
       };
 
@@ -67,12 +60,11 @@
       ];
 
       devShellBuilder = channels:
-        with pkgs;
-        with (import ./lib/devshell.nix { inherit pkgs; });
+        with channels.nixpkgs;
+        with (import ./lib/devshell.nix { inherit (channels.nixpkgs) pkgs; });
         mkShell {
           buildInputs = [
             cachix
-            fd
             nixfmt
             nixos-generators
             git-crypt

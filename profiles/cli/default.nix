@@ -21,7 +21,6 @@ in {
       nodePackages.insect # Calculator REPL
       skim # fzf in Rust
 
-      comma # Run any command, anywhere
       xplr # The hackable file explorer
       bobtools # Custom useful binaries
 

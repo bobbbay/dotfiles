@@ -17,7 +17,6 @@
    - Nightly Rust versions
    - Custom packages:
      - `bobtools`: A custom set of aliases and shell scripts for ease-of-use.
-     - `comma`: Run any command, without installing them!
      - `xplr`: The hackable TUI File Explorer.
    - Deployment to Oracle Cloud NixOS Servers (with [deploy-rs](https://github.com/serokell/deploy-rs))
  - LaTeX editing with neovim side-by-side with Zathura
@@ -66,7 +65,8 @@ nix flake update --update-input nixpkgs --commit-lock-file
 
  - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
  - [ ] RPi 4 support (try: [nixos-generate](https://github.com/nix-community/nixos-generators))
-   - [Mailserver?](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
+   - [ ] [Mailserver?](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
+ - [ ] Make `lib/devshell.nix` an overlay, instead.
 
 ### Credits
 
