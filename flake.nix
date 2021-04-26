@@ -9,10 +9,11 @@
 
     fenix.url = "github:nix-community/fenix";
     deploy-rs.url = "github:serokell/deploy-rs";
+    doom.url = "github:vlaci/nix-doom-emacs";
   };
 
   outputs =
-    inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs, ... }:
+    inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs, doom, ... }:
     with builtins;
     let pkgs = self.pkgs.x86_64-linux.nixpkgs;
     in utils.lib.systemFlake {
@@ -40,7 +41,7 @@
             (import ./host/NotYourLaptop.nix)
             ({ pkgs, config, ... }: {
               home-manager.users.bobbbay = {
-                imports = [ ./profiles/cli ./profiles/dev ];
+                imports = [ doom.hmModule ./profiles/cli ./profiles/dev ];
               };
             })
           ];

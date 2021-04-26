@@ -66,6 +66,7 @@ nix flake update --update-input nixpkgs --commit-lock-file
 
  - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
  - [ ] RPi 4 support (try: [nixos-generate](https://github.com/nix-community/nixos-generators))
+   - [Mailserver?](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
 
 ### Credits
 

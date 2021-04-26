@@ -60,10 +60,19 @@ in {
     };
 
     gpg.enable = true;
+
+    doom-emacs = {
+      enable = true;
+      doomPrivateDir = ../../config/doom.d;
+    };
   };
 
   services = {
     gpg-agent.enable = true;
+
+    emacs = {
+      enable = true;
+    };
   };
 
   home.packages = with pkgs; [
