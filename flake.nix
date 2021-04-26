@@ -49,7 +49,10 @@
 
       sharedOverlays = [
         (import ./pkgs)
-        (final: prev: { unstable = unstable.legacyPackages.${prev.system}; })
+        (final: prev: {
+          inherit (deploy-rs.packages.${prev.system}) deploy-rs;
+          unstable = unstable.legacyPackages.${prev.system};
+        })
         nur.overlay
         fenix.overlay
       ];
@@ -64,7 +67,7 @@
       ];
 
       devShellBuilder = channels:
-        with channels.nixpkgs.pkgs;
+        with pkgs;
         with (import ./lib/devshell.nix { inherit pkgs; });
         mkShell {
           buildInputs = [
@@ -73,6 +76,7 @@
             nixfmt
             nixos-generators
             git-crypt
+            deploy-rs
 
             lint
           ];

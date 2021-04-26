@@ -10,7 +10,7 @@ let
     username = "bob";
   };
 in {
-  imports = [ "${modulesPath}/profiles/minimal.nix" ../lib/settings.nix ];
+  imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
