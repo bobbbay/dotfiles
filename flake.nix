@@ -20,7 +20,6 @@
       inherit self inputs;
 
       supportedSystems = [ "x86_64-linux" ];
-      defaultSystem = "x86_64-linux";
 
       channels.nixpkgs = {
         input = nixpkgs;
@@ -30,31 +29,22 @@
         };
       };
 
-      nixosProfiles = {
-        NotYourPC = {
-          nixpkgs = pkgs;
-          modules = [ (import ./host/NotYourPC.nix) ];
-        };
-        NotYourLaptop = {
-          nixpkgs = pkgs;
-          modules = [
-            (import ./host/NotYourLaptop.nix)
-            ({ pkgs, config, ... }: {
-              home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./suites/full ];
-              };
-            })
-          ];
-        };
-        NotYourServer = {
-          nixpkgs = pkgs;
-          modules = [
-            (import ./host/NotYourServer.nix)
-            ({ pkgs, config, ... }: {
-              home-manager.users.main = { imports = [ ./suites/minimal ]; };
-            })
-          ];
-        };
+      hosts = {
+        NotYourPC.modules = [ (import ./host/NotYourPC.nix) ];
+        NotYourLaptop.modules = [
+          (import ./host/NotYourLaptop.nix)
+          ({ pkgs, config, ... }: {
+            home-manager.users.bobbbay = {
+              imports = [ doom.hmModule ./suites/full ];
+            };
+          })
+        ];
+        NotYourServer.modules = [
+          (import ./host/NotYourServer.nix)
+          ({ pkgs, config, ... }: {
+            home-manager.users.main = { imports = [ ./suites/minimal ]; };
+          })
+        ];
       };
 
       sharedOverlays = [
