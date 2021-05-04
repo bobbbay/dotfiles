@@ -75,7 +75,7 @@ in {
 
       doom-emacs = {
         enable = true;
-        doomPrivateDir = ../../config/doom.d;
+        doomPrivateDir = ../../config/doom;
       };
     };
 
