@@ -9,11 +9,13 @@
 
     fenix.url = "github:nix-community/fenix";
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    neovim.url = "github:neovim/neovim?dir=contrib";
     doom.url = "github:vlaci/nix-doom-emacs";
   };
 
   outputs = inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs
-    , doom, ... }:
+    , neovim, doom, ... }:
     with builtins;
     utils.lib.systemFlake {
       inherit self inputs;
@@ -45,6 +47,7 @@
         (final: prev: {
           inherit (deploy-rs.packages.${prev.system}) deploy-rs;
           unstable = unstable.legacyPackages.${prev.system};
+          neovim-nightly = neovim.defaultPackage.${prev.system};
         })
         nur.overlay
         fenix.overlay
@@ -69,6 +72,7 @@
             nixos-generators
             git-crypt
             deploy-rs
+            neovim
 
             lint
           ];

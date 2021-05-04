@@ -238,6 +238,21 @@
     },
     "flake-utils_2": {
       "locked": {
+        "lastModified": 1610051610,
+        "narHash": "sha256-U9rPz/usA1/Aohhk7Cmc2gBrEEKRzcW4nwPWMPwja4Y=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3982c9903e93927c2164caa727cd3f6a0e6d14cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_3": {
+      "locked": {
         "lastModified": 1618217525,
         "narHash": "sha256-WGrhVczjXTiswQaoxQ+0PTfbLNeOQM6M36zvLn78AYg=",
         "owner": "numtide",
@@ -308,6 +323,27 @@
       "original": {
         "owner": "nmattia",
         "repo": "naersk",
+        "type": "github"
+      }
+    },
+    "neovim": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "dir": "contrib",
+        "lastModified": 1619807867,
+        "narHash": "sha256-4qlgjgvnsWl/RitVB9qrnHprtMPehB3gkKq1XH/iLpk=",
+        "owner": "neovim",
+        "repo": "neovim",
+        "rev": "0150cc41604ebb1b5b5f6920cf4673e541684e75",
+        "type": "github"
+      },
+      "original": {
+        "dir": "contrib",
+        "owner": "neovim",
+        "repo": "neovim",
         "type": "github"
       }
     },
@@ -389,6 +425,22 @@
       }
     },
     "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1613226215,
+        "narHash": "sha256-3rA5cGIrBHD6yeKhNhsF7/t461ww25oJY8KyBb0IhjU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ff96a0fa5635770390b184ae74debea75c3fd534",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1619262110,
         "narHash": "sha256-XjmRXOlmmkP9dwOqe3/L0egX+G17zCN2k3lkhEXtRJ4=",
@@ -521,7 +573,8 @@
         "doom": "doom",
         "fenix": "fenix",
         "home": "home",
-        "nixpkgs": "nixpkgs_5",
+        "neovim": "neovim",
+        "nixpkgs": "nixpkgs_6",
         "nur": "nur",
         "unstable": "unstable",
         "utils": "utils_2"
@@ -593,7 +646,7 @@
     },
     "utils_2": {
       "inputs": {
-        "flake-utils": "flake-utils_2"
+        "flake-utils": "flake-utils_3"
       },
       "locked": {
         "lastModified": 1619358717,

@@ -21,6 +21,7 @@ in {
     programs = {
       neovim = {
         enable = true;
+        package = with pkgs; neovim-nightly;
         extraConfig = builtins.readFile ../../config/init.vim;
         plugins = with pkgs.vimPlugins; [
           vim-nix # Support for writing Nix expressions in Vim.
