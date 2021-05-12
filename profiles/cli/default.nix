@@ -17,28 +17,34 @@ in {
       fd # A simple, fast and friendly alternative to find
       hyperfine # Benchmark your executables!
       tokei # Like wc but better
-      # exa # ls for cool people
       nodePackages.insect # Calculator REPL
       skim # fzf in Rust
+
+      iosevka # God-like font :D
 
       xplr # The hackable file explorer
       bobtools # Custom useful binaries
 
-      unstable.exa
+      unstable.exa # ls but better
+      # alacritty-nightly # terminal epitome
     ];
+
+    fonts.fontconfig.enable = true;
 
     programs = {
       bash = {
         enable = true;
         shellAliases = {
-          nrs = "nix develop -c lint && sudo nixos-rebuild switch";
+          nrs = "sudo nixos-rebuild switch";
           ls = "exa --long --icons --header --git";
           sk = ''rga --files | \sk --preview="bat {} --color=always"'';
           ".." = "cd ..";
         };
         bashrcExtra = ''
+          # TODO: These are really all bs configs
           export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
           export TZ='America/Toronto';
+          tmux && exit;
         '';
       };
     };

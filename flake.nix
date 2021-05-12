@@ -12,10 +12,11 @@
 
     neovim.url = "github:neovim/neovim?dir=contrib";
     doom.url = "github:vlaci/nix-doom-emacs";
+    alacritty.url = "/home/bobbbay/alacritty-nightly"; # "github:bobbbay/alacritty-nightly";
   };
 
   outputs = inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs
-    , neovim, doom, ... }:
+    , neovim, doom, alacritty, ... }:
     with builtins;
     utils.lib.systemFlake {
       inherit self inputs;
@@ -48,6 +49,7 @@
           inherit (deploy-rs.packages.${prev.system}) deploy-rs;
           unstable = unstable.legacyPackages.${prev.system};
           neovim-nightly = neovim.defaultPackage.${prev.system};
+          # alacritty-nightly = alacritty.defaultPackage.${prev.system};
         })
         nur.overlay
         fenix.overlay

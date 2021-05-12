@@ -17,4 +17,16 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOeUJ4JvoGogNOkmJ+dU83xNK28ccUZOrDe4PgQ71GOS abatterysingle@gmail.com"
     ];
   };
+
+  systemd.services.bobsite = {
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      description = "Start the Bobsite webserver.";
+
+      serviceConfig = {
+        Type = "forking";
+        User = "main";
+        ExecStart = ''nix run github:bobbbay/site -- run'';         
+      };
+   };
 }

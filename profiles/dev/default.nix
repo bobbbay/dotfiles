@@ -25,6 +25,7 @@ in {
         extraConfig = builtins.readFile ../../config/init.vim;
         plugins = with pkgs.vimPlugins; [
           vim-nix # Support for writing Nix expressions in Vim.
+          rust-vim # Who needs garbage collectors anyways?
           { # Support for *TeX files
             plugin = vimtex;
             config = ''
@@ -69,6 +70,7 @@ in {
           signByDefault = true;
           key = null;
         };
+        lfs.enable = true;
       };
 
       gpg.enable = true;
@@ -76,6 +78,13 @@ in {
       doom-emacs = {
         enable = true;
         doomPrivateDir = ../../config/doom;
+      };
+
+      tmux = { enable = true; };
+
+      direnv = {
+        enable = true;
+        enableNixDirenvIntegration = true;
       };
     };
 
@@ -88,6 +97,14 @@ in {
     home.packages = with pkgs; [
       latexmk # Compile LaTeX + vimtex compiler support
       git-crypt # Encrypt those git files!
+      jetbrains.clion # Hi IDE I like Rust :flushed:
+
+      # TODO: Frankly, CLion needs this. I wish there was a way to expose these only to CLion and not to my whole shell :<
+      gnumake
+      gcc
+
+      git-lfs1
+
       (rust-nightly.latest.withComponents [
         "cargo"
         "clippy-preview"

@@ -52,13 +52,13 @@ nix run github:serokell/deploy-rs
 Update all inputs:
 
 ```
-nix flake update --recreate-lock-file --commit-lock-file
+nix flake update
 ```
 
 Update a specific input:
 
 ```
-nix flake update --update-input nixpkgs --commit-lock-file
+nix flake lock --update-input nixpkgs
 ```
 
 ### TODO

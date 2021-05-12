@@ -12,3 +12,11 @@ autocmd User Startified setlocal cursorline
 
 " Add mouse support so we can scroll and select
 set mouse=a
+
+" Ugh pressing :q takes so long
+nnoremap q :q<CR>
+nnoremap <C-X> :x<CR>
+
+" Rust!
+noremap <leader><T> <esc>:RustTest<CR>
+noremap <C-T> <esc>:RustTest!<CR>
