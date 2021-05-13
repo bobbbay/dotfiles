@@ -12,12 +12,13 @@
    - WSL NixOS config-ready
    - ["Erase Your Darlings"](https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html)
    - `nix develop`: fully-featured dev shell
+     - Direnv support!
    - Nightly Rust versions
    - Custom packages:
-     - `bobtools`: A custom set of aliases and shell scripts for ease-of-use.
      - `xplr`: The hackable TUI File Explorer.
    - Deployment to Oracle Cloud NixOS Servers (with [deploy-rs](https://github.com/serokell/deploy-rs))
  - LaTeX editing with neovim side-by-side with Zathura
+ - Many Rusty replacements and new tools! (`bat`, `hyperfine`, etc.)
 
 ### Usage
 
@@ -29,7 +30,7 @@ nix flake show
 
 > Note: you can use bin/nd instead of `nix develop -c ...`. The `nd` command will be available if you have installed this configuration.
 
-Format/lint the project files with `nixfmt`:
+Format/lint the project files with `nixpkgs-fmt`:
 
 ```
 nix develop -c lint
