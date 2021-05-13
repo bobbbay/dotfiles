@@ -12,6 +12,14 @@ let
 in {
   imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
+  virtualisation.libvirtd = {
+    enable = true;
+    qemuOvmf = true;
+    qemuRunAsRoot = false;
+    onBoot = "ignore";
+    onShutdown = "shutdown";
+  };
+
   # WSL is closer to a container than anything else
   boot.isContainer = true;
 

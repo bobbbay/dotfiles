@@ -13,10 +13,13 @@
     neovim.url = "github:neovim/neovim?dir=contrib";
     doom.url = "github:vlaci/nix-doom-emacs";
     alacritty.url = "/home/bobbbay/alacritty-nightly"; # "github:bobbbay/alacritty-nightly";
+    neovitality.url = "github:vi-tality/neovitality";
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = inputs@{ self, utils, nixpkgs, unstable, nur, home, fenix, deploy-rs
-    , neovim, doom, alacritty, ... }:
+    , neovim, doom, alacritty, neovitality, ... }:
     with builtins;
     utils.lib.systemFlake {
       inherit self inputs;
@@ -50,6 +53,7 @@
           unstable = unstable.legacyPackages.${prev.system};
           neovim-nightly = neovim.defaultPackage.${prev.system};
           # alacritty-nightly = alacritty.defaultPackage.${prev.system};
+          neovitality = neovitality.defaultPackage.${prev.system};
         })
         nur.overlay
         fenix.overlay

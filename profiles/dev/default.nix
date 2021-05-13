@@ -21,7 +21,7 @@ in {
     programs = {
       neovim = {
         enable = true;
-        package = with pkgs; neovim-nightly;
+        package = with pkgs; neovitality; # neovim-nightly;
         extraConfig = builtins.readFile ../../config/init.vim;
         plugins = with pkgs.vimPlugins; [
           vim-nix # Support for writing Nix expressions in Vim.
@@ -98,6 +98,7 @@ in {
       latexmk # Compile LaTeX + vimtex compiler support
       git-crypt # Encrypt those git files!
       jetbrains.clion # Hi IDE I like Rust :flushed:
+      virtmanager # Vital virtualisation.
 
       # TODO: Frankly, CLion needs this. I wish there was a way to expose these only to CLion and not to my whole shell :<
       gnumake
