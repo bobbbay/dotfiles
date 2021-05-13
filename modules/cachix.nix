@@ -2,7 +2,8 @@
 
 with lib;
 let cfg = config.cachix;
-in {
+in
+{
   options = {
     cachix.enable = mkEnableOption "Enable custom cachix configuration";
   };

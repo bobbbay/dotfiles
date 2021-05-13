@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
-
 let cfg = config.profiles.cli;
 
-in {
+in
+{
   options.profiles.cli.enable = lib.mkOption {
     description = "Enable CLI tools.";
     type = with lib.types; bool;
@@ -22,11 +22,9 @@ in {
 
       iosevka # God-like font :D
 
-      xplr # The hackable file explorer
-      bobtools # Custom useful binaries
-
       unstable.exa # ls but better
-      # alacritty-nightly # terminal epitome
+
+      xplr # The hackable file explorer
     ];
 
     fonts.fontconfig.enable = true;

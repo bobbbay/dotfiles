@@ -19,14 +19,14 @@
   };
 
   systemd.services.bobsite = {
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-      description = "Start the Bobsite webserver.";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    description = "Start the Bobsite webserver.";
 
-      serviceConfig = {
-        Type = "forking";
-        User = "main";
-        ExecStart = ''nix run github:bobbbay/site -- run'';         
-      };
-   };
+    serviceConfig = {
+      Type = "forking";
+      User = "main";
+      ExecStart = ''nix run github:bobbbay/site -- run'';
+    };
+  };
 }

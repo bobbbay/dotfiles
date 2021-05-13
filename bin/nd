@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-if [ $# -eq 0 ] 
-then
-    echo "Opening nix dev shell..."
-    nix develop
-else
-  nix develop -c $@
-fi

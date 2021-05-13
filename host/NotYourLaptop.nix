@@ -9,7 +9,8 @@ let
     wsl = true;
     username = "bob";
   };
-in {
+in
+{
   imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
   virtualisation.libvirtd = {

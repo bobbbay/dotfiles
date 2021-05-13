@@ -2,13 +2,13 @@
 
 with builtins;
 with lib;
-
 let
   cfg = config.profiles.dev;
   # We need to grab latexmk from CTAN
   latexmk = with pkgs;
     (texlive.combine { inherit (texlive) scheme-small latexmk; });
-in {
+in
+{
   options.profiles.dev = {
     enable = lib.mkOption {
       description = "Enable development tools.";
@@ -21,12 +21,13 @@ in {
     programs = {
       neovim = {
         enable = true;
-        package = with pkgs; neovitality; # neovim-nightly;
+        package = with pkgs; neovim-nightly;
         extraConfig = builtins.readFile ../../config/init.vim;
         plugins = with pkgs.vimPlugins; [
           vim-nix # Support for writing Nix expressions in Vim.
           rust-vim # Who needs garbage collectors anyways?
-          { # Support for *TeX files
+          {
+            # Support for *TeX files
             plugin = vimtex;
             config = ''
               let g:tex_flavor='latex'            " Set LaTeX as our flavour
@@ -36,7 +37,8 @@ in {
               let g:tex_conceal='abdmg'
             '';
           }
-          { # Support for snippets
+          {
+            # Support for snippets
             plugin = ultisnips;
             config = ''
               let g:UltiSnipsExpandTrigger = '<tab>'
@@ -45,7 +47,8 @@ in {
             '';
           }
           vim-snippets # Default snippets
-          { # Start-up page
+          {
+            # Start-up page
             plugin = vim-startify;
             config = "let g:startify_change_to_vcs_root = 0";
           }
