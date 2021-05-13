@@ -78,11 +78,6 @@ in
 
       gpg.enable = true;
 
-      doom-emacs = {
-        enable = true;
-        doomPrivateDir = ../../config/doom;
-      };
-
       tmux = { enable = true; };
 
       direnv = {
@@ -93,8 +88,6 @@ in
 
     services = {
       gpg-agent.enable = true;
-
-      emacs = { enable = true; };
     };
 
     home.packages = with pkgs; [
@@ -109,14 +102,16 @@ in
 
       git-lfs1
 
-      (rust-nightly.latest.withComponents [
-        "cargo"
-        "clippy-preview"
-        "rust-src"
-        "rust-std"
-        "rustc"
-        "rustfmt-preview"
-      ])
+      (with fenix;
+      combine (with default; [
+        cargo
+        clippy-preview
+        rust-std
+        rustc
+        rustfmt-preview
+
+        latest.rust-src
+      ]))
     ];
   };
 }

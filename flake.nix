@@ -25,7 +25,6 @@
     , deploy-rs
     , neovim
     , doom
-    , alacritty
     , ...
     }:
       with builtins;
@@ -44,7 +43,7 @@
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./suites/full ];
+                imports = [ ./suites/full ];
               };
             }
           ];
