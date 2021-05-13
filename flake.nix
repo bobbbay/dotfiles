@@ -89,7 +89,7 @@
           };
 
         deploy.nodes.oracleyServer = {
-          hostname = "193.123.67.110";
+          hostname = (readFile ./crypt/oracleyServer.ip);
           profiles.main = {
             user = "root";
             sshUser = "root";
