@@ -2,8 +2,6 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-
-
 ### Features
 
  - Nix declarative configurations
