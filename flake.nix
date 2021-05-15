@@ -43,13 +43,15 @@
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ ./suites/full ];
+                imports = [ ./profiles/dev ./profiles/cli ];
+                config.profiles.dev.enable = true;
+                config.profiles.cli.enable = true;
               };
             }
           ];
           NotYourServer.modules = [
             ./host/NotYourServer.nix
-            { home-manager.users.main = { imports = [ ./suites/minimal ]; }; }
+            { home-manager.users.main = { imports = [ ./profiles/cli ]; config.profiles.cli.enable = true; }; }
           ];
         };
 
