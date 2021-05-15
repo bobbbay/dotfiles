@@ -62,10 +62,9 @@ nix flake lock --update-input nixpkgs
 
 ### TODO
 
+ - [ ] Use suites
+ - [ ] [Neovitality](https://github.com/vi-tality/neovitality)!
  - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
- - [ ] RPi 4 support (try: [nixos-generate](https://github.com/nix-community/nixos-generators))
-   - [ ] [Mailserver?](https://gitlab.com/simple-nixos-mailserver/nixos-mailserver)
- - [ ] Make `lib/devshell.nix` an overlay, instead.
 
 ### Credits
 
