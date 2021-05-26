@@ -89,6 +89,21 @@
         "type": "github"
       }
     },
+    "emacs": {
+      "locked": {
+        "lastModified": 1621624033,
+        "narHash": "sha256-0NGOPuaYUENltsVT7cxHf3o7AY4+NW4lXKo+L6QthG4=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "6b28469fe977ea9a52bca64b38e4038c34ccd7a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
     "emacs-overlay": {
       "flake": false,
       "locked": {
@@ -442,11 +457,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1620808985,
-        "narHash": "sha256-cf/+g1RVawT0rcKmfh2nf/lgnSrj9YZS+1PkCFmoeJQ=",
+        "lastModified": 1621511390,
+        "narHash": "sha256-isDpLGr73ejAiksS1eW0dOMjEIB+j8b1lyAN++5KmrA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "327368f98c6a927a84aed3c2f2fd1a7f6983e855",
+        "rev": "a7064e23973b0f3e1dd56cf4601758fedc38423c",
         "type": "github"
       },
       "original": {
@@ -571,6 +586,7 @@
       "inputs": {
         "deploy-rs": "deploy-rs",
         "doom": "doom",
+        "emacs": "emacs",
         "fenix": "fenix",
         "home": "home",
         "neovim": "neovim",

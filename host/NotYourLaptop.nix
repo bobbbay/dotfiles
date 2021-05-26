@@ -13,6 +13,8 @@ in
 {
   imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
+  programs.gnupg.agent.enable = true;
+
   virtualisation.libvirtd = {
     enable = true;
     qemuOvmf = true;

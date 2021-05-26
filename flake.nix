@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
+    emacs.url = "github:nix-community/emacs-overlay";
     home.url = "github:nix-community/home-manager/release-20.09";
 
     fenix.url = "github:nix-community/fenix";
@@ -20,6 +21,7 @@
     , nixpkgs
     , unstable
     , nur
+    , emacs
     , home
     , fenix
     , deploy-rs
@@ -43,7 +45,7 @@
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ ./profiles/dev ./profiles/cli ];
+                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ];
                 config.profiles.dev.enable = true;
                 config.profiles.cli.enable = true;
               };
@@ -63,6 +65,7 @@
             neovim-nightly = neovim.defaultPackage.${prev.system};
           })
           nur.overlay
+          emacs.overlay
           fenix.overlay
         ];
 

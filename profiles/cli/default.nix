@@ -39,10 +39,7 @@ in
           ".." = "cd ..";
         };
         bashrcExtra = ''
-          # TODO: These are really all bs configs
           export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
-          export TZ='America/Toronto';
-          tmux && exit;
         '';
       };
     };

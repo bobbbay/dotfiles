@@ -78,6 +78,11 @@ in
 
       gpg.enable = true;
 
+      doom-emacs = {
+        enable = true;
+        doomPrivateDir = ../../config/doom;
+      };
+
       tmux = { enable = true; };
 
       direnv = {
@@ -87,7 +92,11 @@ in
     };
 
     services = {
-      gpg-agent.enable = true;
+      gpg-agent = {
+        enable = true;
+        pinentryFlavor = "qt";
+      }; 
+      emacs.enable = true;
     };
 
     home.packages = with pkgs; [
