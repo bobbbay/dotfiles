@@ -95,7 +95,7 @@ in
       gpg-agent = {
         enable = true;
         pinentryFlavor = "qt";
-      }; 
+      };
       emacs.enable = true;
     };
 
