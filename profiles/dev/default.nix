@@ -22,7 +22,7 @@ in
       neovim = {
         enable = true;
         package = with pkgs; neovim-nightly;
-        extraConfig = builtins.readFile ../../config/init.vim;
+        extraConfig = builtins.readFile ../../config/neovim.vim;
         plugins = with pkgs.vimPlugins; [
           vim-nix # Support for writing Nix expressions in Vim.
           rust-vim # Who needs garbage collectors anyways?
@@ -77,11 +77,6 @@ in
       };
 
       gpg.enable = true;
-
-      doom-emacs = {
-        enable = false;
-        doomPrivateDir = ../../config/doom;
-      };
 
       emacs = {
         enable = true;
