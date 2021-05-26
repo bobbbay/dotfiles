@@ -20,7 +20,9 @@
  - LaTeX editing with neovim side-by-side with Zathura
  - Many Rusty replacements and new tools! (`bat`, `hyperfine`, etc.)
 
-### Usage
+### Cheatsheet
+
+> Note: The following commands assume you are in the shell with direnv. If you are not and a command is not found, try entering the shell with `nix develop`, or run the command with `nix develop -c <command>`.
 
 Show provided flakes:
 
@@ -28,18 +30,16 @@ Show provided flakes:
 nix flake show
 ```
 
-> Note: you can use bin/nd instead of `nix develop -c ...`. The `nd` command will be available if you have installed this configuration.
-
 Format/lint the project files with `nixpkgs-fmt`:
 
 ```
-nix develop -c lint
+frmt
 ```
 
 Unlock the crypt:
 
 ```
-nix develop -c git crypt unlock /path/to/symmetric_key
+git crypt unlock /path/to/symmetric_key
 ```
 
 Deploy to remote machine(s):
@@ -62,9 +62,11 @@ nix flake lock --update-input nixpkgs
 
 ### TODO
 
- - [ ] Use suites
- - [ ] [Neovitality](https://github.com/vi-tality/neovitality)!
- - [ ] Re-write NotYourPC's "Erase Your Babies" to use [this nix-community project, impermanence](https://github.com/nix-community/impermanence), instead.
+ - [ ] [Impermanence](https://github.com/nix-community/impermanence)
+
+### Useful links
+
+ - [David O'Toole Org Tutorial](https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html)
 
 ### Credits
 
