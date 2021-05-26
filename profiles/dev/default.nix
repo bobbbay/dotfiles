@@ -79,11 +79,20 @@ in
       gpg.enable = true;
 
       doom-emacs = {
-        enable = true;
+        enable = false;
         doomPrivateDir = ../../config/doom;
       };
 
-      tmux = { enable = true; };
+      emacs = {
+        enable = true;
+        extraPackages = (epkgs:
+        (with epkgs; [
+          evil
+	  lsp-mode
+        ]));
+      };
+
+      tmux.enable = true;
 
       direnv = {
         enable = true;
@@ -110,6 +119,8 @@ in
       gcc
 
       git-lfs1
+
+      rnix-lsp
 
       (with fenix;
       combine (with default; [
