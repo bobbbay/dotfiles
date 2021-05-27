@@ -65,17 +65,14 @@ nix flake lock --update-input nixpkgs
  - [ ] [Impermanence](https://github.com/nix-community/impermanence)
 
 ### Useful links
+ 
+#### Nix
+
+ - [Gytis Ivaskevicius' flake-utils-plus](https://github.com/gytis-ivaskevicius/flake-utils-plus)
+ - [Terlar's nixfiles](https://github.com/terlar/nix-config) for the inspiration on how to modularize his `home/`.
+
+#### Emacs
 
  - [David O'Toole Org Tutorial](https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html)
-
-### Credits
-
-A large thanks to:
-
- - [Terlar's nixfiles](https://github.com/terlar/nix-config) for the inspiration on how to modularize `home/`.
- - [Gytis Ivaskevicius' flake-utils-plus](https://github.com/gytis-ivaskevicius/flake-utils-plus) for inspiring my painless `flake.nix`
- - [DieracDelta](https://github.com/DieracDelta) and [Gytis Ivaskevicius](https://github.com/gytis-ivaskevicius) for the convincing pitch on "why Nix"
-
-As well as the communities that always provide help in times of need.
-
-<sup>1</sup> Laptop is on NixOS WSL.
+ - ["Advanced Emacs" but not really advanced](https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf)
+ - [Will Bush's beautiful emacs.nix](https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix)

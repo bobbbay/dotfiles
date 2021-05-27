@@ -83,7 +83,12 @@ in
         extraPackages = (epkgs:
         (with epkgs; [
           evil
-	  lsp-mode
+	  use-package
+	  lsp-mode lsp-ui
+	  nord-theme
+	  nyan-mode zone-nyan
+	  emacs-libvterm
+	  rustic
         ]));
       };
 
@@ -109,13 +114,14 @@ in
       jetbrains.clion # Hi IDE I like Rust :flushed:
       virtmanager # Vital virtualisation.
 
-      # TODO: Frankly, CLion needs this. I wish there was a way to expose these only to CLion and not to my whole shell :<
+      # For CLion
       gnumake
       gcc
 
       git-lfs1
-
+      
       rnix-lsp
+      rust-analyzer
 
       (with fenix;
       combine (with default; [
