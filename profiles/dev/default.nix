@@ -78,22 +78,6 @@ in
 
       gpg.enable = true;
 
-      emacs = {
-        enable = true;
-        extraPackages = (epkgs:
-          (with epkgs; [
-            evil
-            use-package
-            lsp-mode
-            lsp-ui
-            nord-theme
-            nyan-mode
-            zone-nyan
-            emacs-libvterm
-            rustic
-          ]));
-      };
-
       tmux.enable = true;
 
       direnv = {
@@ -107,7 +91,6 @@ in
         enable = true;
         pinentryFlavor = "qt";
       };
-      emacs.enable = true;
     };
 
     home.packages = with pkgs; [
@@ -121,9 +104,6 @@ in
       gcc
 
       git-lfs1
-
-      rnix-lsp
-      rust-analyzer
 
       (with fenix;
       combine (with default; [

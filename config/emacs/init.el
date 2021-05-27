@@ -12,19 +12,6 @@
 
 (custom-set-variables
   '(inhibit-startup-screen t)
-  '(initial-buffer-choice t)
-  '(initial-scratch-message "
-
- ___________
-< GNU Emacs >
- -----------
-        \\   ^__^
-         \\  (oo)\\_______
-            (__)\\       )\\/\\
-                ||----w |
-                ||     ||
-
-")
   '(nyan-animate-nyancat t)
 )
 
@@ -65,3 +52,17 @@
   (lsp-rust-analyzer-server-display-inlay-hints t)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+(setq dashboard-banner-logo-title "Welcome to Emacs")
+(setq dashboard-center-content t)
+(setq dashboard-startup-banner 'logo)
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (agenda . 5)
+                        (registers . 5)))

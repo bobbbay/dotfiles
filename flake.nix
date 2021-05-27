@@ -42,15 +42,13 @@
         hosts = {
           NotYourPC.modules = [ ./host/NotYourPC.nix ];
           NotYourLaptop.modules = with self.modules; [
-	    emacs-conf
-
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ];
+                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs.nix ];
                 config.profiles.dev.enable = true;
                 config.profiles.cli.enable = true;
-                # config.modules.emacs.enable = true;
+                config.modules.emacs.enable = true;
               };
             }
           ];
@@ -60,10 +58,10 @@
           ];
         };
 
-	modules = utils.lib.modulesFromList [
-		./modules/emacs-conf.nix
-		./modules/cachix.nix
-	];
+        modules = utils.lib.modulesFromList [
+          ./modules/emacs-conf.nix
+          ./modules/cachix.nix
+        ];
 
         sharedOverlays = [
           (import ./pkgs)
@@ -78,9 +76,8 @@
         ];
 
         sharedModules = with self.modules; [
-	  emacs-conf
-	  cachix
-	  
+          cachix
+
           home.nixosModules.home-manager
           utils.nixosModules.saneFlakeDefaults
           {
