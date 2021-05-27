@@ -81,15 +81,17 @@ in
       emacs = {
         enable = true;
         extraPackages = (epkgs:
-        (with epkgs; [
-          evil
-	  use-package
-	  lsp-mode lsp-ui
-	  nord-theme
-	  nyan-mode zone-nyan
-	  emacs-libvterm
-	  rustic
-        ]));
+          (with epkgs; [
+            evil
+            use-package
+            lsp-mode
+            lsp-ui
+            nord-theme
+            nyan-mode
+            zone-nyan
+            emacs-libvterm
+            rustic
+          ]));
       };
 
       tmux.enable = true;
@@ -119,7 +121,7 @@ in
       gcc
 
       git-lfs1
-      
+
       rnix-lsp
       rust-analyzer
 

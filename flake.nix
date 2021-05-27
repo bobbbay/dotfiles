@@ -1,6 +1,6 @@
 {
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -41,13 +41,16 @@
 
         hosts = {
           NotYourPC.modules = [ ./host/NotYourPC.nix ];
-          NotYourLaptop.modules = [
+          NotYourLaptop.modules = with self.modules; [
+	    emacs-conf
+
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs.nix ];
+                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ];
                 config.profiles.dev.enable = true;
                 config.profiles.cli.enable = true;
+                # config.modules.emacs.enable = true;
               };
             }
           ];
@@ -56,6 +59,11 @@
             { home-manager.users.main = { imports = [ ./profiles/cli ]; config.profiles.cli.enable = true; }; }
           ];
         };
+
+	modules = utils.lib.modulesFromList [
+		./modules/emacs-conf.nix
+		./modules/cachix.nix
+	];
 
         sharedOverlays = [
           (import ./pkgs)
@@ -69,7 +77,10 @@
           fenix.overlay
         ];
 
-        sharedModules = [
+        sharedModules = with self.modules; [
+	  emacs-conf
+	  cachix
+	  
           home.nixosModules.home-manager
           utils.nixosModules.saneFlakeDefaults
           {
