@@ -23,6 +23,7 @@ in
       iosevka # God-like font :D
 
       unstable.exa # ls but better
+      unstable.bottom # system monitoring go brrr
 
       xplr # The hackable file explorer
     ];

@@ -45,7 +45,7 @@
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs.nix ];
+                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs ];
                 config.profiles.dev.enable = true;
                 config.profiles.cli.enable = true;
                 config.modules.emacs.enable = true;
@@ -59,7 +59,7 @@
         };
 
         modules = utils.lib.modulesFromList [
-          ./modules/emacs-conf.nix
+          ./modules/emacs
           ./modules/cachix.nix
         ];
 

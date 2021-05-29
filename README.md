@@ -76,3 +76,4 @@ nix flake lock --update-input nixpkgs
  - [David O'Toole Org Tutorial](https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html)
  - ["Advanced Emacs" but not really advanced](https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf)
  - [Will Bush's beautiful emacs.nix](https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix)
+ - [rememberYou's .emacs.d](https://github.com/rememberYou/.emacs.d) and usual r/emacs TIP of the week posts

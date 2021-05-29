@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "Emacs modules";
     src = mkOption {
       type = types.path;
-      default = ../config/emacs;
+      default = ../../config/emacs;
       description = "The source path for the emacs configuration directory.";
     };
     target = mkOption {
@@ -33,29 +33,43 @@ in
 
     programs.emacs = {
       enable = true;
-      extraPackages = (epkgs:
-        (with epkgs; [
-          evil
-          use-package
-          lsp-mode
-          lsp-ui
-          nord-theme
-          nyan-mode
-          zone-nyan
-          emacs-libvterm
-          rustic
-          nix-mode
-          nixpkgs-fmt
-          dashboard
-        ])
+      extraPackages = (
+        epkgs:
+          (
+            with epkgs; [
+              use-package
+              evil
+              org
+              lsp-mode
+              lsp-ui
+              nord-theme
+              nyan-mode
+              zone-nyan
+              multi-vterm
+              rustic
+              nix-mode
+              nixpkgs-fmt
+              dashboard
+              projectile
+              restart-emacs
+              magit
+              which-key
+              free-keys
+              ledger-mode
+            ]
+          )
       );
     };
 
     services.emacs.enable = true;
 
-    home.packages = mkIf cfg.lsp.enable (with pkgs; [
+    home.packages = mkIf cfg.lsp.enable (
+      with pkgs; [
         rust-analyzer
         rnix-lsp
-      ]);
+        ledger
+        ledger-web
+      ]
+    );
   };
 }
