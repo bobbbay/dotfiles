@@ -51,6 +51,7 @@
   ((
     nix-mode
     rustic-mode
+    haskell-mode
     ) . lsp)
   )
 

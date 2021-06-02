@@ -56,6 +56,8 @@ in
               which-key
               free-keys
               ledger-mode
+              haskell-mode
+              lsp-haskell
             ]
           )
       );
@@ -69,6 +71,7 @@ in
         rnix-lsp
         ledger
         ledger-web
+        haskellPackages.haskell-language-server
       ]
     );
   };

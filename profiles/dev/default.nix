@@ -98,6 +98,8 @@ in
       git-crypt # Encrypt those git files!
       jetbrains.clion # Hi IDE I like Rust :flushed:
       virtmanager # Vital virtualisation.
+      stack # Haskell
+      ghc # Haskell
 
       # For CLion
       gnumake
