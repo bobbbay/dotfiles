@@ -9,6 +9,17 @@
 
 (set-frame-font "Iosevka Extralight" nil t)
 
+;; Keep those autosaves somewhere else
+;; TODO: Automatically mkdir /tmp/emacs-saves if not already created.
+(setq backup-by-copying t
+      backup-directory-alist '(("." . "/tmp/emacs-saves/"))
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
+(setq auto-save-file-name-transforms
+  `((".*" "/tmp/emacs-saves/" t)))
+
 ;; Nord
 (load-theme 'nord t)
 
