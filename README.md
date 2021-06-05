@@ -62,6 +62,13 @@ nix flake lock --update-input nixpkgs
 
 ### TODO
 
+ - [ ] Modules layout:
+   - [ ] git crypt automatically unlock
+   - [ ] ssh.key, gpg.key modules
+   - [x] Upgrade to 21.05
+   - [ ] Revert emacsclient
+   - [ ] Move hardware-configurations to host/* files
+   - [ ] Create `bob` executible, e.g. `bob fmt`.
  - [ ] [Impermanence](https://github.com/nix-community/impermanence)
 
 ### Useful links

@@ -1,12 +1,12 @@
 {
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     emacs.url = "github:nix-community/emacs-overlay";
-    home.url = "github:nix-community/home-manager/release-20.09";
+    home.url = "github:nix-community/home-manager/release-21.05";
 
     fenix.url = "github:nix-community/fenix";
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -45,10 +45,11 @@
             ./host/NotYourLaptop.nix
             {
               home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs ];
+                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs ./modules/ssh.nix ];
                 config.profiles.dev.enable = true;
                 config.profiles.cli.enable = true;
                 config.modules.emacs.enable = true;
+                config.modules.ssh.enable = true;
               };
             }
           ];

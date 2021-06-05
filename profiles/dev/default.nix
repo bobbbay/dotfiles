@@ -20,7 +20,7 @@ in
   config = lib.mkIf config.profiles.dev.enable {
     programs = {
       neovim = {
-        enable = true;
+        enable = false;
         package = with pkgs; neovim-nightly;
         extraConfig = builtins.readFile ../../config/neovim.vim;
         plugins = with pkgs.vimPlugins; [
@@ -96,14 +96,9 @@ in
     home.packages = with pkgs; [
       latexmk # Compile LaTeX + vimtex compiler support
       git-crypt # Encrypt those git files!
-      jetbrains.clion # Hi IDE I like Rust :flushed:
       virtmanager # Vital virtualisation.
       stack # Haskell
       ghc # Haskell
-
-      # For CLion
-      gnumake
-      gcc
 
       git-lfs1
       gitAndTools.gitui
