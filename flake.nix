@@ -59,7 +59,6 @@
         };
 
         modules = utils.lib.modulesFromList [
-          ./modules/emacs
           ./modules/cachix.nix
         ];
 

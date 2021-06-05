@@ -23,6 +23,9 @@ in
     onShutdown = "shutdown";
   };
 
+  services.emacs.enable = true;
+  services.emacs.install = true;
+
   # WSL is closer to a container than anything else
   boot.isContainer = true;
 

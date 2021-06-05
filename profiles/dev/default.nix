@@ -106,6 +106,7 @@ in
       gcc
 
       git-lfs1
+      gitAndTools.gitui
 
       (with fenix;
       combine (with default; [
