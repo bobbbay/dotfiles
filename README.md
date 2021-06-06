@@ -64,9 +64,8 @@ nix flake lock --update-input nixpkgs
 
  - [ ] Modules layout:
    - [ ] git crypt automatically unlock
-   - [ ] ssh.key, gpg.key modules
-   - [x] Upgrade to 21.05
-   - [ ] Revert emacsclient
+   - [ ] More modules!
+     - [x] `ssh.key`
    - [ ] Move hardware-configurations to host/* files
    - [ ] Create `bob` executible, e.g. `bob fmt`.
  - [ ] [Impermanence](https://github.com/nix-community/impermanence)
@@ -77,6 +76,7 @@ nix flake lock --update-input nixpkgs
 
  - [Gytis Ivaskevicius' flake-utils-plus](https://github.com/gytis-ivaskevicius/flake-utils-plus)
  - [Terlar's nixfiles](https://github.com/terlar/nix-config) for the inspiration on how to modularize his `home/`.
+ - [Chris Warbo's "Useful Nix Hacks"](http://chriswarbo.net/projects/nixos/useful_hacks.html)
 
 #### Emacs
 
@@ -84,3 +84,7 @@ nix flake lock --update-input nixpkgs
  - ["Advanced Emacs" but not really advanced](https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf)
  - [Will Bush's beautiful emacs.nix](https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix)
  - [rememberYou's .emacs.d](https://github.com/rememberYou/.emacs.d) and usual r/emacs TIP of the week posts
+
+### Miscellaneous
+
+ - [Sridhar's Apps](https://notes.srid.ca/apps)
