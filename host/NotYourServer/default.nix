@@ -1,7 +1,7 @@
 { ... }: {
-  imports = [ ../misc/hardware-configurations/NotYourServer.nix ];
+  imports = [ ./hardware-configuration.nix ];
 
-  home-manager.users.main = { imports = [ ../profiles/cli ]; config.profiles.cli.enable = true; };
+  home-manager.users.main = { imports = [ ../../profiles/cli ]; config.profiles.cli.enable = true; };
 
   boot.cleanTmpDir = true;
   # networking.hostName = "hosting";

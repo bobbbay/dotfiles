@@ -3,36 +3,17 @@
 with lib;
 let
   defaultUser = "bobbbay";
-  syschdemd =
-    import ../misc/wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
-  settings = {
-    wsl = true;
-    username = "bob";
-  };
-in
-{
+  syschdemd = import ./syschdemd { inherit lib pkgs config defaultUser; };
+in {
   imports = [ "${modulesPath}/profiles/minimal.nix" ];
-
-  home-manager.users.bobbbay = {
-    imports = [ ../profiles/dev ../profiles/cli ../modules/home ];
-    config.profiles.dev.enable = true;
-    config.profiles.cli.enable = true;
-    config.modules.emacs.enable = true;
-    config.modules.ssh.enable = true;
-  };
-
-  programs.gnupg.agent.enable = true;
-
-  virtualisation.libvirtd = {
+  
+    virtualisation.libvirtd = {
     enable = true;
     qemuOvmf = true;
     qemuRunAsRoot = false;
     onBoot = "ignore";
     onShutdown = "shutdown";
   };
-
-  services.emacs.enable = true;
-  services.emacs.install = true;
 
   # WSL is closer to a container than anything else
   boot.isContainer = true;
@@ -43,7 +24,7 @@ in
 
   networking.dhcpcd.enable = false;
 
-  users.users.${defaultUser} = {
+  users.users.bobbbay = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
