@@ -1,6 +1,6 @@
 {
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -40,22 +40,14 @@
         channelsConfig.allowUnsupportedSystem = true;
 
         hosts = {
-          NotYourPC.modules = [ ./host/NotYourPC.nix ];
+          NotYourPC.modules = [
+            ./host/NotYourPC.nix
+          ];
           NotYourLaptop.modules = with self.modules; [
             ./host/NotYourLaptop.nix
-            {
-              home-manager.users.bobbbay = {
-                imports = [ doom.hmModule ./profiles/dev ./profiles/cli ./modules/emacs ./modules/ssh.nix ];
-                config.profiles.dev.enable = true;
-                config.profiles.cli.enable = true;
-                config.modules.emacs.enable = true;
-                config.modules.ssh.enable = true;
-              };
-            }
           ];
           NotYourServer.modules = [
             ./host/NotYourServer.nix
-            { home-manager.users.main = { imports = [ ./profiles/cli ]; config.profiles.cli.enable = true; }; }
           ];
         };
 

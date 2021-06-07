@@ -1,6 +1,8 @@
 { ... }: {
   imports = [ ../misc/hardware-configurations/NotYourServer.nix ];
 
+  home-manager.users.main = { imports = [ ../profiles/cli ]; config.profiles.cli.enable = true; };
+
   boot.cleanTmpDir = true;
   # networking.hostName = "hosting";
   networking.firewall.allowPing = true;
