@@ -1,7 +1,7 @@
 { ... }: {
   imports = [ ./hardware-configuration.nix ];
 
-  home-manager.users.main = { imports = [ ../../profiles/cli ]; config.profiles.cli.enable = true; };
+  home-manager.users.main = { imports = [ ../../modules/home ]; config.modules.cli.enable = true; };
 
   boot.cleanTmpDir = true;
   # networking.hostName = "hosting";

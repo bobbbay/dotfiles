@@ -5,9 +5,9 @@ with lib;
   imports = [ ./hardware-configuration.nix ];
 
   home-manager.users.bobbbay = {
-    imports = [ ../../profiles/dev ../../profiles/cli ../../modules/home ];
-    config.profiles.dev.enable = true;
-    config.profiles.cli.enable = true;
+    imports = [ ../../modules/home ];
+    config.modules.dev.enable = true;
+    config.modules.cli.enable = true;
     config.modules.emacs.enable = true;
     config.modules.ssh.enable = true;
   };

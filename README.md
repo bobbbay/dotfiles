@@ -95,6 +95,6 @@ Options:
  - [Will Bush's beautiful emacs.nix](https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix)
  - [rememberYou's .emacs.d](https://github.com/rememberYou/.emacs.d) and usual r/emacs TIP of the week posts
 
-### Miscellaneous
+#### Miscellaneous
 
  - [Sridhar's Apps](https://notes.srid.ca/apps)

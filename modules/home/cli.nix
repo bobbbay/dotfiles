@@ -1,15 +1,15 @@
 { config, pkgs, lib, ... }:
-let cfg = config.profiles.cli;
+let cfg = config.modules.cli;
 
 in
 {
-  options.profiles.cli.enable = lib.mkOption {
+  options.modules.cli.enable = lib.mkOption {
     description = "Enable CLI tools.";
     type = with lib.types; bool;
     default = false;
   };
 
-  config = lib.mkIf config.profiles.cli.enable {
+  config = lib.mkIf config.modules.cli.enable {
     home.packages = with pkgs; [
       ripgrep-all # ripgrep for everything: PDFs, E-Books, etc.
       bingrep # grep through binaries

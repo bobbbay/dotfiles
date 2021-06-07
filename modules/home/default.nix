@@ -1,3 +1,3 @@
 {
-  imports = [ ./ssh.nix ./emacs ];
+  imports = [ ./cli.nix ./dev.nix ./ssh.nix ./emacs ];
 }
