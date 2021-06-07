@@ -1,0 +1,3 @@
+{
+  imports = [ ./ssh.nix ./emacs ];
+}

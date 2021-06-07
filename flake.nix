@@ -47,6 +47,7 @@
 
         modules = utils.lib.modulesFromList [
           ./modules/cachix.nix
+          ./modules/home/emacs
         ];
 
         sharedOverlays = [

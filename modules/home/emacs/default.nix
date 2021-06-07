@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "Emacs modules";
     src = mkOption {
       type = types.path;
-      default = ../../config/emacs;
+      default = ../../../config/emacs;
       description = "The source path for the emacs configuration directory.";
     };
     target = mkOption {
@@ -19,7 +19,7 @@ in
     lsp.enable = mkOption {
       type = types.bool;
       default = true;
-      description = "Enable the Language Server packages.";
+      description = "Enable language server (LSP) support & packages.";
     };
   };
 
