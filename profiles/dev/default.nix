@@ -99,6 +99,7 @@ in
       virtmanager # Vital virtualisation.
       stack # Haskell
       ghc # Haskell
+      dude
 
       git-lfs1
       gitAndTools.gitui

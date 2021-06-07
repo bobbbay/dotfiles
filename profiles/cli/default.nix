@@ -37,6 +37,7 @@ in
           nrs = "sudo nixos-rebuild switch";
           ls = "exa --long --icons --header --git";
           sk = ''rga --files | \sk --preview="bat {} --color=always"'';
+          d = "dude";
           ".." = "cd ..";
         };
         bashrcExtra = ''

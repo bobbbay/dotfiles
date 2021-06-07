@@ -4,10 +4,11 @@ with lib;
 let
   defaultUser = "bobbbay";
   syschdemd = import ./syschdemd { inherit lib pkgs config defaultUser; };
-in {
+in
+{
   imports = [ "${modulesPath}/profiles/minimal.nix" ];
-  
-    virtualisation.libvirtd = {
+
+  virtualisation.libvirtd = {
     enable = true;
     qemuOvmf = true;
     qemuRunAsRoot = false;

@@ -33,7 +33,7 @@ nix flake show
 Format/lint the project files with `nixpkgs-fmt`:
 
 ```
-frmt
+dude fmt
 ```
 
 Unlock the crypt:
@@ -60,14 +60,24 @@ Update a specific input:
 nix flake lock --update-input nixpkgs
 ```
 
+### Dude!
+
+![dude](https://media.wired.com/photos/5e3246cd56bcac00087f0a1e/1:1/w_1329,h_1329,c_limit/Culture-Success-Meme-Kid.jpg)
+
+`dude` is a program I made to make managing my system configuration easier. To check out what dude does, run `d`:
+
+```
+Options:
+      switch | s: run nixos-rebuild switch
+      fmt | f: run nixpkgs-fmt on all Nix files in this directory
+```
+
 ### TODO
 
  - [ ] Modules layout:
    - [ ] git crypt automatically unlock
    - [ ] More modules!
      - [x] `ssh.key`
-   - [ ] Move hardware-configurations to host/* files
-   - [ ] Create `bob` executible, e.g. `bob fmt`.
  - [ ] [Impermanence](https://github.com/nix-community/impermanence)
 
 ### Useful links
