@@ -59,7 +59,7 @@ nix flake lock --update-input nixpkgs
 
 ### Dude!
 
-![dude](https://media.wired.com/photos/5e3246cd56bcac00087f0a1e/1:1/w_1329,h_1329,c_limit/Culture-Success-Meme-Kid.jpg)
+![dude](https://upload.wikimedia.org/wikipedia/en/thumb/f/ff/SuccessKid.jpg/256px-SuccessKid.jpg)
 
 `dude` is a program I made to make managing my system configuration easier. To check out what dude does, run `d`:
 
