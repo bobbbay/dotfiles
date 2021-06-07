@@ -1,6 +1,6 @@
 {
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/staging";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,7 +12,6 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     neovim.url = "github:neovim/neovim?dir=contrib";
-    doom.url = "github:vlaci/nix-doom-emacs";
   };
 
   outputs =
