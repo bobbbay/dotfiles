@@ -14,7 +14,7 @@ in
   imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
   home-manager.users.bobbbay = {
-    imports = [ ../profiles/dev ../profiles/cli ../modules/emacs ../modules/ssh.nix ];
+    imports = [ ../profiles/dev ../profiles/cli ../modules/emacs ../modules/home/ssh.nix ];
     config.profiles.dev.enable = true;
     config.profiles.cli.enable = true;
     config.modules.emacs.enable = true;

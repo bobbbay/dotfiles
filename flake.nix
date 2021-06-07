@@ -40,15 +40,9 @@
         channelsConfig.allowUnsupportedSystem = true;
 
         hosts = {
-          NotYourPC.modules = [
-            ./host/NotYourPC.nix
-          ];
-          NotYourLaptop.modules = with self.modules; [
-            ./host/NotYourLaptop.nix
-          ];
-          NotYourServer.modules = [
-            ./host/NotYourServer.nix
-          ];
+          NotYourPC.modules = with self.modules; [ ./host/NotYourPC.nix ];
+          NotYourLaptop.modules = with self.modules; [ ./host/NotYourLaptop.nix ];
+          NotYourServer.modules = with self.modules; [ ./host/NotYourServer.nix ];
         };
 
         modules = utils.lib.modulesFromList [
