@@ -67,6 +67,9 @@ nix flake lock --update-input nixpkgs
 Options:
       switch | s: run nixos-rebuild switch
       fmt | f: run nixpkgs-fmt on all Nix files in this directory
+      update | up: run nix flake update
+      upgrade | ug: run nix flake update, then rebuild
+      unlock | u </path/to/symmetrical/key>: unlock the git crypt using the provided symmetrical key
 ```
 
 ### TODO
