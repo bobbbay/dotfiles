@@ -75,7 +75,6 @@
 
         devShellBuilder = channels:
           with channels.nixpkgs;
-          with (import ./lib/devshell.nix { inherit (channels.nixpkgs) pkgs; });
           mkShell {
             buildInputs = [
               cachix
@@ -83,8 +82,6 @@
               nixos-generators
               git-crypt
               deploy-rs
-
-              frmt
             ];
           };
 

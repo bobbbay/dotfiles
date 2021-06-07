@@ -14,11 +14,8 @@
    - `nix develop`: fully-featured dev shell
      - Direnv support!
    - Nightly Rust versions
-   - Custom packages:
-     - `xplr`: The hackable TUI File Explorer.
-   - Deployment to Oracle Cloud NixOS Servers (with [deploy-rs](https://github.com/serokell/deploy-rs))
+ - Deployment to Oracle Cloud NixOS Servers (with [deploy-rs](https://github.com/serokell/deploy-rs))
  - LaTeX editing with neovim side-by-side with Zathura
- - Many Rusty replacements and new tools! (`bat`, `hyperfine`, etc.)
 
 ### Cheatsheet
 
