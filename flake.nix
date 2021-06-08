@@ -25,7 +25,6 @@
     , fenix
     , deploy-rs
     , neovim
-    , doom
     , ...
     }:
       with builtins;
