@@ -79,6 +79,7 @@ Options:
    - [ ] More modules!
      - [x] `ssh.key`
  - [ ] [Impermanence](https://github.com/nix-community/impermanence)
+ - [ ] `NIX_AUTO_RUN`
 
 ### Useful links
  
