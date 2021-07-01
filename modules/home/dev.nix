@@ -93,12 +93,18 @@ in
       };
     };
 
+    home.file.".config/alacritty/alacritty.yml" = {
+      source = ../../config/alacritty.yml;
+    };
+
     home.packages = with pkgs; [
       latexmk # Compile LaTeX + vimtex compiler support
       git-crypt # Encrypt those git files!
       virtmanager # Vital virtualisation.
       stack # Haskell
       ghc # Haskell
+      rofi # Pick the app
+      alacritty # Unlimited power/terminal
       dude
 
       git-lfs1
@@ -115,5 +121,9 @@ in
         latest.rust-src
       ]))
     ];
+
+    home.sessionVariables = {
+      EDITOR = "emacsclient -c";
+    };
   };
 }

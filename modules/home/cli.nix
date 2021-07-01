@@ -19,8 +19,10 @@ in
       tokei # Like wc but better
       nodePackages.insect # Calculator REPL
       skim # fzf in Rust
+      google-chrome
+      slack
 
-      iosevka # God-like font :D
+        (nerdfonts.override { fonts = [ "Iosevka" ]; })
 
       unstable.exa # ls but better
       unstable.bottom # system monitoring go brrr
@@ -40,9 +42,6 @@ in
           d = "dude";
           ".." = "cd ..";
         };
-        bashrcExtra = ''
-          export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
-        '';
       };
     };
   };

@@ -7,7 +7,7 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 
-(set-frame-font "Iosevka Extralight" nil t)
+(set-frame-font "PragmataPro Mono Liga" nil t)
 
 ;; Keep those autosaves somewhere else
 ;; TODO: Automatically mkdir /tmp/emacs-saves if not already created.

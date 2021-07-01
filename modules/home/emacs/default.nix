@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 let
   cfg = config.modules.emacs;
@@ -58,6 +58,7 @@ in
             ledger-mode
             haskell-mode
             lsp-haskell
+            lua-mode
           ]
         )
       );
