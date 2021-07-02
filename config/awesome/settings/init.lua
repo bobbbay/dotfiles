@@ -1,4 +1,3 @@
-require("settings.bling")
 require("settings.menu")
 require("settings.bar")
 require("settings.mouse")

@@ -48,6 +48,7 @@ in
         sha256 = "VWb21Ony0UO0N6Cfi1UEfdcAS6O5zCQJtesR8Vh2CNY=";
       };
       recursive = true;
+      onChange = "awesome -k";
     };
 
     home.packages = with pkgs; [
