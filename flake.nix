@@ -33,14 +33,10 @@
 
         supportedSystems = [ "x86_64-linux" ];
 
-        channels.nixpkgs = { input = nixpkgs; };
-        channelsConfig.allowUnfree = true;
-        channelsConfig.allowUnsupportedSystem = true;
-
-        hosts = {
-          NotYourPC.modules = with self.modules; [ ./host/NotYourPC ];
-          NotYourLaptop.modules = with self.modules; [ media ./host/NotYourLaptop ];
-          NotYourServer.modules = with self.modules; [ ./host/NotYourServer ];
+        channels.nixpkgs.input = nixpkgs;
+        channelsConfig = {
+          allowUnfree = true;
+          allowUnsupportedSystem = true;
         };
 
         modules = utils.lib.modulesFromList [
@@ -72,6 +68,12 @@
             home-manager.useUserPackages = true;
           }
         ];
+
+        hosts = {
+          NotYourPC.modules = with self.modules; [ ./host/NotYourPC ];
+          NotYourLaptop.modules = with self.modules; [ ./host/NotYourLaptop ];
+          NotYourServer.modules = with self.modules; [ ./host/NotYourServer ];
+        };
 
         devShellBuilder = channels:
           with channels.nixpkgs;

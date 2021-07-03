@@ -13,6 +13,8 @@
     modules.fonts.enable = true;
   };
 
+  cachix.enable = true;
+
   boot.extraModprobeConfig = ''
     options snd-hda-intel dmic_detect=0
   '';
