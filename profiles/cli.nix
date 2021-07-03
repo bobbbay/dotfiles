@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
-let cfg = config.modules.cli;
 
+# CLI utilities
+
+let
+  cfg = config.modules.cli;
 in
 {
   options.modules.cli.enable = lib.mkOption {
@@ -22,7 +25,7 @@ in
       google-chrome
       slack
 
-        (nerdfonts.override { fonts = [ "Iosevka" ]; })
+      (nerdfonts.override { fonts = [ "Iosevka" ]; })
 
       unstable.exa # ls but better
       unstable.bottom # system monitoring go brrr
@@ -32,16 +35,14 @@ in
 
     fonts.fontconfig.enable = true;
 
-    programs = {
-      bash = {
-        enable = true;
-        shellAliases = {
-          nrs = "sudo nixos-rebuild switch";
-          ls = "exa --long --icons --header --git";
-          sk = ''rga --files | \sk --preview="bat {} --color=always"'';
-          d = "dude";
-          ".." = "cd ..";
-        };
+    programs.bash = {
+      enable = true;
+      shellAliases = {
+        nrs = "sudo nixos-rebuild switch";
+        ls = "exa --long --icons --header --git";
+        sk = ''rga --files | \sk --preview="bat {} --color=always"'';
+        d = "dude";
+        ".." = "cd ..";
       };
     };
   };

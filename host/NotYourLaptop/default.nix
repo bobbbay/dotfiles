@@ -4,13 +4,13 @@
   imports = [ ./hardware-configuration.nix ];
 
   home-manager.users.bobbbay = {
-    imports = [ ../../modules/home ];
-    config.modules.dev.enable = true;
-    config.modules.cli.enable = true;
-    config.modules.emacs.enable = true;
-    config.modules.ssh.enable = true;
-    config.modules.wm.enable = true;
-    config.modules.fonts.enable = true;
+    imports = [ ../../modules/home ../../profiles ];
+    modules.dev.enable = true;
+    modules.cli.enable = true;
+    modules.emacs.enable = true;
+    modules.ssh.enable = true;
+    modules.wm.enable = true;
+    modules.fonts.enable = true;
   };
 
   boot.extraModprobeConfig = ''

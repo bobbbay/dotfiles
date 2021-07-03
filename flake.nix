@@ -39,22 +39,24 @@
 
         hosts = {
           NotYourPC.modules = with self.modules; [ ./host/NotYourPC ];
-          NotYourLaptop.modules = with self.modules; [ ./host/NotYourLaptop ];
+          NotYourLaptop.modules = with self.modules; [ media ./host/NotYourLaptop ];
           NotYourServer.modules = with self.modules; [ ./host/NotYourServer ];
         };
 
         modules = utils.lib.modulesFromList [
           ./modules/cachix.nix
-          ./modules/home/emacs
+          ./modules/media.nix
         ];
 
         sharedOverlays = [
           (import ./pkgs)
-          (final: prev: {
-            inherit (deploy-rs.packages.${prev.system}) deploy-rs;
-            unstable = unstable.legacyPackages.${prev.system};
-            neovim-nightly = neovim.defaultPackage.${prev.system};
-          })
+          (
+            final: prev: {
+              inherit (deploy-rs.packages.${prev.system}) deploy-rs;
+              unstable = unstable.legacyPackages.${prev.system};
+              neovim-nightly = neovim.defaultPackage.${prev.system};
+            }
+          )
           nur.overlay
           emacs.overlay
           fenix.overlay

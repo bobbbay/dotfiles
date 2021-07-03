@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 
+# Regular development tools
+
 with builtins;
 with lib;
 let
@@ -22,7 +24,7 @@ in
       neovim = {
         enable = false;
         package = with pkgs; neovim-nightly;
-        extraConfig = builtins.readFile ../../config/neovim.vim;
+        extraConfig = builtins.readFile ../config/neovim.vim;
         plugins = with pkgs.vimPlugins; [
           vim-nix # Support for writing Nix expressions in Vim.
           rust-vim # Who needs garbage collectors anyways?
@@ -60,7 +62,7 @@ in
 
       zathura = {
         enable = true;
-        extraConfig = builtins.readFile ../../config/zathura.rc;
+        extraConfig = builtins.readFile ../config/zathura.rc;
       };
 
       git = {
@@ -94,7 +96,7 @@ in
     };
 
     home.file.".config/alacritty/alacritty.yml" = {
-      source = ../../config/alacritty.yml;
+      source = ../config/alacritty.yml;
     };
 
     home.packages = with pkgs; [
@@ -123,7 +125,7 @@ in
     ];
 
     home.sessionVariables = {
-      EDITOR = "emacsclient -c";
+      EDITOR = "emacs";
     };
   };
 }

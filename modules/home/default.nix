@@ -1,3 +1,3 @@
 {
-  imports = [ ./cli.nix ./dev.nix ./ssh.nix ./wm.nix ./fonts.nix ./emacs ];
+  imports = [ ./ssh.nix ./wm.nix ./fonts.nix ./emacs ];
 }
