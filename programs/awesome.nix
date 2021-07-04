@@ -2,31 +2,16 @@
 
 with lib;
 let
-  cfg = config.modules.wm;
+  cfg = config.programs.awesome;
 in
 {
-  options.modules.wm = {
-    enable = mkEnableOption "Customization of the Window Manager";
+  options.programs.awesome = {
+    enable = mkEnableOption "AwesomeWM configurations";
   };
 
   config = mkIf cfg.enable {
-    xdg = {
-      enable = true;
-      userDirs = {
-        desktop = "\$HOME/desktop";
-        documents = "\$HOME/documents";
-        download = "\$HOME/downloads";
-        music = "\$HOME/music";
-        pictures = "\$HOME/pictures";
-        publicShare = "\$HOME/public";
-        templates = "\$HOME/templates";
-        videos = "\$HOME/videos";
-      };
-    };
-
-    # TODO: Use xdg.configFile
-    home.file.".config/awesome/rc.org" = {
-      source = ../../config/awesome.org;
+    home.file."${config.xdg.configHome}/awesome/rc.org" = {
+      source = ../config/awesome.org;
       onChange = "emacs --batch --eval \"(require 'org)\" --eval '(org-babel-tangle-file \"~/.config/awesome/rc.org\")'";
     };
 

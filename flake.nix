@@ -66,6 +66,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ ./suites ./profiles ./modules/home ./programs ];
           }
         ];
 

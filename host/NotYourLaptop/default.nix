@@ -4,13 +4,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   home-manager.users.bobbbay = {
-    imports = [ ../../modules/home ../../profiles ../../programs ];
-    modules.dev.enable = true;
-    modules.cli.enable = true;
-    modules.emacs.enable = true;
-    modules.ssh.enable = true;
-    modules.wm.enable = true;
-    modules.fonts.enable = true;
+    suites.full.enable = true;
   };
 
   cachix.enable = true;
@@ -24,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   environment.systemPackages = with pkgs; [ alsa-firmware ];
-  
+
   networking = {
     hostName = "NotYourLaptop";
     useDHCP = false;

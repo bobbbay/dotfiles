@@ -5,13 +5,13 @@
 with builtins;
 with lib;
 let
-  cfg = config.modules.dev;
+  cfg = config.profiles.dev;
   # We need to grab latexmk from CTAN
   latexmk = with pkgs;
     (texlive.combine { inherit (texlive) scheme-small latexmk; });
 in
 {
-  options.modules.dev = {
+  options.profiles.dev = {
     enable = lib.mkOption {
       description = "Enable development tools.";
       type = with lib.types; bool;
@@ -19,7 +19,9 @@ in
     };
   };
 
-  config = lib.mkIf config.modules.dev.enable {
+  config = lib.mkIf cfg.enable {
+    modules.emacs.enable = true;
+
     programs = {
       neovim = {
         enable = false;

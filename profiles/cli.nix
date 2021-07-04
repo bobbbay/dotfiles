@@ -3,16 +3,18 @@
 # CLI utilities
 
 let
-  cfg = config.modules.cli;
+  cfg = config.profiles.cli;
 in
 {
-  options.modules.cli.enable = lib.mkOption {
+  options.profiles.cli.enable = lib.mkOption {
     description = "Enable CLI tools.";
     type = with lib.types; bool;
     default = false;
   };
 
-  config = lib.mkIf config.modules.cli.enable {
+  config = lib.mkIf cfg.enable {
+    modules.ssh.enable = true;
+
     home.packages = with pkgs; [
       ripgrep-all # ripgrep for everything: PDFs, E-Books, etc.
       bingrep # grep through binaries
@@ -25,7 +27,6 @@ in
       google-chrome
       slack
 
-      (nerdfonts.override { fonts = [ "Iosevka" ]; })
 
       unstable.exa # ls but better
       unstable.bottom # system monitoring go brrr

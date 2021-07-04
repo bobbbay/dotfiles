@@ -35,33 +35,33 @@ in
       enable = true;
       extraPackages = (
         epkgs:
-          (
-            with epkgs; [
-              use-package
-              evil
-              org
-              lsp-mode
-              lsp-ui
-              nord-theme
-              nyan-mode
-              zone-nyan
-              multi-vterm
-              rustic
-              nix-mode
-              nixpkgs-fmt
-              dashboard
-              projectile
-              restart-emacs
-              magit
-              which-key
-              free-keys
-              ledger-mode
-              haskell-mode
-              lsp-haskell
-              lua-mode
-              olivetti
-            ]
-          )
+        (
+          with epkgs; [
+            use-package
+            evil
+            org
+            lsp-mode
+            lsp-ui
+            nord-theme
+            nyan-mode
+            zone-nyan
+            multi-vterm
+            rustic
+            nix-mode
+            nixpkgs-fmt
+            dashboard
+            projectile
+            restart-emacs
+            magit
+            which-key
+            free-keys
+            ledger-mode
+            haskell-mode
+            lsp-haskell
+            lua-mode
+            olivetti
+          ]
+        )
       );
     };
 
