@@ -1,0 +1,148 @@
+** Dotfiles
+   :PROPERTIES:
+   :CUSTOM_ID: dotfiles
+   :END:
+
+[[https://builtwithnix.org/badge.svg]]
+
+*** Features
+    :PROPERTIES:
+    :CUSTOM_ID: features
+    :END:
+
+- Nix:
+
+  - Flakes
+  - Modules
+  - Cachix
+  - =nix develop=: fully-featured dev shell
+
+- Private key protection with =git-crypt=
+- Nightly Rust versions
+- Deployment to Oracle Cloud NixOS Servers (with
+  [[https://github.com/serokell/deploy-rs][deploy-rs]])
+- Emacs configuration
+- AwesomeWM Nord theme
+- And much more!
+
+*** Cheatsheet
+    :PROPERTIES:
+    :CUSTOM_ID: cheatsheet
+    :END:
+
+#+begin_quote
+  Note: The following commands assume you are in the shell with direnv.
+  If you are not and a command is not found, try entering the shell with
+  =nix develop=, or run the command with =nix develop -c <command>=.
+#+end_quote
+
+Show provided flakes:
+
+#+begin_example
+  nix flake show
+#+end_example
+
+Format/lint the project files with =nixpkgs-fmt=:
+
+#+begin_example
+  dude fmt
+#+end_example
+
+Unlock the crypt:
+
+#+begin_example
+  dude unlock /path/to/symmetric_key
+#+end_example
+
+Deploy to remote machine(s):
+
+#+begin_example
+  nix run github:serokell/deploy-rs
+#+end_example
+
+Update all inputs:
+
+#+begin_example
+  nix flake update
+#+end_example
+
+Update a specific input:
+
+#+begin_example
+  nix flake lock --update-input nixpkgs
+#+end_example
+
+*** What the =.org=?
+    :PROPERTIES:
+    :CUSTOM_ID: what-the-.org
+    :END:
+
+#+begin_quote
+  Wait a minute... You say you have AwesomeWM configurations, but
+  where's your .lua? You say you have Emacs configurations, but where's
+  the .el?
+#+end_quote
+
+Fear not! My configurations are documented in =org-mode= files, like
+[[https://github.com/Bobbbay/dotfiles/blob/master/config/emacs.org][so]],
+and tangled into system configurations during compile time with Nix,
+like
+[[https://github.com/Bobbbay/dotfiles/blob/master/modules/home/emacs.nix#L30][so]].
+This allows me to document my configuration with org-mode, and even
+compile them into a fully-featured documented webpage!
+
+*** Dude!
+    :PROPERTIES:
+    :CUSTOM_ID: dude
+    :END:
+#+caption: dude
+[[https://upload.wikimedia.org/wikipedia/en/thumb/f/ff/SuccessKid.jpg/256px-SuccessKid.jpg]]
+
+=dude= is a program I made to make managing my system configuration
+easier. To check out what dude does, run =d=:
+
+#+begin_example
+  Options:
+        switch | s: run nixos-rebuild switch
+        fmt | f: run nixpkgs-fmt on all Nix files in this directory
+        update | up: run nix flake update
+        upgrade | ug: run nix flake update, then rebuild
+        unlock | u </path/to/symmetrical/key>: unlock the git crypt using the provided symmetrical key
+#+end_example
+
+*** Useful links
+    :PROPERTIES:
+    :CUSTOM_ID: useful-links
+    :END:
+**** Nix
+     :PROPERTIES:
+     :CUSTOM_ID: nix
+     :END:
+
+- [[https://github.com/gytis-ivaskevicius/flake-utils-plus][Gytis
+  Ivaskevicius' flake-utils-plus]]
+- [[https://github.com/terlar/nix-config][Terlar's nixfiles]] for the
+  inspiration on how to modularize his =home/=.
+- [[http://chriswarbo.net/projects/nixos/useful_hacks.html][Chris
+  Warbo's "Useful Nix Hacks"]]
+
+**** Emacs
+     :PROPERTIES:
+     :CUSTOM_ID: emacs
+     :END:
+
+- [[https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html][David
+  O'Toole Org Tutorial]]
+- [[https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf]["Advanced
+  Emacs" but not really advanced]]
+- [[https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix][Will
+  Bush's beautiful template emacs.nix]]
+- [[https://github.com/rememberYou/.emacs.d][rememberYou's .emacs.d]]
+  and usual r/emacs TIP of the week posts
+
+**** Miscellaneous
+     :PROPERTIES:
+     :CUSTOM_ID: miscellaneous
+     :END:
+
+- [[https://notes.srid.ca/apps][Sridhar's Apps]]
