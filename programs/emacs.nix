@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "Emacs modules";
     src = mkOption {
       type = types.path;
-      default = ../../config/emacs.org;
+      default = ../config/emacs.org;
       description = "The source path for the emacs configuration file.";
     };
     target = mkOption {

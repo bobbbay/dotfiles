@@ -4,7 +4,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   home-manager.users.bobbbay = {
-    imports = [ ../../modules/home ../../profiles ];
+    imports = [ ../../modules/home ../../profiles ../../programs ];
     modules.dev.enable = true;
     modules.cli.enable = true;
     modules.emacs.enable = true;

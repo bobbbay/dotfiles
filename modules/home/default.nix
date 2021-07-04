@@ -1,3 +1,3 @@
 {
-  imports = [ ./ssh.nix ./wm.nix ./fonts.nix ./emacs.nix ];
+  imports = [ ./ssh.nix ./wm.nix ./fonts.nix ];
 }
