@@ -8,8 +8,8 @@ in
     enable = mkEnableOption "Emacs modules";
     src = mkOption {
       type = types.path;
-      default = ../../../config/emacs;
-      description = "The source path for the emacs configuration directory.";
+      default = ../../config/emacs.org;
+      description = "The source path for the emacs configuration file.";
     };
     target = mkOption {
       type = types.str;
@@ -24,14 +24,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.file = {
-      "${cfg.target}" = {
-        source = cfg.src;
-        recursive = true;
-        onChange = ''
-          emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/init.org")'
-        '';
-      };
+    home.file."${cfg.target}/emacs.org" = {
+      source = cfg.src;
+      onChange = ''
+        emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
+      '';
     };
 
     programs.emacs = {
