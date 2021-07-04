@@ -25,9 +25,9 @@ in
     };
 
     # TODO: Use xdg.configFile
-    home.file.".config/awesome" = {
-      source = ../../config/awesome;
-      recursive = true;
+    home.file.".config/awesome/rc.org" = {
+      source = ../../config/awesome.org;
+      onChange = "emacs --batch --eval \"(require 'org)\" --eval '(org-babel-tangle-file \"~/.config/awesome/rc.org\")'";
     };
 
     home.file.".config/awesome/modules/awesome-wm-widgets" = {

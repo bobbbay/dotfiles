@@ -1,6 +1,0 @@
-require("settings.menu")
-require("settings.bar")
-require("settings.mouse")
-require("settings.keyboard")
-require("settings.wallpaper")
-require("settings.window")

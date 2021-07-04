@@ -28,7 +28,9 @@ in
       "${cfg.target}" = {
         source = cfg.src;
         recursive = true;
-        onChange = "emacs --batch --eval \"(require 'org)\" --eval '(org-babel-tangle-file \"${cfg.target}/init.org\")'";
+        onChange = ''
+          emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/init.org")'
+        '';
       };
     };
 
@@ -36,32 +38,32 @@ in
       enable = true;
       extraPackages = (
         epkgs:
-        (
-          with epkgs; [
-            use-package
-            evil
-            org
-            lsp-mode
-            lsp-ui
-            nord-theme
-            nyan-mode
-            zone-nyan
-            multi-vterm
-            rustic
-            nix-mode
-            nixpkgs-fmt
-            dashboard
-            projectile
-            restart-emacs
-            magit
-            which-key
-            free-keys
-            ledger-mode
-            haskell-mode
-            lsp-haskell
-            lua-mode
-          ]
-        )
+          (
+            with epkgs; [
+              use-package
+              evil
+              org
+              lsp-mode
+              lsp-ui
+              nord-theme
+              nyan-mode
+              zone-nyan
+              multi-vterm
+              rustic
+              nix-mode
+              nixpkgs-fmt
+              dashboard
+              projectile
+              restart-emacs
+              magit
+              which-key
+              free-keys
+              ledger-mode
+              haskell-mode
+              lsp-haskell
+              lua-mode
+            ]
+          )
       );
     };
 
