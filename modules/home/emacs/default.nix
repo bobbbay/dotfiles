@@ -28,6 +28,7 @@ in
       "${cfg.target}" = {
         source = cfg.src;
         recursive = true;
+        onChange = "emacs --batch --eval \"(require 'org)\" --eval '(org-babel-tangle-file \"${cfg.target}/init.org\")'";
       };
     };
 

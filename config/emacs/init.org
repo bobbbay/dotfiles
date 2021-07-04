@@ -1,3 +1,6 @@
+
+* Turn off menu bar
+#+BEGIN_SRC emacs-lisp :tangle "init.el"
 (require 'use-package)
 (require 'use-package-ensure)
 (setq use-package-always-ensure t) ;; Ensure that all packages are installed before use-package'ing
@@ -100,3 +103,4 @@
   :config
   (add-to-list 'evil-emacs-state-modes 'ledger-report-mode)
   :mode "\\.dat\\'")
+#+END_SRC

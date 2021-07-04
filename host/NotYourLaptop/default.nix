@@ -16,12 +16,15 @@
   cachix.enable = true;
 
   boot.extraModprobeConfig = ''
-    options snd-hda-intel dmic_detect=0
+    options snd-hda-intel model=pch position_fix=1
+    options snd_intel_dspcfg dsp_driver=1
   '';
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  environment.systemPackages = with pkgs; [ alsa-firmware ];
+  
   networking = {
     hostName = "NotYourLaptop";
     useDHCP = false;

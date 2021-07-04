@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 
 with lib;
-let cfg = config.cachix;
+let
+  cfg = config.cachix;
 in
 {
   options = {
