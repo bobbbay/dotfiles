@@ -29,8 +29,8 @@
       interfaces = [ "wlo1" ];
 
       networks = {
-        "Hay-Fi" = {
-          pskRaw = "7ef3ca268a6ba07533537dafae0e70504bc67dd805aa8ef9686f47b6f2e8457a";
+        "Hay-Fi-5G" = {
+          pskRaw = "10d016e2600e755883a5f1cdb1616024d78d23025a05e6290c4fb71570d3f21e";
         };
       };
     };
