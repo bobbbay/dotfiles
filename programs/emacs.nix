@@ -59,6 +59,7 @@ in
               haskell-mode
               lsp-haskell
               lua-mode
+              olivetti
             ]
           )
       );
