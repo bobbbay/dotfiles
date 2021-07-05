@@ -7,9 +7,17 @@
 
 * Introduction
 
-Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation /inline/ with their =.el= code, such as [[https://github.com/angrybacon/dotemacs][Angry Bacon's dotemacs]]. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease. Inspired by the hundreds of lines of potential documentation ahead of me, as well as by the excuse of playing around with my system configs more, I gave it a go. Little did I know that this would result in a full-on reconstruction of how I configure Emacs, NixOS, and all of my other large programs.
+Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation /inline/ with their =.el= code, such as [[https://github.com/angrybacon/dotemacs][Angry Bacon's dotemacs]]. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease. 
 
-For the benefit of other users interested in writing more documentation for their configs, I decided to summarize the process in a post. Hopefully, somebody out there in the void of the internet will find this useful. Let's get started!
+Furthermore, I use NixOS, which is a declaratively-managed Linux distribution. The [[https://nixos.org/][NixOS website]] will do better than I can at explaining NixOS' (and Nix's) functionality, so I'll leave that at the reader's discretion.
+
+Anyways, in this post I will outline:
+
+ 1. How to set up a literate Emacs configuration
+ 2. How to set up a literate configuration for any language and program
+ 3. How to integrate it with NixOS per =rebuild switch=
+
+If any of these topics interest you, please read ahead!
 
 * Tangling at run-time
 
@@ -79,7 +87,84 @@ This solves our aforementioned issues:
 
 Boom! Our workflow can now be edit an org file, save it, run ~M-x org-babel-tangle~, restart Emacs (or any other program you're now configuring), and profit.
 
-However, this isn't a viable solution for me. I use NixOS, where everything /should/ be kept in =/etc/nixos= and regenerated per ~nixos-rebuild switch~. So, let's take it a step further, by compiling with NixOS.
+Furthermore, we can add support for other programs (such as AwesomeWM) like so:
+
+#+BEGIN_SRC org
+  Import things
+    ,#+BEGIN_SRC lua :tangle "rc.lua"
+    pcall(require, "luarocks.loader")
+  
+    local gears = require("gears")
+    local awful = require("awful")
+		  require("awful.autofocus")
+  
+    local beautiful = require("beautiful")
+  
+    require("errors")
+  
+    terminal = "alacritty"
+    editor = os.getenv("EDITOR") or "nano"
+    editor_cmd = terminal .. " -e " .. editor
+    modkey = "Mod4"
+  
+    beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+  
+    require("settings")
+    ,#+END_SRC
+  
+  Error reporting
+  
+    ,#+BEGIN_SRC lua :tangle "errors.lua"
+  
+  local naughty = require("naughty")
+  
+  if awesome.startup_errors then
+      naughty.notify({ preset = naughty.config.presets.critical,
+		       title = "Oops, there were errors during startup!",
+		       text = awesome.startup_errors })
+  end
+  
+  do
+      local in_error = false
+      awesome.connect_signal("debug::error", function (err)
+	  if in_error then return end
+	  in_error = true
+  
+	  naughty.notify({ preset = naughty.config.presets.critical,
+			   title = "Oops, an error happened!",
+			   text = tostring(err) })
+	  in_error = false
+      end)
+  end
+  ,#+END_SRC
+  
+  (etc.)
+#+END_SRC
+
+Hopefully, this makes sense - you write the name of the file in ~:tangle~, and write the content of the file inside. You can also have multiple blocks tangle to the same file, like so:
+
+#+BEGIN_SRC org
+  Use ~nyan-mode~.
+  ,#+BEGIN_SRC emacs-lisp :tangle "init.lua"
+  (nyan-mode)
+  ,#+END_SRC
+  
+  Use ~olivetti-mode~.
+  ,#+BEGIN_SRC emacs-lisp :tangle "init.lua"
+  (olivetti-mode)
+  ,#+END_SRC
+#+END_SRC
+
+Which will result in:
+
+#+BEGIN_SRC emacs-lisp
+  (nyan-mode)
+  (olivetti-mode)
+#+END_SRC
+
+Every time you edit a =.org= file, just =M-x org-babel-tangle= and you're set!
+
+However, this isn't a viable solution for me. I use NixOS, where everything /should/ be kept in =/etc/nixos= and regenerated per ~nixos-rebuild switch~. So, let's take it a step further, by compiling with =home-manager=.
 
 * Tangling on rebuild
 
@@ -95,7 +180,7 @@ In a home-manager file, declare:
 
 This asks =home-manager= to copy emacs.org to ~~/.emacs.d~.
 
-However, I use the NixOS modules system for my system configuration, so I could make it look more like this:
+However, I use the NixOS modules system for my system configuration, so in reality my configuration looks more like:
 
 #+BEGIN_SRC nix
   { config, pkgs, lib, ... }:
@@ -122,24 +207,26 @@ However, I use the NixOS modules system for my system configuration, so I could 
       home.file."${cfg.target}/emacs.org" = {
 	source = cfg.src;
       };
-    # ...
     };
   }
 #+END_SRC
   
 Anyways, this doesn't do any of the important generation - it only makes sure our literate file is in the right place. To generate ~init.el~, we actually need to open up emacs and run ~M-x org-bable-tangle~. As I'm sure the reader is aware, this is not comfortable. Fortunately, after a bit of searching, we're able to create this one-line shell script to generate configurations:
-  
+
 #+BEGIN_SRC nix
-      onChange = ''
-	  emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
-	'';
+home.file."${cfg.target}/emacs.org" = {
+  source = cfg.src;
+  onChange = ''
+    emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
+  '';
+};
 #+END_SRC
 
 Note that ~${cfg.target}~ comes from the module, so if you're not using a modular system you will need to replace it with your emacs configuration directory.
 
 Here we go! Now, every time you run ~nixos-rebuild switch~, =emacs.org= will be untangled into its source ELisp code!
 
-Easy, right? (Just kidding).
+That was easy, right? (Just kidding).
 
 Well, the reader has probably noticed that the writer has too much free time on their hands. Just for the fun of it, let's use =org-publish= and =GitHub Pages= to publish our docs online!
 
