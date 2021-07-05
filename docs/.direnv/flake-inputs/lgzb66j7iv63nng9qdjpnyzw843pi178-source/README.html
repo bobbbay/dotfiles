@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-04 Sun 22:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd9bdb5f">1. Emacs overlay for Nixpkgs</a>
+<ul>
+<li><a href="#orgbfce995">1.1. Quickstart</a></li>
+<li><a href="#orgc5a2506">1.2. Contents of the overlay</a>
+<ul>
+<li><a href="#orgfb8bcf4">1.2.1. Elpa</a></li>
+<li><a href="#org2cd0119">1.2.2. Melpa / Melpa stable</a></li>
+<li><a href="#orgf413b79">1.2.3. EXWM &amp; needed dependencies</a></li>
+<li><a href="#orge46371b">1.2.4. Emacs from Git and latest (including pre-releases)</a></li>
+</ul>
+</li>
+<li><a href="#org3be07a1">1.3. Extra library functionality</a></li>
+<li><a href="#orga5cbdc8">1.4. Usage of the overlay</a>
+<ul>
+<li><a href="#org25c7a4e">1.4.1. Latest master each rebuild</a></li>
+<li><a href="#org83a51c8">1.4.2. Binary cache</a></li>
+<li><a href="#org7c1814a">1.4.3. Install directly from the overlay</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5351af7">2. Community</a>
+<ul>
+<li><a href="#org2b83286">2.1. IRC</a></li>
+<li><a href="#orgcd23bbc">2.2. Nixpkgs issues</a>
+<ul>
+<li><a href="#org2e3e404">2.2.1. Emacs tracking issue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd9bdb5f" class="outline-2">
+<h2 id="orgd9bdb5f"><span class="section-number-2">1.</span> Emacs overlay for Nixpkgs</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgbfce995" class="outline-3">
+<h3 id="orgbfce995"><span class="section-number-3">1.1.</span> Quickstart</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To get up and running quickly, add the following lines to your <code>/etc/nixos/configuration.nix</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{config, pkgs, callPackage, ... }:
+{
+# ...
+
+  services.emacs.package = pkgs.emacsUnstable;
+
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+# ...
+}
+</pre>
+</div>
+
+<p>
+This configuration will enable this overlay, and define your system-wide emacs package as the <code>emacsUnstable</code> attribute it provides.
+</p>
+
+<p>
+<b>NOTE:</b> Read the "Usage of the overlay" section below for further explanation of this configuration. This has the potential to break things, and will frequently trigger full source rebuilds of emacs.
+</p>
+
+<p>
+If you want to enable daemon/server mode, add the following line to the same configuration:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">services.emacs.enable = true;
+</pre>
+</div>
+
+<p>
+It is recommended you read Nixpkgs and NixOS documentation on package overlays and overrides to familiarize yourself with the concepts:
+</p>
+
+<ul class="org-ul">
+<li><a href="https://nixos.wiki/wiki/Overlays">https://nixos.wiki/wiki/Overlays</a></li>
+<li><a href="https://nixos.org/nixpkgs/manual/#chap-overlays">https://nixos.org/nixpkgs/manual/#chap-overlays</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc5a2506" class="outline-3">
+<h3 id="orgc5a2506"><span class="section-number-3">1.2.</span> Contents of the overlay</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgfb8bcf4" class="outline-4">
+<h4 id="orgfb8bcf4"><span class="section-number-4">1.2.1.</span> Elpa</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Daily generations of Elpa.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2cd0119" class="outline-4">
+<h4 id="org2cd0119"><span class="section-number-4">1.2.2.</span> Melpa / Melpa stable</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Daily generations of Melpa &amp; Melpa stable attribute sets.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf413b79" class="outline-4">
+<h4 id="orgf413b79"><span class="section-number-4">1.2.3.</span> EXWM &amp; needed dependencies</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+This overlay provides fresh versions of EXWM and dependencies. This is
+updated daily.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge46371b" class="outline-4">
+<h4 id="orge46371b"><span class="section-number-4">1.2.4.</span> Emacs from Git and latest (including pre-releases)</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+This overlay also provides two versions (latest from git) for Emacs. These
+are updated daily.
+</p>
+
+<p>
+These attributes are named <code>emacsGit</code> and <code>emacsUnstable</code>.
+<code>emacsGit</code> is built from the latest <code>master</code> branch and <code>emacsUnstable</code> is built from the latest tag.
+</p>
+
+<p>
+Emacs from git is not guaranteed stable and may break your setup at any
+time, if it breaks you get to keep both pieces.
+</p>
+
+<p>
+Furthermore we provide emacs compiled with the native compilation backend enabled
+under the attribute <code>emacsGcc</code>.
+</p>
+
+<p>
+We also provide two attributes named <code>emacsGit-nox</code> and <code>emacsUnstable-nox</code>
+if you wish to have Emacs built without X dependencies, as well as the
+experimental pgtk branch which supports Wayland natively.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3be07a1" class="outline-3">
+<h3 id="org3be07a1"><span class="section-number-3">1.3.</span> Extra library functionality</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+This overlay comes with extra functions to generate an Emacs closure
+from various types of dependency declaration. (These are abstractions
+on top of <code>emacsWithPackages</code>.)
+</p>
+
+<p>
+For example, <code>emacsWithPackagesFromUsePackage</code> adds packages which are
+required in a user's config via <code>use-package</code> or <code>leaf</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{
+  environment.systemPackages = [
+    (emacsWithPackagesFromUsePackage {
+      # Your Emacs config file. Org mode babel files are also
+      # supported.
+      # NB: Config files cannot contain unicode characters, since
+      #     they're being parsed in nix, which lacks unicode
+      #     support.
+      # config = ./emacs.org;
+      config = ./emacs.el;
+
+      # Package is optional, defaults to pkgs.emacs
+      package = pkgs.emacsGit;
+
+      # By default emacsWithPackagesFromUsePackage will only pull in
+      # packages with `:ensure`, `:ensure t` or `:ensure &lt;package name&gt;`.
+      # Setting `alwaysEnsure` to `true` emulates `use-package-always-ensure`
+      # and pulls in all use-package references not explicitly disabled via
+      # `:ensure nil` or `:disabled`.
+      # Note that this is NOT recommended unless you've actually set
+      # `use-package-always-ensure` to `t` in your config.
+      alwaysEnsure = true;
+
+      # For Org mode babel files, by default only code blocks with
+      # `:tangle yes` are considered. Setting `alwaysTangle` to `true`
+      # will include all code blocks missing the `:tangle` argument,
+      # defaulting it to `yes`.
+      # Note that this is NOT recommended unless you have something like
+      # `#+PROPERTY: header-args:emacs-lisp :tangle yes` in your config,
+      # which defaults `:tangle` to `yes`.
+      alwaysTangle = true;
+
+      # Optionally provide extra packages not in the configuration file.
+      extraEmacsPackages = epkgs: [
+	epkgs.cask
+      ];
+
+      # Optionally override derivations.
+      override = epkgs: epkgs // {
+	weechat = epkgs.melpaPackages.weechat.overrideAttrs(old: {
+	  patches = [ ./weechat-el.patch ];
+	});
+      };
+    })
+  ];
+}
+</pre>
+</div>
+
+<p>
+Similarly, <code>emacsWithPackagesFromPackageRequires</code> adds packages which
+are declared in a <code>.el</code> package file's <code>Package-Requires</code> header, which
+can be handy for CI purposes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">...
+let
+  emacsForCI = pkgs.emacsWithPackagesFromPackageRequires {
+    packageElisp = builtins.readFile ./flycheck.el;
+    extraEmacsPackages = epkgs: [
+      epkgs.package-lint
+    ];
+  };
+pkgs.mkShell {
+  buildInputs = [ emacsForCI ];
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga5cbdc8" class="outline-3">
+<h3 id="orga5cbdc8"><span class="section-number-3">1.4.</span> Usage of the overlay</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org25c7a4e" class="outline-4">
+<h4 id="org25c7a4e"><span class="section-number-4">1.4.1.</span> Latest master each rebuild</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+One way, and probably the most convenient way to pull in this overlay is by
+just fetching the tarball of latest master on rebuild.
+</p>
+
+<p>
+This has side-effects if packages breaks or things like that you may want
+to be in control of which revision of the overlay you run.
+</p>
+
+<p>
+Adding the overlay this way will extend your Emacs packages set to contain
+the latest EXWM and dependencies from their respective master and make the
+package <code>emacsGit</code> available. These of course change quite rapidly and will
+cause compilation time.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org83a51c8" class="outline-4">
+<h4 id="org83a51c8"><span class="section-number-4">1.4.2.</span> Binary cache</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+You will want to use the <a href="https://nix-community.org/#binary-cache">nix-community binary cache</a>. Where the
+overlay's build artefacts are pushed. See <a href="https://app.cachix.org/cache/nix-community">here</a> for installation
+instructions.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c1814a" class="outline-4">
+<h4 id="org7c1814a"><span class="section-number-4">1.4.3.</span> Install directly from the overlay</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+The repository is meant to be used as an overlay as is explained
+above. Still, for experimental purposes, you might want to install a
+package directly from the overlay. For example, you can install
+<code>emacsGit</code> from a clone of this repository with the following command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">nix-build --expr 'with (import &lt;nixpkgs&gt; { overlays = [ (import ./.) ]; }); emacsGit'
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5351af7" class="outline-2">
+<h2 id="org5351af7"><span class="section-number-2">2.</span> Community</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org2b83286" class="outline-3">
+<h3 id="org2b83286"><span class="section-number-3">2.1.</span> IRC</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<code>#nixos-emacs</code> on <code>freenode</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd23bbc" class="outline-3">
+<h3 id="orgcd23bbc"><span class="section-number-3">2.2.</span> Nixpkgs issues</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org2e3e404" class="outline-4">
+<h4 id="org2e3e404"><span class="section-number-4">2.2.1.</span> Emacs tracking issue</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+<a href="https://github.com/NixOS/nixpkgs/issues/66303">https://github.com/NixOS/nixpkgs/issues/66303</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-04 Sun 22:34</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

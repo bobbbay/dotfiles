@@ -110,6 +110,7 @@ in
       rofi # Pick the app
       alacritty # Unlimited power/terminal
       dude
+      jetbrains.idea-ultimate
 
       git-lfs1
       gitAndTools.gitui

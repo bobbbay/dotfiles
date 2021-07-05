@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-05 Mon 18:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Literate Everything with Nix</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Bob Nistrim" />
+<style type="text/css">
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
+/* Set variables */:root {    --font-size-1: 2rem;    --font-size-2: 1.5rem;    --font-size-3: 1.15rem;    --font-size-4: 1rem;    --font-size-small: 0.8rem;    --font-size-xsmall: 0.6rem;}/* Set padding and margin */html, body{    padding: 0;    margin: 0;    background-color: #fdfdfd;}/* Header margin */h2{margin-top: 2rem; margin-bottom: 1.5rem;}h3{margin-top: 1rem; margin-bottom: 1rem;}h4{margin-top: 1rem; margin-bottom: 1rem;}/* ------------------------- */::selection {    background-color: purple;    color: white;}html, body{    font-family: "Source Sans Pro", Helvetica, sans-serif;		font-weight: 300;}h1{font-size: var(--font-size-1);}h2{font-size: var(--font-size-2);}h3{font-size: var(--font-size-3);}h4{font-size: var(--font-size-3);}h5{font-size: var(--font-size-3);}h1 > .subtitle{    font-size: var(--font-size-3);}h1, h2, h3, h4, h5, h6 {		font-weight: 300;		letter-spacing: -0.03em;}.outline-2 > h2, #table-of-contents > h2{    text-align: center;}/* Table of contents */#table-of-contents ul{    list-style-type:none;    margin: 0;}#table-of-contents .tag{    display: none;}.outline-3{    border-bottom: 1px solid #CCC;}.outline-2 > h2{    grid-row-start: 1;    grid-row-end: 2;}.outline-2{    grid-row-start: 2;    grid-row-end: 3;}img{    max-width: 100%;}/* Code */pre{    margin: 1rem;    background-color: #EEE;    padding: 0.5rem;    border-radius: 0.2rem;    font-size: var(--font-size-small) !important;}.outline-3{    display: grid;    grid-template-columns: 40fr 60fr;} /* Responsive content positioning */@media only screen and (min-width: 750px) /* Large screens */{    .outline-3{        margin: 0vh 10vw;    }    .outline-text-2, #table-of-contents{        padding: 0vh 10vw;    }}@media only screen and (max-width: 750px) /* Small screens */{    .outline-3{        margin: 0vh 5vw;        display: block;    }    .outline-text-2, #table-of-contents{        padding: 0vh 5vw;    }}blockquote{    border-left: 0.2rem solid purple;    padding-left: 1rem;		font-style: italic;}p, pre, ol, ul, table, code{    color: #1A1A1A;}table, blockquote, pre, ol, ul, p, #postamble{    margin-top: 1rem;    margin-bottom: 1rem;}h1, h2, h3, h4, h5, h6{    color: #0A0A0A;}.tag{    margin-top: 0.5rem;    display: block;    color: white;    font-size: var(--font-size-xsmall);}.tag > span{		font-weight: 400;    font-size: 0.6rem;    background-color: purple;    text-transform: uppercase;    border-radius: 2px;    width: fit-content;    height: auto;    padding: 1px 5px;    margin: 1px;}/* Stripe table */tr:nth-child(even) {  background-color: #EEE;}.title{   padding: 2vh 5vw;}pre{		font-family: "Courier New", monospace;    font-size: var(--font-size-4)}.org-org-meta-line{    color: purple;}.org-keyword{    color: purple;}a{    color: purple;}.underline{    text-decoration: underline;}.todo{    color: #7D161A;		font-weight: 400;}.done{    color: purple;		font-weight: 400;}/* Postamble */#postamble{    text-align: center;    width: 100%;}#postamble > p{    display: inline;    font-size: var(--font-size-4)} .outline-text-2, .outline-text-3, .outline-text-4{ max-width: 100%; overflow-x: auto;}
+</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Literate Everything with Nix</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd75c067">1. Introduction</a></li>
+<li><a href="#orge4781a0">2. Tangling at run-time</a></li>
+<li><a href="#orgacdb114">3. Tangling at compile-time</a></li>
+<li><a href="#orgfa071c0">4. Tangling on rebuild</a></li>
+<li><a href="#org45280fa">5. Publishing with org-publish and GitHub Pages</a></li>
+<li><a href="#org6051ada">6. Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd75c067" class="outline-2">
+<h2 id="orgd75c067"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation <i>inline</i> with their <code>.el</code> code, such as <a href="https://github.com/angrybacon/dotemacs">Angry Bacon's dotemacs</a>. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease. Inspired by the hundreds of lines of potential documentation ahead of me, as well as by the excuse of playing around with my system configs more, I gave it a go. Little did I know that this would result in a full-on reconstruction of how I configure Emacs, NixOS, and all of my other large programs.
+</p>
+
+<p>
+For the benefit of other users interested in writing more documentation for their configs, I decided to summarize the process in a post. Hopefully, somebody out there in the void of the internet will find this useful. Let's get started!
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge4781a0" class="outline-2">
+<h2 id="orge4781a0"><span class="section-number-2">2.</span> Tangling at run-time</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+First thing's first - how do we tangle? A Google search provides a simple <a href="https://emacs.stackexchange.com/questions/3143/can-i-use-org-mode-to-structure-my-emacs-or-other-el-configuration-file">StackExchange solution</a>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(require 'org)
+(org-babel-load-file
+ (expand-file-name "settings.org"
+		   user-emacs-directory))
+</pre>
+</div>
+
+<p>
+In our <code>init.el</code>, and
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">* Turn off menu bar
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+#+END_SRC
+</pre>
+</div>
+
+<p>
+In <code>settings.org</code>. 
+</p>
+
+<p>
+This is great, of course, because it works - however, there are a few caveats to the situation:
+</p>
+
+<ol class="org-ol">
+<li>This only applies to ELisp (<code>org-babel-load-file</code> is a Lisp function) - if we want to document other types of files, such Lua for AwesomeWM, we cannot.</li>
+<li>We're not 100% documented, because <code>init.el</code> isn't in an org file.</li>
+<li>The org code is untangled during run-time, not compile-time, leading to presumably annoying lags when opening Emacs.</li>
+</ol>
+
+<p>
+There must be a better way! 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgacdb114" class="outline-2">
+<h2 id="orgacdb114"><span class="section-number-2">3.</span> Tangling at compile-time</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Fortunately, there is: <code>M-x org-babel-tangle</code>. The Org-Mode manual has a great <a href="https://orgmode.org/manual/Extracting-Source-Code.html">page on this</a> - but basically, <code>org-babel-tangle</code> will allow us to write org code like so:
+</p>
+
+<pre class="example">
+Enable the scrollbar.
+#+BEGIN_SRC emacs-lisp :tangle "init.el"
+(nyan-mode)
+#+END_SRC
+</pre>
+
+<p>
+And generate <code>init.el</code>, which looks like so (obviously):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(nyan-mode)
+</pre>
+</div>
+
+<p>
+For reference, our file structure looks like this pre-compilation (where compilation currently means <code>M-x org-babel-tangle</code>):
+</p>
+
+<pre class="example">
+| - init.org
+</pre>
+
+<p>
+And like so after compilation:
+</p>
+
+<pre class="example">
+| - init.org
+| - init.el
+</pre>
+
+<p>
+This solves our aforementioned issues:
+</p>
+
+<ol class="org-ol">
+<li>We're not limited to an elisp function to include code anymore, so we could in theory generate any config. Furthermore, since we can now customize file names, we can generate all default configuration files - for example, <code>~/.config/awesome/rc.lua</code>.</li>
+<li>Everything is now documented, because even <code>init.el</code> comes from an org file.</li>
+<li>The org code is untangled during a compilation step, and Emacs only sees <code>init.el</code>, making this as fast as if you were never pulling from an Org file!</li>
+</ol>
+
+<p>
+Boom! Our workflow can now be edit an org file, save it, run <code>M-x org-babel-tangle</code>, restart Emacs (or any other program you're now configuring), and profit.
+</p>
+
+<p>
+However, this isn't a viable solution for me. I use NixOS, where everything <i>should</i> be kept in <code>/etc/nixos</code> and regenerated per <code>nixos-rebuild switch</code>. So, let's take it a step further, by compiling with NixOS.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa071c0" class="outline-2">
+<h2 id="orgfa071c0"><span class="section-number-2">4.</span> Tangling on rebuild</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="https://github.com/nix-community/home-manager">home-manager</a> is a tool that allows you to manage your home directory in Nix, per-user. For our case, it provides one useful functionality: <code>home.file</code>.
+</p>
+
+<p>
+In a home-manager file, declare:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">home.file.".emacs.d/emacs.org" = {
+  source = ./path/to/emacs.org;
+};
+</pre>
+</div>
+
+<p>
+This asks <code>home-manager</code> to copy emacs.org to <code>~/.emacs.d</code>.
+</p>
+
+<p>
+However, I use the NixOS modules system for my system configuration, so I could make it look more like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">{ config, pkgs, lib, ... }:
+with lib;
+let
+  cfg = config.programs.emacs;
+in
+{
+  options.programs.emacs = {
+    enable = mkEnableOption "Emacs modules";
+    src = mkOption {
+      type = types.path;
+      default = ../config/emacs.org;
+      description = "The source path for the emacs configuration file.";
+    };
+    target = mkOption {
+      type = types.str;
+      default = ".emacs.d";
+      description = "The target path, prepended with /home/user, to write the configuration to.";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    home.file."${cfg.target}/emacs.org" = {
+      source = cfg.src;
+    };
+  # ...
+  };
+}
+</pre>
+</div>
+
+<p>
+Anyways, this doesn't do any of the important generation - it only makes sure our literate file is in the right place. To generate <code>init.el</code>, we actually need to open up emacs and run <code>M-x org-bable-tangle</code>. As I'm sure the reader is aware, this is not comfortable. Fortunately, after a bit of searching, we're able to create this one-line shell script to generate configurations:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix">onChange = ''
+    emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
+  '';
+</pre>
+</div>
+
+<p>
+Note that <code>${cfg.target}</code> comes from the module, so if you're not using a modular system you will need to replace it with your emacs configuration directory.
+</p>
+
+<p>
+Here we go! Now, every time you run <code>nixos-rebuild switch</code>, <code>emacs.org</code> will be untangled into its source ELisp code!
+</p>
+
+<p>
+Easy, right? (Just kidding).
+</p>
+
+<p>
+Well, the reader has probably noticed that the writer has too much free time on their hands. Just for the fun of it, let's use <code>org-publish</code> and <code>GitHub Pages</code> to publish our docs online!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org45280fa" class="outline-2">
+<h2 id="org45280fa"><span class="section-number-2">5.</span> Publishing with org-publish and GitHub Pages</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Okay, almost there. All that's left is to compile all of the <code>.org</code> files in our configuration into HTML, and host it on GitHub pages. After spending a few minutes poring over the docs, the following configuration (appended to <del>init.el</del> I mean <i>emacs.org</i>) do the trick.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(require 'ox-publish)
+
+(setq org-publish-project-alist
+  '(
+    ("org-notes"
+     :base-directory "/etc/nixos"
+     :base-extension "org"
+     :publishing-directory "/etc/nixos/docs"
+     :recursive t
+     :publishing-function org-html-publish-to-html
+     :headline-levels 4
+     :auto-preamble t
+   )
+
+   ("org-static"
+    :base-directory "/etc/nixos/"
+    :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+    :exclude ".direnv"
+    :publishing-directory "/etc/nixos/docs"
+    :recursive t
+    :publishing-function org-publish-attachment
+   )
+
+   ("nixos" :components ("org-notes" "org-static"))
+))
+</pre>
+</div>
+
+<p>
+(If you really are appending to emacs.org, don't forget to place this in an Org code block!)
+</p>
+
+<p>
+For anyone wondering what other options exist, <a href="https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">this introduction</a> and <a href="https://orgmode.org/manual/Complex-example.html">this "complex" example</a> are some of your best bets.
+</p>
+
+<p>
+Basically, this sets <code>/etc/nixos</code> as the base directory, searching for every <code>org</code> file, which it places into <code>/etc/nixos/docs</code>. While there, it checks for static content such as CSS, and places that there too. Finally, we define the project by setting the name to <code>nixos</code> with the components of <code>notes</code> and <code>static</code> content.
+</p>
+
+<p>
+Now, if you (rebuild and) restart Emacs, an <code>M-x org-publish RET nixos RET</code> will build the docs!
+</p>
+
+<p>
+Woohoo! Let's read the /docs directory and see what it contains:
+</p>
+
+<pre class="example">
+| - emacs.html
+</pre>
+
+<p>
+That's the one! If we open up <code>emacs.html</code>, we'll see our (literate) emacs configuration!
+</p>
+
+<p>
+For aesthetic reasons, feel free to add <code>index.org</code> (which will compile to index.html). Please, please, please read <a href="https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">the introduction</a> for more details! You may want to add a theme, a default template, etc.
+</p>
+
+<p>
+We're almost through, I promise. However, I also promised publishing with GitHub Pages. Fortunately, this is very simple. Simply navigate to <code>Settings &gt; Pages</code> and click on enable. Once enabled, you'll want to set the source directory to <code>/docs</code>, ensuring that GitHub serves the right directory.
+</p>
+
+<p>
+And that's it! Hopefully, now, if you open up <code>https://&lt;username&gt;.github.io/dotfiles/</code>, you'll be provided with the results on <code>index.org</code>. Note that linking also works, so an org file like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">[[./config/emacs.html]]
+</pre>
+</div>
+
+<p>
+Will link to the org-mode output of <code>/etc/nixos/config/emacs.org</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6051ada" class="outline-2">
+<h2 id="org6051ada"><span class="section-number-2">6.</span> Conclusion</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Hopefully, you now have the power to set up a compiled literate configuration with Nix, Emacs, and <code>org-mode</code>. So far, I've written my AwesomeWM and Emacs configurations in <code>org-mode</code> - and it's honestly proven to be extremely useful. 
+</p>
+
+<p>
+While you're here, check out my dotfiles! <a href="https://github.com/bobbbay/dotfiles">https://github.com/bobbbay/dotfiles</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2021-07-04 Sun 00:00</p>
+<p class="author">Author: Bob Nistrim</p>
+<p class="date">Created: 2021-07-05 Mon 18:09</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+#+SETUPFILE: ../misc/rethink.theme
+
+#+TITLE: Literate Everything with Nix
+#+DATE: <2021-07-04 Sun>
+#+AUTHOR: Bob Nistrim
+#+EMAIL: bobbbay.b@gmail.com
+
+* Introduction
+
+Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation /inline/ with their =.el= code, such as [[https://github.com/angrybacon/dotemacs][Angry Bacon's dotemacs]]. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease. Inspired by the hundreds of lines of potential documentation ahead of me, as well as by the excuse of playing around with my system configs more, I gave it a go. Little did I know that this would result in a full-on reconstruction of how I configure Emacs, NixOS, and all of my other large programs.
+
+For the benefit of other users interested in writing more documentation for their configs, I decided to summarize the process in a post. Hopefully, somebody out there in the void of the internet will find this useful. Let's get started!
+
+* Tangling at run-time
+
+First thing's first - how do we tangle? A Google search provides a simple [[https://emacs.stackexchange.com/questions/3143/can-i-use-org-mode-to-structure-my-emacs-or-other-el-configuration-file][StackExchange solution]]:
+
+#+BEGIN_SRC emacs-lisp
+(require 'org)
+(org-babel-load-file
+ (expand-file-name "settings.org"
+                   user-emacs-directory))
+#+END_SRC
+
+In our =init.el=, and
+
+#+BEGIN_SRC org
+,* Turn off menu bar
+,#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+,#+END_SRC
+#+END_SRC
+
+In =settings.org=. 
+
+This is great, of course, because it works - however, there are a few caveats to the situation:
+
+1. This only applies to ELisp (=org-babel-load-file= is a Lisp function) - if we want to document other types of files, such Lua for AwesomeWM, we cannot.
+2. We're not 100% documented, because =init.el= isn't in an org file.
+3. The org code is untangled during run-time, not compile-time, leading to presumably annoying lags when opening Emacs.
+
+There must be a better way! 
+
+* Tangling at compile-time
+
+Fortunately, there is: ~M-x org-babel-tangle~. The Org-Mode manual has a great [[https://orgmode.org/manual/Extracting-Source-Code.html][page on this]] - but basically, ~org-babel-tangle~ will allow us to write org code like so:
+
+#+BEGIN_SRC
+Enable the scrollbar.
+,#+BEGIN_SRC emacs-lisp :tangle "init.el"
+(nyan-mode)
+,#+END_SRC
+#+END_SRC
+
+And generate =init.el=, which looks like so (obviously):
+
+#+BEGIN_SRC emacs-lisp
+(nyan-mode)
+#+END_SRC
+
+For reference, our file structure looks like this pre-compilation (where compilation currently means =M-x org-babel-tangle=):
+
+#+BEGIN_SRC
+  | - init.org
+#+END_SRC
+
+And like so after compilation:
+
+#+BEGIN_SRC
+| - init.org
+| - init.el
+#+END_SRC
+
+This solves our aforementioned issues:
+
+1. We're not limited to an elisp function to include code anymore, so we could in theory generate any config. Furthermore, since we can now customize file names, we can generate all default configuration files - for example, =~/.config/awesome/rc.lua=.
+2. Everything is now documented, because even =init.el= comes from an org file.
+3. The org code is untangled during a compilation step, and Emacs only sees =init.el=, making this as fast as if you were never pulling from an Org file!
+
+Boom! Our workflow can now be edit an org file, save it, run ~M-x org-babel-tangle~, restart Emacs (or any other program you're now configuring), and profit.
+
+However, this isn't a viable solution for me. I use NixOS, where everything /should/ be kept in =/etc/nixos= and regenerated per ~nixos-rebuild switch~. So, let's take it a step further, by compiling with NixOS.
+
+* Tangling on rebuild
+
+[[https://github.com/nix-community/home-manager][home-manager]] is a tool that allows you to manage your home directory in Nix, per-user. For our case, it provides one useful functionality: ~home.file~.
+
+In a home-manager file, declare:
+
+#+BEGIN_SRC nix
+  home.file.".emacs.d/emacs.org" = {
+    source = ./path/to/emacs.org;
+  };
+#+END_SRC
+
+This asks =home-manager= to copy emacs.org to ~~/.emacs.d~.
+
+However, I use the NixOS modules system for my system configuration, so I could make it look more like this:
+
+#+BEGIN_SRC nix
+  { config, pkgs, lib, ... }:
+  with lib;
+  let
+    cfg = config.programs.emacs;
+  in
+  {
+    options.programs.emacs = {
+      enable = mkEnableOption "Emacs modules";
+      src = mkOption {
+	type = types.path;
+	default = ../config/emacs.org;
+	description = "The source path for the emacs configuration file.";
+      };
+      target = mkOption {
+	type = types.str;
+	default = ".emacs.d";
+	description = "The target path, prepended with /home/user, to write the configuration to.";
+      };
+    };
+  
+    config = mkIf cfg.enable {
+      home.file."${cfg.target}/emacs.org" = {
+	source = cfg.src;
+      };
+    # ...
+    };
+  }
+#+END_SRC
+  
+Anyways, this doesn't do any of the important generation - it only makes sure our literate file is in the right place. To generate ~init.el~, we actually need to open up emacs and run ~M-x org-bable-tangle~. As I'm sure the reader is aware, this is not comfortable. Fortunately, after a bit of searching, we're able to create this one-line shell script to generate configurations:
+  
+#+BEGIN_SRC nix
+      onChange = ''
+	  emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
+	'';
+#+END_SRC
+
+Note that ~${cfg.target}~ comes from the module, so if you're not using a modular system you will need to replace it with your emacs configuration directory.
+
+Here we go! Now, every time you run ~nixos-rebuild switch~, =emacs.org= will be untangled into its source ELisp code!
+
+Easy, right? (Just kidding).
+
+Well, the reader has probably noticed that the writer has too much free time on their hands. Just for the fun of it, let's use =org-publish= and =GitHub Pages= to publish our docs online!
+
+* Publishing with org-publish and GitHub Pages
+
+Okay, almost there. All that's left is to compile all of the =.org= files in our configuration into HTML, and host it on GitHub pages. After spending a few minutes poring over the docs, the following configuration (appended to +init.el+ I mean /emacs.org/) do the trick.
+
+#+BEGIN_SRC emacs-lisp :tangle "init.el"
+  (require 'ox-publish)
+  
+  (setq org-publish-project-alist
+    '(
+      ("org-notes"
+       :base-directory "/etc/nixos"
+       :base-extension "org"
+       :publishing-directory "/etc/nixos/docs"
+       :recursive t
+       :publishing-function org-html-publish-to-html
+       :headline-levels 4
+       :auto-preamble t
+     )
+  
+     ("org-static"
+      :base-directory "/etc/nixos/"
+      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+      :exclude ".direnv"
+      :publishing-directory "/etc/nixos/docs"
+      :recursive t
+      :publishing-function org-publish-attachment
+     )
+  
+     ("nixos" :components ("org-notes" "org-static"))
+  ))
+#+END_SRC
+
+(If you really are appending to emacs.org, don't forget to place this in an Org code block!)
+
+For anyone wondering what other options exist, [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][this introduction]] and [[https://orgmode.org/manual/Complex-example.html][this "complex" example]] are some of your best bets.
+
+Basically, this sets =/etc/nixos= as the base directory, searching for every =org= file, which it places into =/etc/nixos/docs=. While there, it checks for static content such as CSS, and places that there too. Finally, we define the project by setting the name to ~nixos~ with the components of ~notes~ and ~static~ content.
+
+Now, if you (rebuild and) restart Emacs, an =M-x org-publish RET nixos RET= will build the docs!
+
+Woohoo! Let's read the /docs directory and see what it contains:
+
+#+BEGIN_SRC
+| - emacs.html
+#+END_SRC
+
+That's the one! If we open up =emacs.html=, we'll see our (literate) emacs configuration!
+
+For aesthetic reasons, feel free to add =index.org= (which will compile to index.html). Please, please, please read [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][the introduction]] for more details! You may want to add a theme, a default template, etc.
+
+We're almost through, I promise. However, I also promised publishing with GitHub Pages. Fortunately, this is very simple. Simply navigate to =Settings > Pages= and click on enable. Once enabled, you'll want to set the source directory to =/docs=, ensuring that GitHub serves the right directory.
+
+And that's it! Hopefully, now, if you open up =https://<username>.github.io/dotfiles/=, you'll be provided with the results on =index.org=. Note that linking also works, so an org file like this:
+
+#+BEGIN_SRC org
+[[./config/emacs.html]]
+#+END_SRC
+
+Will link to the org-mode output of =/etc/nixos/config/emacs.org=.
+
+* Conclusion
+
+Hopefully, you now have the power to set up a compiled literate configuration with Nix, Emacs, and =org-mode=. So far, I've written my AwesomeWM and Emacs configurations in =org-mode= - and it's honestly proven to be extremely useful. 
+
+While you're here, check out my dotfiles! [[https://github.com/bobbbay/dotfiles]]

@@ -121,7 +121,7 @@ Add /etc/nixos as an org project to publish.
       ("org-notes"
        :base-directory "/etc/nixos"
        :base-extension "org"
-       :publishing-directory "/etc/nixos/doc"
+       :publishing-directory "/etc/nixos/docs"
        :recursive t
        :publishing-function org-html-publish-to-html
        :headline-levels 4             ; Just the default for this project.
@@ -132,7 +132,7 @@ Add /etc/nixos as an org project to publish.
       :base-directory "/etc/nixos/"
       :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
       :exclude ".direnv"
-      :publishing-directory "/etc/nixos/doc"
+      :publishing-directory "/etc/nixos/docs"
       :recursive t
       :publishing-function org-publish-attachment
      )
