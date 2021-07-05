@@ -1,3 +1,5 @@
+#+SETUPFILE: ./misc/rethink.theme
+
 ** Dotfiles
    :PROPERTIES:
    :CUSTOM_ID: dotfiles

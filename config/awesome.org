@@ -1,3 +1,5 @@
+#+SETUPFILE: ../misc/rethink.theme
+
 #+BEGIN_SRC lua :tangle "rc.lua"
 pcall(require, "luarocks.loader")
 

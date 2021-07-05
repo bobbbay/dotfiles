@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-07-04 Sun 21:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<div class="org-src-container">
+<pre class="src src-lua">pcall(require, "luarocks.loader")
+
+local gears = require("gears")
+local awful = require("awful")
+	      require("awful.autofocus")
+
+local beautiful = require("beautiful")
+
+require("errors")
+
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
+modkey = "Mod4"
+
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+
+require("settings")
+</pre>
+</div>
+
+<p>
+Errors
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lua">-- Default error reporting template
+
+local naughty = require("naughty")
+
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+		     title = "Oops, there were errors during startup!",
+		     text = awesome.startup_errors })
+end
+
+do
+    local in_error = false
+    awesome.connect_signal("debug::error", function (err)
+	if in_error then return end
+	in_error = true
+
+	naughty.notify({ preset = naughty.config.presets.critical,
+			 title = "Oops, an error happened!",
+			 text = tostring(err) })
+	in_error = false
+    end)
+end
+</pre>
+</div>
+
+<p>
+Theme
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lua">----------------------------------------------------
+------------- Bobbbay's Nord-ish theme -------------
+-- Adapted from github:hmix/awesome-wm-nord-theme --
+----- As well as the default Awesome theme ;) ------
+----------------------------------------------------
+
+local theme_assets = require("beautiful.theme_assets")
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
+
+local gfs = require("gears.filesystem")
+local themes_path = gfs.get_themes_dir()
+local config_path = gfs.get_configuration_dir()
+
+local theme = {}
+
+theme.font          = "Iosevka 8"
+
+-- Colors
+theme.fg_normal  = "#ECEFF4"
+theme.fg_focus   = "#88C0D0"
+theme.fg_urgent  = "#D08770"
+theme.bg_normal  = "#2E3440"
+theme.bg_focus   = "#3B4252"
+theme.bg_urgent  = "#3B4252"
+theme.bg_systray = theme.bg_normal
+
+-- Borders
+theme.useless_gap   = dpi(0)
+theme.border_width  = dpi(1)
+theme.border_normal = "#3B4252"
+theme.border_focus  = "#4C566A"
+theme.border_marked = "#D08770"
+
+-- Titlebars
+theme.titlebar_bg_focus   = "#3B4252"
+theme.titlebar_bg_normal  = "#2E3440"
+
+-- Gaps
+theme.useless_gap = 5
+
+-- Mouse
+theme.mouse_finder_color = "#D08770"
+
+-- Colors for widgets
+theme.widget_main_color = "#88C0D0"
+theme.widget_red = "#BF616A"
+theme.widget_yellow = "#EBCB8B"
+theme.widget_green = "#A3BE8C"
+theme.widget_black = "#000000"
+theme.widget_transparent = "#00000000"
+
+-- Bling tabs
+theme.tabbar_style = "modern"
+theme.tabbar_font = "PragmataPro Mono Liga 8"
+theme.tabbar_size = 35
+theme.tabbar_bg_normal = "#2E3440"
+theme.tabbar_fg_normal = "#D8DEE9"
+theme.tabbar_bg_focus  = "#4C566A"
+theme.tabbar_fg_focus  = "#88C0D0"
+
+-- Generate taglist squares
+local taglist_square_size = dpi(4)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+    taglist_square_size, theme.fg_normal
+)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+    taglist_square_size, theme.fg_normal
+)
+
+theme.menu_submenu_icon = themes_path.."default/submenu.png"
+theme.menu_height = dpi(15)
+theme.menu_width  = dpi(100)
+
+-- Generate Awesome icon
+theme.awesome_icon = theme_assets.awesome_icon(
+    theme.menu_height, theme.bg_focus, theme.fg_focus
+)
+
+-- Define the icon theme for application icons. If not set then the icons
+-- from /usr/share/icons and /usr/share/icons/hicolor will be used.
+theme.icon_theme = nil
+
+return theme
+</pre>
+</div>
+
+<p>
+Bar
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lua">require("settings.menu")
+require("settings.bar")
+require("settings.mouse")
+require("settings.keyboard")
+require("settings.wallpaper")
+require("settings.window")
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lua">local gears = require("gears")
+local awful = require("awful")
+local bling = require("modules.bling")
+
+local hotkeys_popup = require("awful.hotkeys_popup")
+require("awful.hotkeys_popup.keys")
+
+local menubar = require("menubar")
+
+globalkeys = gears.table.join(
+    awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
+    awful.key({modkey}, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
+    awful.key(
+	{modkey},
+	"j",
+	function()
+	    awful.client.focus.byidx(1)
+	end,
+	{description = "focus next by index", group = "client"}
+    ),
+    awful.key(
+	{modkey},
+	"k",
+	function()
+	    awful.client.focus.byidx(-1)
+	end,
+	{description = "focus previous by index", group = "client"}
+    ),
+    -- Layout manipulation
+    awful.key(
+	{modkey, "Shift"},
+	"j",
+	function()
+	    awful.client.swap.byidx(1)
+	end,
+	{description = "swap with next client by index", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"k",
+	function()
+	    awful.client.swap.byidx(-1)
+	end,
+	{description = "swap with previous client by index", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"j",
+	function()
+	    awful.screen.focus_relative(1)
+	end,
+	{description = "focus the next screen", group = "screen"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"k",
+	function()
+	    awful.screen.focus_relative(-1)
+	end,
+	{description = "focus the previous screen", group = "screen"}
+    ),
+    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
+
+    -- Standard program
+    awful.key(
+	{modkey},
+	"Return",
+	function()
+	    awful.spawn(terminal)
+	end,
+	{description = "open a terminal", group = "launcher"}
+    ),
+    awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
+    awful.key({modkey, "Shift"}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
+    awful.key(
+	{modkey},
+	"l",
+	function()
+	    awful.tag.incmwfact(0.05)
+	end,
+	{description = "increase master width factor", group = "layout"}
+    ),
+    awful.key(
+	{modkey},
+	"h",
+	function()
+	    awful.tag.incmwfact(-0.05)
+	end,
+	{description = "decrease master width factor", group = "layout"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"h",
+	function()
+	    awful.tag.incnmaster(1, nil, true)
+	end,
+	{description = "increase the number of master clients", group = "layout"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"l",
+	function()
+	    awful.tag.incnmaster(-1, nil, true)
+	end,
+	{description = "decrease the number of master clients", group = "layout"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"h",
+	function()
+	    awful.tag.incncol(1, nil, true)
+	end,
+	{description = "increase the number of columns", group = "layout"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"l",
+	function()
+	    awful.tag.incncol(-1, nil, true)
+	end,
+	{description = "decrease the number of columns", group = "layout"}
+    ),
+    awful.key(
+	{modkey},
+	"space",
+	function()
+	    awful.layout.inc(1)
+	end,
+	{description = "select next", group = "layout"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"space",
+	function()
+	    awful.layout.inc(-1)
+	end,
+	{description = "select previous", group = "layout"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"n",
+	function()
+	    local c = awful.client.restore()
+	    -- Focus restored client
+	    if c then
+		c:emit_signal("request::activate", "key.unminimize", {raise = true})
+	    end
+	end,
+	{description = "restore minimized", group = "client"}
+    ),
+
+    -- Prompt
+    awful.key(
+	{modkey},
+	"r",
+	function()
+	    awful.screen.focused().mypromptbox:run()
+	end,
+	{description = "run prompt", group = "launcher"}
+    ),
+    awful.key(
+	{modkey},
+	"x",
+	function()
+	    awful.prompt.run {
+		prompt = "Run Lua code: ",
+		textbox = awful.screen.focused().mypromptbox.widget,
+		exe_callback = awful.util.eval,
+		history_path = awful.util.get_cache_dir() .. "/history_eval"
+	    }
+	end,
+	{description = "lua execute prompt", group = "awesome"}
+    ),
+
+    -- Menubar
+    awful.key(
+	{modkey},
+	"p",
+	function()
+	    menubar.show()
+	end,
+	{description = "show the menubar", group = "launcher"}
+    ),
+
+    -- Tabbed
+    awful.key(
+	{modkey},
+	"t",
+	function()
+	    bling.module.tabbed.pick_with_dmenu()
+	end,
+	{group = "Bling", description = "Enable tabbed mode"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"t",
+	function()
+	    bling.module.tabbed.pop()
+	end,
+	{group = "Bling", description = "Remove window from tabbed mode"}
+    ),
+    awful.key(
+	{modkey},
+	"Tab",
+	function()
+	    bling.module.tabbed.iter()
+	end,
+	{group = "Bling", description = "Iterate through tabbed windows"}
+    )
+)
+
+clientkeys = gears.table.join(
+    awful.key(
+	{modkey},
+	"f",
+	function(c)
+	    c.fullscreen = not c.fullscreen
+	    c:raise()
+	end,
+	{description = "toggle fullscreen", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"c",
+	function(c)
+	    c:kill()
+	end,
+	{description = "close", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"space",
+	awful.client.floating.toggle,
+	{description = "toggle floating", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"Return",
+	function(c)
+	    c:swap(awful.client.getmaster())
+	end,
+	{description = "move to master", group = "client"}
+    ),
+    awful.key(
+	{modkey},
+	"o",
+	function(c)
+	    c:move_to_screen()
+	end,
+	{description = "move to screen", group = "client"}
+    ),
+    awful.key(
+	{modkey},
+	"n",
+	function(c)
+	    -- The client currently has the input focus, so it cannot be
+	    -- minimized, since minimized clients can't have the focus.
+	    c.minimized = true
+	end,
+	{description = "minimize", group = "client"}
+    ),
+    awful.key(
+	{modkey},
+	"m",
+	function(c)
+	    c.maximized = not c.maximized
+	    c:raise()
+	end,
+	{description = "(un)maximize", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Control"},
+	"m",
+	function(c)
+	    c.maximized_vertical = not c.maximized_vertical
+	    c:raise()
+	end,
+	{description = "(un)maximize vertically", group = "client"}
+    ),
+    awful.key(
+	{modkey, "Shift"},
+	"m",
+	function(c)
+	    c.maximized_horizontal = not c.maximized_horizontal
+	    c:raise()
+	end,
+	{description = "(un)maximize horizontally", group = "client"}
+    )
+)
+
+-- Bind all key numbers to tags.
+-- Be careful: we use keycodes to make it work on any keyboard layout.
+-- This should map on the top row of your keyboard, usually 1 to 9.
+for i = 1, 9 do
+    globalkeys =
+	gears.table.join(
+	globalkeys,
+	-- View tag only.
+	awful.key(
+	    {modkey},
+	    "#" .. i + 9,
+	    function()
+		local screen = awful.screen.focused()
+		local tag = screen.tags[i]
+		if tag then
+		    tag:view_only()
+		end
+	    end,
+	    {description = "view tag #" .. i, group = "tag"}
+	),
+	-- Toggle tag display.
+	awful.key(
+	    {modkey, "Control"},
+	    "#" .. i + 9,
+	    function()
+		local screen = awful.screen.focused()
+		local tag = screen.tags[i]
+		if tag then
+		    awful.tag.viewtoggle(tag)
+		end
+	    end,
+	    {description = "toggle tag #" .. i, group = "tag"}
+	),
+	-- Move client to tag.
+	awful.key(
+	    {modkey, "Shift"},
+	    "#" .. i + 9,
+	    function()
+		if client.focus then
+		    local tag = client.focus.screen.tags[i]
+		    if tag then
+			client.focus:move_to_tag(tag)
+		    end
+		end
+	    end,
+	    {description = "move focused client to tag #" .. i, group = "tag"}
+	),
+	-- Toggle tag on focused client.
+	awful.key(
+	    {modkey, "Control", "Shift"},
+	    "#" .. i + 9,
+	    function()
+		if client.focus then
+		    local tag = client.focus.screen.tags[i]
+		    if tag then
+			client.focus:toggle_tag(tag)
+		    end
+		end
+	    end,
+	    {description = "toggle focused client on tag #" .. i, group = "tag"}
+	)
+    )
+end
+
+clientbuttons =
+    gears.table.join(
+    awful.button(
+	{},
+	1,
+	function(c)
+	    c:emit_signal("request::activate", "mouse_click", {raise = true})
+	end
+    ),
+    awful.button(
+	{modkey},
+	1,
+	function(c)
+	    c:emit_signal("request::activate", "mouse_click", {raise = true})
+	    awful.mouse.client.move(c)
+	end
+    ),
+    awful.button(
+	{modkey},
+	3,
+	function(c)
+	    c:emit_signal("request::activate", "mouse_click", {raise = true})
+	    awful.mouse.client.resize(c)
+	end
+    )
+)
+
+root.keys(globalkeys)
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lua">local awful = require("awful")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local bling = require("modules.bling")
+
+-- Order of layouts
+awful.layout.layouts = {
+    bling.layout.centered,
+    awful.layout.suit.floating,
+}
+
+-- Rules to apply to new clients (through the "manage" signal).
+awful.rules.rules = {
+    -- All clients will match this rule.
+    { rule = { },
+      properties = { border_width = beautiful.border_width,
+		     border_color = beautiful.border_normal,
+		     focus = awful.client.focus.filter,
+		     raise = true,
+		     keys = clientkeys,
+		     buttons = clientbuttons,
+		     screen = awful.screen.preferred,
+		     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+     }
+    },
+
+    -- Floating clients.
+    { rule_any = {
+	instance = {
+	  "DTA",  -- Firefox addon DownThemAll.
+	  "copyq",  -- Includes session name in class.
+	  "pinentry",
+	},
+	class = {
+	  "Arandr",
+	  "Blueman-manager",
+	  "Gpick",
+	  "Kruler",
+	  "MessageWin",  -- kalarm.
+	  "Sxiv",
+	  "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+	  "Wpa_gui",
+	  "veromix",
+	  "xtightvncviewer"},
+
+	-- Note that the name property shown in xprop might be set slightly after creation of the client
+	-- and the name shown there might not match defined rules here.
+	name = {
+	  "Event Tester",  -- xev.
+	},
+	role = {
+	  "AlarmWindow",  -- Thunderbird's calendar.
+	  "ConfigManager",  -- Thunderbird's about:config.
+	  "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+	}
+      }, properties = { floating = true }},
+
+    -- Add titlebars to normal clients and dialogs
+    { rule_any = {type = { "normal", "dialog" }
+      }, properties = { titlebars_enabled = false }
+    },
+
+    -- Set Firefox to always map on the tag named "2" on screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { screen = 1, tag = "2" } },
+}
+-- }}}
+
+-- {{{ Signals
+-- Signal function to execute when a new client appears.
+client.connect_signal("manage", function (c)
+    -- Set the windows at the slave,
+    -- i.e. put it at the end of others instead of setting it master.
+    -- if not awesome.startup then awful.client.setslave(c) end
+
+    if awesome.startup
+      and not c.size_hints.user_position
+      and not c.size_hints.program_position then
+	-- Prevent clients from being unreachable after screen count changes.
+	awful.placement.no_offscreen(c)
+    end
+
+   -- Also, round the corners
+     c.shape = function(cr,w,h)
+	gears.shape.rounded_rect(cr,w,h,5)
+    end
+end)
+
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lua">local awful = require("awful")
+local bling = require("modules.bling")
+
+awful.screen.connect_for_each_screen(function(s)  -- that way the wallpaper is applied to every screen
+    bling.module.tiled_wallpaper("λ", s, {        -- call the actual function ("λ" is the string that will be tiled)
+	fg = "#ECEFF4",  -- define the foreground color
+	bg = "#4C566A",  -- define the background color
+	offset_y = 25,   -- set a y offset
+	offset_x = 25,   -- set a x offset
+	font = "PragmataPro Mono Liga",   -- set the font (without the size)
+	font_size = 14,  -- set the font size
+	padding = 100,   -- set padding (default is 100)
+	zickzack = true  -- rectangular pattern or criss cross
+    })
+end)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lua">local gears = require("gears")
+local awful = require("awful")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local bling = require("modules.bling")
+
+-- Widgets
+local batteryarc_widget = require("modules.awesome-wm-widgets.batteryarc-widget.batteryarc")
+
+-- Keyboard status
+mykeyboardlayout = awful.widget.keyboardlayout()
+
+-- Create a textclock widget
+mytextclock = wibox.widget.textclock()
+
+-- Create a wibox for each screen and add it
+local taglist_buttons = gears.table.join(
+		    awful.button({ }, 1, function(t) t:view_only() end),
+		    awful.button({ modkey }, 1, function(t)
+					      if client.focus then
+						  client.focus:move_to_tag(t)
+					      end
+					  end),
+		    awful.button({ }, 3, awful.tag.viewtoggle),
+		    awful.button({ modkey }, 3, function(t)
+					      if client.focus then
+						  client.focus:toggle_tag(t)
+					      end
+					  end),
+		    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+		    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+		)
+
+local tasklist_buttons = gears.table.join(
+		     awful.button({ }, 1, function (c)
+					      if c == client.focus then
+						  c.minimized = true
+					      else
+						  c:emit_signal(
+						      "request::activate",
+						      "tasklist",
+						      {raise = true}
+						  )
+					      end
+					  end),
+		     awful.button({ }, 3, function()
+					      awful.menu.client_list({ theme = { width = 250 } })
+					  end),
+		     awful.button({ }, 4, function ()
+					      awful.client.focus.byidx(1)
+					  end),
+		     awful.button({ }, 5, function ()
+					      awful.client.focus.byidx(-1)
+					  end))
+
+awful.screen.connect_for_each_screen(function(s)
+    -- Each screen has its own tag table.
+    local names = { "main", "www", "3", "4", "5" }
+    local l = bling.layout
+    local layouts = { l.centered, l.centered, l.mstab, l.equalarea, l.centered }
+    awful.tag(names, s, layouts)
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox:buttons(gears.table.join(
+			   awful.button({ }, 1, function () awful.layout.inc( 1) end),
+			   awful.button({ }, 3, function () awful.layout.inc(-1) end),
+			   awful.button({ }, 4, function () awful.layout.inc( 1) end),
+			   awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist {
+	screen  = s,
+	filter  = awful.widget.taglist.filter.all,
+	buttons = taglist_buttons
+    }
+
+    -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist {
+	screen  = s,
+	filter  = awful.widget.tasklist.filter.currenttags,
+	buttons = tasklist_buttons
+    }
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({ position = "top", screen = s })
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+	layout = wibox.layout.align.horizontal,
+	{ -- Left widgets
+	    layout = wibox.layout.fixed.horizontal,
+	    mylauncher,
+	    s.mytaglist,
+	    s.mypromptbox,
+	},
+	s.mytasklist, -- Middle widget
+	{ -- Right widgets
+	    layout = wibox.layout.fixed.horizontal,
+	    batteryarc_widget(),
+	    mykeyboardlayout,
+	    wibox.widget.systray(),
+	    mytextclock,
+	},
+    }
+end)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lua">local awful = require("awful")
+local beautiful = require("beautiful")
+local menubar = require("menubar")
+
+-- Create a launcher widget and a main menu
+myawesomemenu = {
+    {"hotkeys", function()
+	    hotkeys_popup.show_help(nil, awful.screen.focused())
+	end},
+    {"manual", terminal .. " -e man awesome"},
+    {"edit config", editor_cmd .. " " .. awesome.conffile},
+    {"restart", awesome.restart},
+    {"quit", function()
+	    awesome.quit()
+	end}
+}
+
+mymainmenu =
+    awful.menu(
+    {
+	items = {
+	    {"awesome", myawesomemenu, beautiful.awesome_icon},
+	    {"open terminal", terminal}
+	}
+    }
+)
+
+mylauncher =
+    awful.widget.launcher(
+    {
+	image = beautiful.awesome_icon,
+	menu = mymainmenu
+    }
+)
+
+menubar.utils.terminal = terminal
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lua">local gears = require("gears")
+local awful = require("awful")
+
+-- {{{ Mouse bindings
+root.buttons(gears.table.join(
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 4, awful.tag.viewnext),
+    awful.button({ }, 5, awful.tag.viewprev)
+))
+-- }}}
+
+-- Enable sloppy focus, so that focus follows mouse.
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+end)
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-07-04 Sun 21:32</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

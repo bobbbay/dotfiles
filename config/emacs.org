@@ -1,3 +1,5 @@
+#+SETUPFILE: ../misc/rethink.theme
+
 * Better defaults
 
 #+BEGIN_SRC emacs-lisp :tangle "init.el"
@@ -107,4 +109,34 @@
     :config
     (add-to-list 'evil-emacs-state-modes 'ledger-report-mode)
     :mode "\\.dat\\'")
+#+END_SRC
+
+Add /etc/nixos as an org project to publish.
+
+#+BEGIN_SRC emacs-lisp :tangle "init.el"
+  (require 'ox-publish)
+  
+  (setq org-publish-project-alist
+    '(
+      ("org-notes"
+       :base-directory "/etc/nixos"
+       :base-extension "org"
+       :publishing-directory "/etc/nixos/doc"
+       :recursive t
+       :publishing-function org-html-publish-to-html
+       :headline-levels 4             ; Just the default for this project.
+       :auto-preamble t
+     )
+  
+     ("org-static"
+      :base-directory "/etc/nixos/"
+      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+      :exclude ".direnv"
+      :publishing-directory "/etc/nixos/doc"
+      :recursive t
+      :publishing-function org-publish-attachment
+     )
+  
+     ("nixos" :components ("org-notes" "org-static"))
+  ))
 #+END_SRC
