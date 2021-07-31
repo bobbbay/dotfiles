@@ -3,8 +3,6 @@
 with lib;
 let
   cfg = config.profiles.gui;
-  # TODO: Get rid of this
-  sp = pkgs.writeScriptBin "sp" (builtins.readFile ./sp);
 in
 {
   options.profiles.gui.enable = mkEnableOption "GUI programs";
@@ -38,7 +36,6 @@ in
 
     home.packages = with pkgs; [
       spotify
-      sp
       zoom-us
     ];
   };
