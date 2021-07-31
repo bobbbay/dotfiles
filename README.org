@@ -86,11 +86,8 @@ Update a specific input:
 #+end_quote
 
 Fear not! My configurations are documented in =org-mode= files, like
-[[https://github.com/Bobbbay/dotfiles/blob/master/config/emacs.org][so]],
-and tangled into system configurations during compile time with Nix,
-like
-[[https://github.com/Bobbbay/dotfiles/blob/master/modules/home/emacs.nix#L30][so]].
-This allows me to document my configuration with org-mode, and even
+[[https://github.com/Bobbbay/dotfiles/blob/master/config/emacs.org][so]], and tangled into system configurations during compile time with Nix,
+like [[https://github.com/Bobbbay/dotfiles/blob/master/programs/emacs.nix#L90-L92][so]]. This allows me to document my configuration with org-mode, and even
 compile them into a fully-featured documented webpage!
 
 *** Dude!
@@ -112,39 +109,29 @@ easier. To check out what dude does, run =d=:
         unlock | u </path/to/symmetrical/key>: unlock the git crypt using the provided symmetrical key
 #+end_example
 
-*** TODO Set up company-mode
-*** TODO Set up keybinds plugin
-*** TODO Set up woman
-
 *** Useful links
     :PROPERTIES:
     :CUSTOM_ID: useful-links
     :END:
+
 **** Nix
      :PROPERTIES:
      :CUSTOM_ID: nix
      :END:
 
-- [[https://github.com/gytis-ivaskevicius/flake-utils-plus][Gytis
-  Ivaskevicius' flake-utils-plus]]
-- [[https://github.com/terlar/nix-config][Terlar's nixfiles]] for the
-  inspiration on how to modularize his =home/=.
-- [[http://chriswarbo.net/projects/nixos/useful_hacks.html][Chris
-  Warbo's "Useful Nix Hacks"]]
+- [[https://github.com/gytis-ivaskevicius/flake-utils-plus][Gytis Ivaskevicius' flake-utils-plus]]
+- [[https://github.com/terlar/nix-config][Terlar's nixfiles]] for the inspiration on how to modularize his =home/=.
+- [[http://chriswarbo.net/projects/nixos/useful_hacks.html][Chris Warbo's "Useful Nix Hacks"]]
 
 **** Emacs
      :PROPERTIES:
      :CUSTOM_ID: emacs
      :END:
 
-- [[https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html][David
-  O'Toole Org Tutorial]]
-- [[https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf]["Advanced
-  Emacs" but not really advanced]]
-- [[https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix][Will
-  Bush's beautiful template emacs.nix]]
-- [[https://github.com/rememberYou/.emacs.d][rememberYou's .emacs.d]]
-  and usual r/emacs TIP of the week posts
+- [[https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html][David O'Toole Org Tutorial]]
+- [[https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf]["Advanced Emacs" but not really advanced]]
+- [[https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix][Will Bush's beautiful template emacs.nix]]
+- [[https://github.com/rememberYou/.emacs.d][rememberYou's .emacs.d]] and usual r/emacs TIP of the week posts
 
 **** Miscellaneous
      :PROPERTIES:
