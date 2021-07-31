@@ -43,6 +43,7 @@
       enable = true;
       windowManager.awesome.enable = true;
       layout = "us";
+      xkbOptions = "compose:ralt";
       libinput.enable = true;
     };
 
@@ -50,7 +51,18 @@
       enable = true;
       drivers = with pkgs; [ hplip ];
     };
+
+    # kmonad = {
+    #   enable = true;
+    #   configfiles = [ ../../config/kmonad.kbd ];
+    # };
+
+    offlineimap.enable = true;
+
+    postgresql.enable = true;
   };
+
+  virtualisation.libvirtd.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -58,7 +70,7 @@
   users.users = {
     bobbbay = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "audio" ];
+      extraGroups = [ "wheel" "audio" "input" "uinput" ];
     };
   };
 

@@ -29,8 +29,8 @@ in
       source = pkgs.fetchFromGitHub {
         owner = "blingcorp";
         repo = "bling";
-        rev = "75ff07a47ee93279bfba5f567637470a0f50774f";
-        sha256 = "VWb21Ony0UO0N6Cfi1UEfdcAS6O5zCQJtesR8Vh2CNY=";
+        rev = "4afefe6c38bbc8be6dc54c9beea52dc4ce35dcfa";
+        sha256 = "kNHx7NbBDdqqNPAeliXc60zWEISbeTRaTamtBL7EwA0=";
       };
       recursive = true;
       onChange = "awesome -k";

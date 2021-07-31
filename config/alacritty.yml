@@ -16,7 +16,7 @@ scrolling:
 
 colors:
   primary:
-    background: '#2e3440'
+    background: '#242933'
     foreground: '#d8dee9'
     dim_foreground: '#a5abb6'
   cursor:
@@ -66,7 +66,10 @@ colors:
 draw_bold_text_with_bright_colors: true
 
 cursor:
-  style: Beam
+  style:
+    shape: Underline
+    blinking: Always
+    blink_interval: 500
 
 bell:
   animation: EaseOutExpo

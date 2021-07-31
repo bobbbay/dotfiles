@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-04 Sun 22:34 -->
+<!-- 2021-07-09 Fri 22:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Emacs</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
@@ -37,33 +37,102 @@
 </head>
 <body>
 <div id="content">
+<h1 class="title">Emacs</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org47c4738">1. Better defaults</a></li>
+<li><a href="#org1a5f4ba">1. Introduction</a></li>
+<li><a href="#org47c4738">2. Better defaults</a>
+<ul>
+<li><a href="#org20220dc">2.1. Scrollbar</a></li>
+<li><a href="#org21fff31">2.2. Fonts</a></li>
+<li><a href="#org584876e">2.3. <span class="todo TODO">TODO</span> Enable ligatures</a></li>
+<li><a href="#org6455fc4">2.4. Autosaves</a></li>
+</ul>
+</li>
+<li><a href="#orgd3ccc81">3. General packages</a></li>
+<li><a href="#org833aeeb">4. LSP</a></li>
+<li><a href="#orgdedf653">5. Autocompletion</a></li>
+<li><a href="#org7057f29">6. <code>org-publish</code></a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org47c4738" class="outline-2">
-<h2 id="org47c4738"><span class="section-number-2">1.</span> Better defaults</h2>
+<div id="outline-container-org1a5f4ba" class="outline-2">
+<h2 id="org1a5f4ba"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+Welcome to my Emacs configuration! 
+</p>
+
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(require 'use-package)
 (require 'use-package-ensure)
-(setq use-package-always-ensure t) ;; Ensure that all packages are installed before use-package'ing
+(setq use-package-always-ensure t)  
+</pre>
+</div>
+</div>
+</div>
 
-;; The best scrollbar is no scrollbar
-(menu-bar-mode -1)
+<div id="outline-container-org47c4738" class="outline-2">
+<h2 id="org47c4738"><span class="section-number-2">2.</span> Better defaults</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This section contains what I consider as "better defaults", i.e. "what I want".
+</p>
+</div>
+
+<div id="outline-container-org20220dc" class="outline-3">
+<h3 id="org20220dc"><span class="section-number-3">2.1.</span> Scrollbar</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Or more accurately, "no scrollbar is the best scrollbar." Instead, we use nyan in our menubar.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(menu-bar-mode -1)
 (tool-bar-mode -1)
-(toggle-scroll-bar -1)
+(toggle-scroll-bar -1)  
 
-(set-frame-font "PragmataPro Mono Liga" nil t)
+(use-package nyan-mode
+  :init
+  (setq nyan-animate-nyancat 't)
+  :config
+  (nyan-mode))  
+</pre>
+</div>
+</div>
+</div>
 
-;; Keep those autosaves somewhere else
-;; TODO: Automatically mkdir /tmp/emacs-saves if not already created.
-(setq backup-by-copying t
+<div id="outline-container-org21fff31" class="outline-3">
+<h3 id="org21fff31"><span class="section-number-3">2.2.</span> Fonts</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Use the "right" font.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org584876e" class="outline-3">
+<h3 id="org584876e"><span class="section-number-3">2.3.</span> <span class="todo TODO">TODO</span> Enable ligatures</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(set-frame-font "PragmataPro Mono Liga" nil t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6455fc4" class="outline-3">
+<h3 id="org6455fc4"><span class="section-number-3">2.4.</span> Autosaves</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+We keep the autosaves somewhere else.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(setq backup-by-copying t
       backup-directory-alist '(("." . "/tmp/emacs-saves/"))
       delete-old-versions t
       kept-new-versions 6
@@ -72,35 +141,29 @@
 (setq auto-save-file-name-transforms
   `((".*" "/tmp/emacs-saves/" t)))
 
-;; Nord
-(load-theme 'nord t)
-
+(load-theme 'nord t)  
 </pre>
 </div>
+</div>
+</div>
+</div>
 
+<div id="outline-container-orgd3ccc81" class="outline-2">
+<h2 id="orgd3ccc81"><span class="section-number-2">3.</span> General packages</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">
-;; Embrace evil
-(use-package evil
+<pre class="src src-emacs-lisp">(use-package evil
   :config
   (evil-mode))
 
-;; Fancy projects
 (use-package projectile
   :config
   (projectile-mode))
 
-;; nyanyanyanyanyan
-(use-package nyan-mode
-  :init
-  (setq nyan-animate-nyancat 't) ;; Keep the cat moving
-  :config
-  (nyan-mode))
-
 (use-package org
   :init
   (setq org-agenda-files (list "~/org/personal.org"
-			       "~/org/school.org"))
+			     "~/org/school.org"))
   :config
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda))
@@ -108,20 +171,6 @@
 (use-package multi-vterm
   :config
   (define-key global-map "\C-c\C-v" 'vterm))
-
-(use-package lsp-mode
-  :commands lsp
-  :custom
-  (lsp-rust-analyzer-cargo-watch-command "clippy")
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  :hook
-  ((
-    nix-mode
-    rustic-mode
-    haskell-mode
-    ) . lsp)
-  )
 
 (use-package dashboard
   :config
@@ -132,17 +181,17 @@
   (setq dashboard-center-content t)
   (setq dashboard-startup-banner 'logo)
   (setq dashboard-items '((recents  . 10)
-			  (bookmarks . 5)
-			  (projects . 5)
-			  (agenda . 10)
-			  (registers . 5))))
+			(bookmarks . 5)
+			(projects . 5)
+			(agenda . 10)
+			(registers . 5))))
 
 (use-package projectile
   :init
   (projectile-mode)
   :bind (:map projectile-mode-map
-	  ("s-p" . projectile-command-map)
-	  ("C-c p" . projectile-command-map)))
+	("s-p" . projectile-command-map)
+	("C-c p" . projectile-command-map)))
 
 (use-package restart-emacs
   :bind ("C-c C-f" . restart-emacs))
@@ -159,7 +208,72 @@
   :mode "\\.dat\\'")
 </pre>
 </div>
+</div>
+</div>
 
+<div id="outline-container-org833aeeb" class="outline-2">
+<h2 id="org833aeeb"><span class="section-number-2">4.</span> LSP</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">  (use-package lsp-mode
+    :commands lsp
+    :custom
+    (lsp-rust-analyzer-cargo-watch-command "clippy")
+    :config
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+    :hook
+    ((
+      nix-mode
+      rustic-mode
+      haskell-mode
+      ) . lsp)
+    )
+
+(use-package rustic
+  :bind (:map rustic-mode-map
+	      ("M-j" . lsp-ui-imenu)
+	      ("M-?" . lsp-find-references)
+	      ("C-c C-c l" . flycheck-list-errors)
+	      ("C-c C-c a" . lsp-execute-code-action)
+	      ("C-c C-c r" . lsp-rename)
+	      ("C-c C-c q" . lsp-workspace-restart)
+	      ("C-c C-c Q" . lsp-workspace-shutdown)
+	      ("C-c C-c s" . lsp-rust-analyzer-status)
+	       ("&lt;f9&gt;" . rustic-cargo-run)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdedf653" class="outline-2">
+<h2 id="orgdedf653"><span class="section-number-2">5.</span> Autocompletion</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package company
+  :after haskell-mode
+  :custom
+  (company-idle-delay 0.5) ;; how long to wait until popup
+  :config
+  (add-hook 'haskell-mode-hook
+	  (lambda ()
+	    (set (make-local-variable 'company-backends)
+		 (append '((company-capf company-dabbrev-code))
+			 company-backends))))
+  ;; (company-begin-commands nil) ;; uncomment to disable popup
+  :bind
+  (:map company-active-map
+	("C-n". company-select-next)
+	("C-p". company-select-previous)
+	("M-&lt;". company-select-first)
+	("M-&gt;". company-select-last)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7057f29" class="outline-2">
+<h2 id="org7057f29"><span class="section-number-2">6.</span> <code>org-publish</code></h2>
+<div class="outline-text-2" id="text-6">
 <p>
 Add /etc/nixos as an org project to publish.
 </p>
@@ -196,7 +310,7 @@ Add /etc/nixos as an org project to publish.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2021-07-04 Sun 22:34</p>
+<p class="date">Created: 2021-07-09 Fri 22:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

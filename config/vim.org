@@ -1,0 +1,10 @@
+#+begin_src vim :tangle "init.lua"
+require("myluamodule")
+#+end_src
+
+#+begin_src lua :tangle "lua/myluamodule.lua"
+  Option.g({
+    encoding = "UTF-8",
+    undodir = "/tmp/nvim-saves",
+  })
+#+end_src

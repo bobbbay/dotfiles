@@ -7,15 +7,24 @@
 
 * Introduction
 
-Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation /inline/ with their =.el= code, such as [[https://github.com/angrybacon/dotemacs][Angry Bacon's dotemacs]]. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease. 
+  Throughout
+  my
+  hours
+  of
+  plunging
+  through
+  other
+  users'
+  Emacs
+  configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation /inline/ with their =.el= code, such as [[https://github.com/angrybacon/dotemacs][Angry Bacon's dotemacs]]. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease.
 
 Furthermore, I use NixOS, which is a declaratively-managed Linux distribution. The [[https://nixos.org/][NixOS website]] will do better than I can at explaining NixOS' (and Nix's) functionality, so I'll leave that at the reader's discretion.
 
 Anyways, in this post I will outline:
 
- 1. How to set up a literate Emacs configuration
- 2. How to set up a literate configuration for any language and program
- 3. How to integrate it with NixOS per =rebuild switch=
+1. How to set up a literate Emacs configuration
+2. How to set up a literate configuration for any language and program
+3. How to integrate it with NixOS per =rebuild switch=
 
 If any of these topics interest you, please read ahead!
 
@@ -26,8 +35,8 @@ First thing's first - how do we tangle? A Google search provides a simple [[http
 #+BEGIN_SRC emacs-lisp
 (require 'org)
 (org-babel-load-file
- (expand-file-name "settings.org"
-                   user-emacs-directory))
+(expand-file-name "settings.org"
+user-emacs-directory))
 #+END_SRC
 
 In our =init.el=, and
@@ -39,7 +48,7 @@ In our =init.el=, and
 ,#+END_SRC
 #+END_SRC
 
-In =settings.org=. 
+In =settings.org=.
 
 This is great, of course, because it works - however, there are a few caveats to the situation:
 
@@ -47,7 +56,7 @@ This is great, of course, because it works - however, there are a few caveats to
 2. We're not 100% documented, because =init.el= isn't in an org file.
 3. The org code is untangled during run-time, not compile-time, leading to presumably annoying lags when opening Emacs.
 
-There must be a better way! 
+There must be a better way!
 
 * Tangling at compile-time
 
@@ -69,7 +78,7 @@ And generate =init.el=, which looks like so (obviously):
 For reference, our file structure looks like this pre-compilation (where compilation currently means =M-x org-babel-tangle=):
 
 #+BEGIN_SRC
-  | - init.org
+| - init.org
 #+END_SRC
 
 And like so after compilation:
@@ -90,76 +99,76 @@ Boom! Our workflow can now be edit an org file, save it, run ~M-x org-babel-tang
 Furthermore, we can add support for other programs (such as AwesomeWM) like so:
 
 #+BEGIN_SRC org
-  Import things
-    ,#+BEGIN_SRC lua :tangle "rc.lua"
-    pcall(require, "luarocks.loader")
-  
-    local gears = require("gears")
-    local awful = require("awful")
-		  require("awful.autofocus")
-  
-    local beautiful = require("beautiful")
-  
-    require("errors")
-  
-    terminal = "alacritty"
-    editor = os.getenv("EDITOR") or "nano"
-    editor_cmd = terminal .. " -e " .. editor
-    modkey = "Mod4"
-  
-    beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
-  
-    require("settings")
-    ,#+END_SRC
-  
-  Error reporting
-  
-    ,#+BEGIN_SRC lua :tangle "errors.lua"
-  
-  local naughty = require("naughty")
-  
-  if awesome.startup_errors then
-      naughty.notify({ preset = naughty.config.presets.critical,
-		       title = "Oops, there were errors during startup!",
-		       text = awesome.startup_errors })
-  end
-  
-  do
-      local in_error = false
-      awesome.connect_signal("debug::error", function (err)
-	  if in_error then return end
-	  in_error = true
-  
-	  naughty.notify({ preset = naughty.config.presets.critical,
-			   title = "Oops, an error happened!",
-			   text = tostring(err) })
-	  in_error = false
-      end)
-  end
-  ,#+END_SRC
-  
-  (etc.)
+Import things
+,#+BEGIN_SRC lua :tangle "rc.lua"
+pcall(require, "luarocks.loader")
+
+local gears = require("gears")
+local awful = require("awful")
+require("awful.autofocus")
+
+local beautiful = require("beautiful")
+
+require("errors")
+
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
+modkey = "Mod4"
+
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+
+require("settings")
+,#+END_SRC
+
+Error reporting
+
+,#+BEGIN_SRC lua :tangle "errors.lua"
+
+local naughty = require("naughty")
+
+if awesome.startup_errors then
+naughty.notify({ preset = naughty.config.presets.critical,
+title = "Oops, there were errors during startup!",
+text = awesome.startup_errors })
+end
+
+do
+local in_error = false
+awesome.connect_signal("debug::error", function (err)
+if in_error then return end
+in_error = true
+
+naughty.notify({ preset = naughty.config.presets.critical,
+title = "Oops, an error happened!",
+text = tostring(err) })
+in_error = false
+end)
+end
+,#+END_SRC
+
+(etc.)
 #+END_SRC
 
 Hopefully, this makes sense - you write the name of the file in ~:tangle~, and write the content of the file inside. You can also have multiple blocks tangle to the same file, like so:
 
 #+BEGIN_SRC org
-  Use ~nyan-mode~.
-  ,#+BEGIN_SRC emacs-lisp :tangle "init.lua"
-  (nyan-mode)
-  ,#+END_SRC
-  
-  Use ~olivetti-mode~.
-  ,#+BEGIN_SRC emacs-lisp :tangle "init.lua"
-  (olivetti-mode)
-  ,#+END_SRC
+Use ~nyan-mode~.
+,#+BEGIN_SRC emacs-lisp :tangle "init.lua"
+(nyan-mode)
+,#+END_SRC
+
+Use ~olivetti-mode~.
+,#+BEGIN_SRC emacs-lisp :tangle "init.lua"
+(olivetti-mode)
+,#+END_SRC
 #+END_SRC
 
 Which will result in:
 
 #+BEGIN_SRC emacs-lisp
-  (nyan-mode)
-  (olivetti-mode)
+(nyan-mode)
+(olivetti-mode)
 #+END_SRC
 
 Every time you edit a =.org= file, just =M-x org-babel-tangle= and you're set!
@@ -173,9 +182,9 @@ However, this isn't a viable solution for me. I use NixOS, where everything /sho
 In a home-manager file, declare:
 
 #+BEGIN_SRC nix
-  home.file.".emacs.d/emacs.org" = {
-    source = ./path/to/emacs.org;
-  };
+home.file.".emacs.d/emacs.org" = {
+source = ./path/to/emacs.org;
+};
 #+END_SRC
 
 This asks =home-manager= to copy emacs.org to ~~/.emacs.d~.
@@ -183,40 +192,40 @@ This asks =home-manager= to copy emacs.org to ~~/.emacs.d~.
 However, I use the NixOS modules system for my system configuration, so in reality my configuration looks more like:
 
 #+BEGIN_SRC nix
-  { config, pkgs, lib, ... }:
-  with lib;
-  let
-    cfg = config.programs.emacs;
-  in
-  {
-    options.programs.emacs = {
-      enable = mkEnableOption "Emacs modules";
-      src = mkOption {
-	type = types.path;
-	default = ../config/emacs.org;
-	description = "The source path for the emacs configuration file.";
-      };
-      target = mkOption {
-	type = types.str;
-	default = ".emacs.d";
-	description = "The target path, prepended with /home/user, to write the configuration to.";
-      };
-    };
-  
-    config = mkIf cfg.enable {
-      home.file."${cfg.target}/emacs.org" = {
-	source = cfg.src;
-      };
-    };
-  }
+{ config, pkgs, lib, ... }:
+with lib;
+let
+cfg = config.programs.emacs;
+in
+{
+options.programs.emacs = {
+enable = mkEnableOption "Emacs modules";
+src = mkOption {
+type = types.path;
+default = ../config/emacs.org;
+description = "The source path for the emacs configuration file.";
+};
+target = mkOption {
+type = types.str;
+default = ".emacs.d";
+description = "The target path, prepended with /home/user, to write the configuration to.";
+};
+};
+
+config = mkIf cfg.enable {
+home.file."${cfg.target}/emacs.org" = {
+source = cfg.src;
+};
+};
+}
 #+END_SRC
-  
+
 Anyways, this doesn't do any of the important generation - it only makes sure our literate file is in the right place. To generate ~init.el~, we actually need to open up emacs and run ~M-x org-bable-tangle~. As I'm sure the reader is aware, this is not comfortable. Fortunately, after a bit of searching, we're able to create this one-line shell script to generate configurations:
 
 #+BEGIN_SRC nix
 home.file."${cfg.target}/emacs.org" = {
-  source = cfg.src;
-  onChange = ''
+source = cfg.src;
+onChange = ''
     emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
   '';
 };
@@ -235,31 +244,31 @@ Well, the reader has probably noticed that the writer has too much free time on 
 Okay, almost there. All that's left is to compile all of the =.org= files in our configuration into HTML, and host it on GitHub pages. After spending a few minutes poring over the docs, the following configuration (appended to +init.el+ I mean /emacs.org/) do the trick.
 
 #+BEGIN_SRC emacs-lisp :tangle "init.el"
-  (require 'ox-publish)
-  
-  (setq org-publish-project-alist
-    '(
-      ("org-notes"
-       :base-directory "/etc/nixos"
-       :base-extension "org"
-       :publishing-directory "/etc/nixos/docs"
-       :recursive t
-       :publishing-function org-html-publish-to-html
-       :headline-levels 4
-       :auto-preamble t
-     )
-  
-     ("org-static"
-      :base-directory "/etc/nixos/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :exclude ".direnv"
-      :publishing-directory "/etc/nixos/docs"
-      :recursive t
-      :publishing-function org-publish-attachment
-     )
-  
-     ("nixos" :components ("org-notes" "org-static"))
-  ))
+(require 'ox-publish)
+
+(setq org-publish-project-alist
+'(
+("org-notes"
+:base-directory "/etc/nixos"
+:base-extension "org"
+:publishing-directory "/etc/nixos/docs"
+:recursive t
+:publishing-function org-html-publish-to-html
+:headline-levels 4
+:auto-preamble t
+)
+
+("org-static"
+:base-directory "/etc/nixos/"
+:base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+:exclude ".direnv"
+:publishing-directory "/etc/nixos/docs"
+:recursive t
+:publishing-function org-publish-attachment
+)
+
+("nixos" :components ("org-notes" "org-static"))
+))
 #+END_SRC
 
 (If you really are appending to emacs.org, don't forget to place this in an Org code block!)
@@ -292,6 +301,6 @@ Will link to the org-mode output of =/etc/nixos/config/emacs.org=.
 
 * Conclusion
 
-Hopefully, you now have the power to set up a compiled literate configuration with Nix, Emacs, and =org-mode=. So far, I've written my AwesomeWM and Emacs configurations in =org-mode= - and it's honestly proven to be extremely useful. 
+Hopefully, you now have the power to set up a compiled literate configuration with Nix, Emacs, and =org-mode=. So far, I've written my AwesomeWM and Emacs configurations in =org-mode= - and it's honestly proven to be extremely useful.
 
 While you're here, check out my dotfiles! [[https://github.com/bobbbay/dotfiles]]

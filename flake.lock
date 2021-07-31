@@ -121,6 +121,27 @@
         "type": "github"
       }
     },
+    "kmonad": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1625104420,
+        "narHash": "sha256-JpmLfXMy3a2oo2WowFW4n06TQQINMGNWzawaTUloLt0=",
+        "owner": "pnotequalnp",
+        "repo": "kmonad",
+        "rev": "a230afb0bcaf3f889c7d287cb425421ad1cc26b3",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "pnotequalnp",
+        "ref": "flake",
+        "repo": "kmonad",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -165,7 +186,7 @@
     "neovim": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "dir": "contrib",
@@ -230,6 +251,21 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1623215930,
+        "narHash": "sha256-pr9Bx31IJvqCzSA/t0NCmCopJ3+HgeZmUFaxItLKHYA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "60cce7e5e1fdf62421ef6d4184ee399b46209366",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-21.05",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1613226215,
         "narHash": "sha256-3rA5cGIrBHD6yeKhNhsF7/t461ww25oJY8KyBb0IhjU=",
         "owner": "nixos",
@@ -244,13 +280,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
-        "lastModified": 1622922048,
-        "narHash": "sha256-nTyKxe0n7l/4HSmYaIN+63WQrvHrTJY6drSwP7bMqhU=",
+        "lastModified": 1627284088,
+        "narHash": "sha256-w0YVOW6MKl/wlvuAPCh04vOp+nfUn3e1pQCTfETkt8I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5de44c15758465f8ddf84d541ba300b48e56eda4",
+        "rev": "91903ceb294dbe63a696759bfba3d23ee667f2dc",
         "type": "github"
       },
       "original": {
@@ -281,8 +317,9 @@
         "emacs": "emacs",
         "fenix": "fenix",
         "home": "home",
+        "kmonad": "kmonad",
         "neovim": "neovim",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nur": "nur",
         "unstable": "unstable",
         "utils": "utils_2"

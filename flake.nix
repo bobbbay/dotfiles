@@ -12,6 +12,8 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     neovim.url = "github:neovim/neovim?dir=contrib";
+    # [TODO]: Use mainstream repository once merged. P.S. Thanks Kevin!
+    kmonad.url = "github:pnotequalnp/kmonad/flake?dir=nix";
   };
 
   outputs =
@@ -25,6 +27,7 @@
     , fenix
     , deploy-rs
     , neovim
+    , kmonad
     , ...
     }:
       with builtins;
@@ -60,6 +63,7 @@
 
         sharedModules = with self.modules; [
           cachix
+          kmonad.nixosModule
 
           home.nixosModules.home-manager
           utils.nixosModules.saneFlakeDefaults

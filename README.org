@@ -112,6 +112,10 @@ easier. To check out what dude does, run =d=:
         unlock | u </path/to/symmetrical/key>: unlock the git crypt using the provided symmetrical key
 #+end_example
 
+*** TODO Set up company-mode
+*** TODO Set up keybinds plugin
+*** TODO Set up woman
+
 *** Useful links
     :PROPERTIES:
     :CUSTOM_ID: useful-links

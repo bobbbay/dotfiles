@@ -1,0 +1,37 @@
+#+begin_src lua :tangle "wezterm.lua"
+local wezterm = require 'wezterm';
+return {
+  font = wezterm.font("PragmataPro Mono Liga");
+  font_size = 8.0;
+  color_scheme = "nord";
+
+  default_cursor_style = "SteadyUnderline",
+
+  hide_tab_bar_if_only_one_tab = true;
+
+  colors = {
+    tab_bar = {
+      background = "#2E3440",
+      active_tab = {
+        bg_color = "#3B4252",
+        fg_color = "#ECEFF4",
+      },
+
+      inactive_tab = {
+        bg_color = "#2E3440",
+        fg_color = "#D8DEE9",
+      },
+
+      inactive_tab_hover = {
+        bg_color = "#3B4252",
+        fg_color = "#ECEFF4",
+      },
+
+      new_tab = {
+        bg_color = "#4C566A",
+        fg_color = "#ECEFF4",
+      },
+    }
+  }
+}
+#+end_src

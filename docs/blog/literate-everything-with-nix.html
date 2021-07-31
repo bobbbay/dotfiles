@@ -11,28 +11,28 @@
 <meta name="author" content="Bob Nistrim" />
 <style type="text/css">
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i");
-/* Set variables */:root {    --font-size-1: 2rem;    --font-size-2: 1.5rem;    --font-size-3: 1.15rem;    --font-size-4: 1rem;    --font-size-small: 0.8rem;    --font-size-xsmall: 0.6rem;}/* Set padding and margin */html, body{    padding: 0;    margin: 0;    background-color: #fdfdfd;}/* Header margin */h2{margin-top: 2rem; margin-bottom: 1.5rem;}h3{margin-top: 1rem; margin-bottom: 1rem;}h4{margin-top: 1rem; margin-bottom: 1rem;}/* ------------------------- */::selection {    background-color: purple;    color: white;}html, body{    font-family: "Source Sans Pro", Helvetica, sans-serif;		font-weight: 300;}h1{font-size: var(--font-size-1);}h2{font-size: var(--font-size-2);}h3{font-size: var(--font-size-3);}h4{font-size: var(--font-size-3);}h5{font-size: var(--font-size-3);}h1 > .subtitle{    font-size: var(--font-size-3);}h1, h2, h3, h4, h5, h6 {		font-weight: 300;		letter-spacing: -0.03em;}.outline-2 > h2, #table-of-contents > h2{    text-align: center;}/* Table of contents */#table-of-contents ul{    list-style-type:none;    margin: 0;}#table-of-contents .tag{    display: none;}.outline-3{    border-bottom: 1px solid #CCC;}.outline-2 > h2{    grid-row-start: 1;    grid-row-end: 2;}.outline-2{    grid-row-start: 2;    grid-row-end: 3;}img{    max-width: 100%;}/* Code */pre{    margin: 1rem;    background-color: #EEE;    padding: 0.5rem;    border-radius: 0.2rem;    font-size: var(--font-size-small) !important;}.outline-3{    display: grid;    grid-template-columns: 40fr 60fr;} /* Responsive content positioning */@media only screen and (min-width: 750px) /* Large screens */{    .outline-3{        margin: 0vh 10vw;    }    .outline-text-2, #table-of-contents{        padding: 0vh 10vw;    }}@media only screen and (max-width: 750px) /* Small screens */{    .outline-3{        margin: 0vh 5vw;        display: block;    }    .outline-text-2, #table-of-contents{        padding: 0vh 5vw;    }}blockquote{    border-left: 0.2rem solid purple;    padding-left: 1rem;		font-style: italic;}p, pre, ol, ul, table, code{    color: #1A1A1A;}table, blockquote, pre, ol, ul, p, #postamble{    margin-top: 1rem;    margin-bottom: 1rem;}h1, h2, h3, h4, h5, h6{    color: #0A0A0A;}.tag{    margin-top: 0.5rem;    display: block;    color: white;    font-size: var(--font-size-xsmall);}.tag > span{		font-weight: 400;    font-size: 0.6rem;    background-color: purple;    text-transform: uppercase;    border-radius: 2px;    width: fit-content;    height: auto;    padding: 1px 5px;    margin: 1px;}/* Stripe table */tr:nth-child(even) {  background-color: #EEE;}.title{   padding: 2vh 5vw;}pre{		font-family: "Courier New", monospace;    font-size: var(--font-size-4)}.org-org-meta-line{    color: purple;}.org-keyword{    color: purple;}a{    color: purple;}.underline{    text-decoration: underline;}.todo{    color: #7D161A;		font-weight: 400;}.done{    color: purple;		font-weight: 400;}/* Postamble */#postamble{    text-align: center;    width: 100%;}#postamble > p{    display: inline;    font-size: var(--font-size-4)} .outline-text-2, .outline-text-3, .outline-text-4{ max-width: 100%; overflow-x: auto;}
+/* Set variables */:root {    --font-size-1: 2rem;    --font-size-2: 1.5rem;    --font-size-3: 1.15rem;    --font-size-4: 1rem;    --font-size-small: 0.8rem;    --font-size-xsmall: 0.6rem;}/* Set padding and margin */html, body{    padding: 0;    margin: 0;    background-color: #fdfdfd;}/* Header margin */h2{margin-top: 2rem; margin-bottom: 1.5rem;}h3{margin-top: 1rem; margin-bottom: 1rem;}h4{margin-top: 1rem; margin-bottom: 1rem;}/* ------------------------- */::selection {    background-color: purple;    color: white;}html, body{    font-family: "Source Sans Pro", Helvetica, sans-serif;    font-weight: 300;}h1{font-size: var(--font-size-1);}h2{font-size: var(--font-size-2);}h3{font-size: var(--font-size-3);}h4{font-size: var(--font-size-3);}h5{font-size: var(--font-size-3);}h1 > .subtitle{    font-size: var(--font-size-3);}h1, h2, h3, h4, h5, h6 {    font-weight: 300;    letter-spacing: -0.03em;}.outline-2 > h2, #table-of-contents > h2{    text-align: center;}/* Table of contents */#table-of-contents ul{    list-style-type:none;    margin: 0;}#table-of-contents .tag{    display: none;}.outline-3{    border-bottom: 1px solid #CCC;}.outline-2 > h2{    grid-row-start: 1;    grid-row-end: 2;}.outline-2{    grid-row-start: 2;    grid-row-end: 3;}img{    max-width: 100%;}/* Code */pre{    margin: 1rem;    background-color: #EEE;    padding: 0.5rem;    border-radius: 0.2rem;    font-size: var(--font-size-small) !important;}.outline-3{    display: grid;    grid-template-columns: 40fr 60fr;} /* Responsive content positioning */@media only screen and (min-width: 750px) /* Large screens */{    .outline-3{        margin: 0vh 10vw;    }    .outline-text-2, #table-of-contents{        padding: 0vh 10vw;    }}@media only screen and (max-width: 750px) /* Small screens */{    .outline-3{        margin: 0vh 5vw;        display: block;    }    .outline-text-2, #table-of-contents{        padding: 0vh 5vw;    }}blockquote{    border-left: 0.2rem solid purple;    padding-left: 1rem;    font-style: italic;}p, pre, ol, ul, table, code{    color: #1A1A1A;}table, blockquote, pre, ol, ul, p, #postamble{    margin-top: 1rem;    margin-bottom: 1rem;}h1, h2, h3, h4, h5, h6{    color: #0A0A0A;}.tag{    margin-top: 0.5rem;    display: block;    color: white;    font-size: var(--font-size-xsmall);}.tag > span{    font-weight: 400;    font-size: 0.6rem;    background-color: purple;    text-transform: uppercase;    border-radius: 2px;    width: fit-content;    height: auto;    padding: 1px 5px;    margin: 1px;}/* Stripe table */tr:nth-child(even) {  background-color: #EEE;}.title{   padding: 2vh 5vw;}pre{    font-family: "Courier New", monospace;    font-size: var(--font-size-4)}.org-org-meta-line{    color: purple;}.org-keyword{    color: purple;}a{    color: purple;}.underline{    text-decoration: underline;}.todo{    color: #7D161A;    font-weight: 400;}.done{    color: purple;    font-weight: 400;}/* Postamble */#postamble{    text-align: center;    width: 100%;}#postamble > p{    display: inline;    font-size: var(--font-size-4)} .outline-text-2, .outline-text-3, .outline-text-4{ max-width: 100%; overflow-x: auto;}
 </style>
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 <!--/*--><![CDATA[/*><!--*/
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-    /*]]>*///-->
+function CodeHighlightOn(elem, id)
+{
+var target = document.getElementById(id);
+if(null != target) {
+elem.classList.add("code-highlighted");
+target.classList.add("code-highlighted");
+}
+}
+function CodeHighlightOff(elem, id)
+{
+var target = document.getElementById(id);
+if(null != target) {
+elem.classList.remove("code-highlighted");
+target.classList.remove("code-highlighted");
+}
+}
+/*]]>*///-->
 // @license-end
 </script>
 </head>
@@ -57,7 +57,7 @@
 <h2 id="orgd75c067"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation <i>inline</i> with their <code>.el</code> code, such as <a href="https://github.com/angrybacon/dotemacs">Angry Bacon's dotemacs</a>. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease. 
+Throughout my hours of plunging through other users' Emacs configurations, I've lately noticed an interesting trend. Many users seem to be writing their documentation <i>inline</i> with their <code>.el</code> code, such as <a href="https://github.com/angrybacon/dotemacs">Angry Bacon's dotemacs</a>. After some digging, it seemed that each source code block was actually a legitamate part of their configuration. Finally, I discovered the art of "Literate Programming": using org-mode, we can take all of the code blocks from this org file and combine them together into one file. This allows us to write any type of documentation next to our real system configurations with ease.
 </p>
 
 <p>
@@ -90,8 +90,8 @@ First thing's first - how do we tangle? A Google search provides a simple <a hre
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(require 'org)
 (org-babel-load-file
- (expand-file-name "settings.org"
-		   user-emacs-directory))
+(expand-file-name "settings.org"
+user-emacs-directory))
 </pre>
 </div>
 
@@ -108,7 +108,7 @@ In our <code>init.el</code>, and
 </div>
 
 <p>
-In <code>settings.org</code>. 
+In <code>settings.org</code>.
 </p>
 
 <p>
@@ -122,7 +122,7 @@ This is great, of course, because it works - however, there are a few caveats to
 </ol>
 
 <p>
-There must be a better way! 
+There must be a better way!
 </p>
 </div>
 </div>
@@ -187,50 +187,50 @@ Furthermore, we can add support for other programs (such as AwesomeWM) like so:
 
 <div class="org-src-container">
 <pre class="src src-org">Import things
-  #+BEGIN_SRC lua :tangle "rc.lua"
-  pcall(require, "luarocks.loader")
+#+BEGIN_SRC lua :tangle "rc.lua"
+pcall(require, "luarocks.loader")
 
-  local gears = require("gears")
-  local awful = require("awful")
-		require("awful.autofocus")
+local gears = require("gears")
+local awful = require("awful")
+require("awful.autofocus")
 
-  local beautiful = require("beautiful")
+local beautiful = require("beautiful")
 
-  require("errors")
+require("errors")
 
-  terminal = "alacritty"
-  editor = os.getenv("EDITOR") or "nano"
-  editor_cmd = terminal .. " -e " .. editor
-  modkey = "Mod4"
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
+modkey = "Mod4"
 
-  beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
-  require("settings")
-  #+END_SRC
+require("settings")
+#+END_SRC
 
 Error reporting
 
-  #+BEGIN_SRC lua :tangle "errors.lua"
+#+BEGIN_SRC lua :tangle "errors.lua"
 
 local naughty = require("naughty")
 
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-		     title = "Oops, there were errors during startup!",
-		     text = awesome.startup_errors })
+naughty.notify({ preset = naughty.config.presets.critical,
+title = "Oops, there were errors during startup!",
+text = awesome.startup_errors })
 end
 
 do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-	if in_error then return end
-	in_error = true
+local in_error = false
+awesome.connect_signal("debug::error", function (err)
+if in_error then return end
+in_error = true
 
-	naughty.notify({ preset = naughty.config.presets.critical,
-			 title = "Oops, an error happened!",
-			 text = tostring(err) })
-	in_error = false
-    end)
+naughty.notify({ preset = naughty.config.presets.critical,
+title = "Oops, an error happened!",
+text = tostring(err) })
+in_error = false
+end)
 end
 #+END_SRC
 
@@ -288,7 +288,7 @@ In a home-manager file, declare:
 
 <div class="org-src-container">
 <pre class="src src-nix">home.file.".emacs.d/emacs.org" = {
-  source = ./path/to/emacs.org;
+source = ./path/to/emacs.org;
 };
 </pre>
 </div>
@@ -305,28 +305,28 @@ However, I use the NixOS modules system for my system configuration, so in reali
 <pre class="src src-nix">{ config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.programs.emacs;
+cfg = config.programs.emacs;
 in
 {
-  options.programs.emacs = {
-    enable = mkEnableOption "Emacs modules";
-    src = mkOption {
-      type = types.path;
-      default = ../config/emacs.org;
-      description = "The source path for the emacs configuration file.";
-    };
-    target = mkOption {
-      type = types.str;
-      default = ".emacs.d";
-      description = "The target path, prepended with /home/user, to write the configuration to.";
-    };
-  };
+options.programs.emacs = {
+enable = mkEnableOption "Emacs modules";
+src = mkOption {
+type = types.path;
+default = ../config/emacs.org;
+description = "The source path for the emacs configuration file.";
+};
+target = mkOption {
+type = types.str;
+default = ".emacs.d";
+description = "The target path, prepended with /home/user, to write the configuration to.";
+};
+};
 
-  config = mkIf cfg.enable {
-    home.file."${cfg.target}/emacs.org" = {
-      source = cfg.src;
-    };
-  };
+config = mkIf cfg.enable {
+home.file."${cfg.target}/emacs.org" = {
+source = cfg.src;
+};
+};
 }
 </pre>
 </div>
@@ -337,8 +337,8 @@ Anyways, this doesn't do any of the important generation - it only makes sure ou
 
 <div class="org-src-container">
 <pre class="src src-nix">home.file."${cfg.target}/emacs.org" = {
-  source = cfg.src;
-  onChange = ''
+source = cfg.src;
+onChange = ''
     emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "${cfg.target}/emacs.org")'
   '';
 };
@@ -374,27 +374,27 @@ Okay, almost there. All that's left is to compile all of the <code>.org</code> f
 <pre class="src src-emacs-lisp">(require 'ox-publish)
 
 (setq org-publish-project-alist
-  '(
-    ("org-notes"
-     :base-directory "/etc/nixos"
-     :base-extension "org"
-     :publishing-directory "/etc/nixos/docs"
-     :recursive t
-     :publishing-function org-html-publish-to-html
-     :headline-levels 4
-     :auto-preamble t
-   )
+'(
+("org-notes"
+:base-directory "/etc/nixos"
+:base-extension "org"
+:publishing-directory "/etc/nixos/docs"
+:recursive t
+:publishing-function org-html-publish-to-html
+:headline-levels 4
+:auto-preamble t
+)
 
-   ("org-static"
-    :base-directory "/etc/nixos/"
-    :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-    :exclude ".direnv"
-    :publishing-directory "/etc/nixos/docs"
-    :recursive t
-    :publishing-function org-publish-attachment
-   )
+("org-static"
+:base-directory "/etc/nixos/"
+:base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+:exclude ".direnv"
+:publishing-directory "/etc/nixos/docs"
+:recursive t
+:publishing-function org-publish-attachment
+)
 
-   ("nixos" :components ("org-notes" "org-static"))
+("nixos" :components ("org-notes" "org-static"))
 ))
 </pre>
 </div>
@@ -454,7 +454,7 @@ Will link to the org-mode output of <code>/etc/nixos/config/emacs.org</code>.
 <h2 id="org6051ada"><span class="section-number-2">6.</span> Conclusion</h2>
 <div class="outline-text-2" id="text-6">
 <p>
-Hopefully, you now have the power to set up a compiled literate configuration with Nix, Emacs, and <code>org-mode</code>. So far, I've written my AwesomeWM and Emacs configurations in <code>org-mode</code> - and it's honestly proven to be extremely useful. 
+Hopefully, you now have the power to set up a compiled literate configuration with Nix, Emacs, and <code>org-mode</code>. So far, I've written my AwesomeWM and Emacs configurations in <code>org-mode</code> - and it's honestly proven to be extremely useful.
 </p>
 
 <p>

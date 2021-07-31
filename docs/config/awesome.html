@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-07-04 Sun 22:34 -->
+<!-- 2021-07-09 Fri 16:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -666,9 +666,9 @@ client.connect_signal("manage", function (c)
     end
 
    -- Also, round the corners
-     c.shape = function(cr,w,h)
-	gears.shape.rounded_rect(cr,w,h,5)
-    end
+   --  c.shape = function(cr,w,h)
+   --     gears.shape.rounded_rect(cr,w,h,5)
+   -- end
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
@@ -704,6 +704,7 @@ local bling = require("modules.bling")
 
 -- Widgets
 local batteryarc_widget = require("modules.awesome-wm-widgets.batteryarc-widget.batteryarc")
+local spotify_widget = require("modules.awesome-wm-widgets.spotify-widget.spotify")
 
 -- Keyboard status
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -797,6 +798,7 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mytasklist, -- Middle widget
 	{ -- Right widgets
 	    layout = wibox.layout.fixed.horizontal,
+	    spotify_widget(),
 	    batteryarc_widget(),
 	    mykeyboardlayout,
 	    wibox.widget.systray(),
@@ -867,7 +869,7 @@ end)
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2021-07-04 Sun 22:34</p>
+<p class="date">Created: 2021-07-09 Fri 16:04</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

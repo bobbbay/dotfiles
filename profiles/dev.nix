@@ -21,43 +21,11 @@ in
 
   config = lib.mkIf cfg.enable {
     modules.emacs.enable = true;
+    bobos.programs.neovim.enable = true;
 
     programs = {
       neovim = {
-        enable = false;
         package = with pkgs; neovim-nightly;
-        extraConfig = builtins.readFile ../config/neovim.vim;
-        plugins = with pkgs.vimPlugins; [
-          vim-nix # Support for writing Nix expressions in Vim.
-          rust-vim # Who needs garbage collectors anyways?
-          {
-            # Support for *TeX files
-            plugin = vimtex;
-            config = ''
-              let g:tex_flavor='latex'            " Set LaTeX as our flavour
-              let g:vimtex_view_method='zathura'  " Use Zathura to view
-              let g:vimtex_quickfix_mode=0
-              set conceallevel=1                  " Conceal actual Tex text unless we are on that line
-              let g:tex_conceal='abdmg'
-            '';
-          }
-          {
-            # Support for snippets
-            plugin = ultisnips;
-            config = ''
-              let g:UltiSnipsExpandTrigger = '<tab>'
-              let g:UltiSnipsJumpForwardTrigger = '<tab>'
-              let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-            '';
-          }
-          vim-snippets # Default snippets
-          {
-            # Start-up page
-            plugin = vim-startify;
-            config = "let g:startify_change_to_vcs_root = 0";
-          }
-        ];
-
         viAlias = true;
         vimAlias = true;
       };
@@ -68,16 +36,21 @@ in
       };
 
       git = {
-        enable =
-          true; # Git is already installed globally from within our root config
-        aliases = { stat = "status"; };
+        enable = true; # Git is already installed globally from within our root config
+        aliases.stat = "status";
         userEmail = "abatterysingle@gmail.com";
         userName = "Bobbbay";
         signing = {
           signByDefault = true;
-          key = null;
+          key = null; # Automatically figured out
         };
         lfs.enable = true;
+        includes = [
+          {
+            path = "~/.git/areg.conf";
+            condition = "gitdir:~/projects/tu20/";
+          }
+        ];
       };
 
       gpg.enable = true;
@@ -101,6 +74,25 @@ in
       source = ../config/alacritty.yml;
     };
 
+    home.file.".git/areg.conf".text = ''
+      [user]
+        name = Areg
+        email = me@areg.dev
+        signingKey = 4A0B1F8C91322407
+    '';
+
+    home.file.".offlineimaprc".source = ../crypt/offlineimap.rc;
+    home.file.".authinfo".source = ../crypt/authinfo;
+
+    # [TODO]: Remove username-specific config (maybe with XDG dirs)
+    home.file.".notmuch-config".text = ''
+      [database]
+      path=/home/bobbbay/mail
+
+      [new]
+      tags=unread;inbox
+    '';
+
     home.packages = with pkgs; [
       latexmk # Compile LaTeX + vimtex compiler support
       git-crypt # Encrypt those git files!
@@ -111,24 +103,36 @@ in
       alacritty # Unlimited power/terminal
       dude
       jetbrains.idea-ultimate
+      gcc
+      dotnet-sdk_5
+      offlineimap
+      notmuch
+      idris2
+      # clang
+      binutils
+      sqlite
+      postman
+      file
 
       git-lfs1
       gitAndTools.gitui
 
-      (with fenix;
-      combine (with default; [
-        cargo
-        clippy-preview
-        rust-std
-        rustc
-        rustfmt-preview
+      (
+        with fenix;
+        combine (
+          with default; [
+            cargo
+            cargo-edit
+            cargo-cross
+            clippy-preview
+            rust-std
+            rustc
+            rustfmt-preview
 
-        latest.rust-src
-      ]))
+            latest.rust-src
+          ]
+        )
+      )
     ];
-
-    home.sessionVariables = {
-      EDITOR = "emacs";
-    };
   };
 }
