@@ -11,6 +11,7 @@
     fenix.url = "github:nix-community/fenix";
     deploy-rs.url = "github:serokell/deploy-rs";
 
+    neomacs.url = "/home/bobbbay/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
     # [TODO]: Use mainstream repository once merged. P.S. Thanks Kevin!
     kmonad.url = "github:pnotequalnp/kmonad/flake?dir=nix";
@@ -26,6 +27,7 @@
     , home
     , fenix
     , deploy-rs
+    , neomacs
     , neovim
     , kmonad
     , ...
@@ -45,6 +47,7 @@
         modules = utils.lib.modulesFromList [
           ./modules/cachix.nix
           ./modules/media.nix
+          ./modules/guacamole.nix
         ];
 
         sharedOverlays = [
@@ -63,6 +66,7 @@
 
         sharedModules = with self.modules; [
           cachix
+          guacamole
           kmonad.nixosModule
 
           home.nixosModules.home-manager
@@ -70,7 +74,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./suites ./profiles ./modules/home ./programs ];
+            home-manager.sharedModules = [ ./suites ./profiles ./modules/home ./programs neomacs.hmModule ];
           }
         ];
 

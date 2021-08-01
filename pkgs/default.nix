@@ -19,4 +19,5 @@ final: prev:
       *) echo "Error: unknown command $1" && exit 1;;
     esac
   '';
+  guacamole = prev.callPackage ./guacamole { };
 }

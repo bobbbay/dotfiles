@@ -57,12 +57,19 @@
     #   configfiles = [ ../../config/kmonad.kbd ];
     # };
 
+#     guacamole = {
+#       enable = true;
+#       user = "bobbbay";
+#     };
+# 
     offlineimap.enable = true;
 
     postgresql.enable = true;
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+  };
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;

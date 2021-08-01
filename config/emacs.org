@@ -36,8 +36,10 @@ Use the "right" font and colorscheme.
 
 #+begin_src emacs-lisp :tangle "init.el"
   (set-frame-font "PragmataPro Mono Liga" nil t)
+  (setq emacs-one-use-variable-pitch nil)
+  (setq emacs-one-scale-org-headlines nil)
   (load-theme 'one-dark t)
-  
+
   (setq-default indent-tabs-mode nil)
 #+end_src
 
@@ -135,8 +137,7 @@ This section configures packages with =use-package=.
 #+begin_src emacs-lisp :tangle "init.el"
   (use-package org
     :init
-    (setq org-agenda-files (list "~/org/personal.org"
-			       "~/org/school.org"))
+    (setq org-agenda-files (list "~/org/todo.org"))
     :config
     (define-key global-map "\C-cl" 'org-store-link)
     (define-key global-map "\C-a" 'org-agenda))
