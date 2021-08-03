@@ -183,12 +183,12 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "narHash": "sha256-ttwbRmld/wavWu+jjqVe3MMRVfWwcXUn84CKFcNAkJU=",
-        "path": "/home/bobbbay/neomacs",
+        "narHash": "sha256-zq7kelQxyVTUhmfTE6sHY1neUw1WOPbuiYdj7LgTZ9U=",
+        "path": "/home/bobbbay/projects/neomacs",
         "type": "path"
       },
       "original": {
-        "path": "/home/bobbbay/neomacs",
+        "path": "/home/bobbbay/projects/neomacs",
         "type": "path"
       }
     },
