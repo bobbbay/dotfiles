@@ -183,13 +183,17 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "narHash": "sha256-zq7kelQxyVTUhmfTE6sHY1neUw1WOPbuiYdj7LgTZ9U=",
-        "path": "/home/bobbbay/projects/neomacs",
-        "type": "path"
+        "lastModified": 1628099182,
+        "narHash": "sha256-tjx0cNxOOeKNuLGd155JboUbRxm/rYaczCNhcFxrFEc=",
+        "owner": "bobbbay",
+        "repo": "neomacs",
+        "rev": "b3e7a7d1b2f3c9af0d1bbb468196d5aa998069b1",
+        "type": "github"
       },
       "original": {
-        "path": "/home/bobbbay/projects/neomacs",
-        "type": "path"
+        "owner": "bobbbay",
+        "repo": "neomacs",
+        "type": "github"
       }
     },
     "neovim": {

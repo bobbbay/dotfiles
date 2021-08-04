@@ -13,6 +13,7 @@ in
     home.file."${config.xdg.configHome}/awesome/rc.org" = {
       source = ../config/awesome.org;
       onChange = "emacs --batch --eval \"(require 'org)\" --eval '(org-babel-tangle-file \"~/.config/awesome/rc.org\")'";
+      recursive = true;
     };
 
     home.file.".config/awesome/modules/awesome-wm-widgets" = {

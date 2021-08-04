@@ -4,7 +4,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   home-manager.users.bobbbay = {
-    suites.full.enable = true;
+    modules.emacs.enable = true;
   };
 
   cachix.enable = true;

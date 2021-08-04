@@ -21,7 +21,7 @@ in
 
   config = lib.mkIf cfg.enable {
     modules.emacs.enable = true;
-    bobos.programs.neovim.enable = true;
+    bobos.programs.neovim.enable = false;
 
     programs = {
       neovim = {
