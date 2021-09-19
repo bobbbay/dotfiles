@@ -11,8 +11,8 @@
     fenix.url = "github:nix-community/fenix";
     deploy-rs.url = "github:serokell/deploy-rs";
 
-    neomacs.url = "github:bobbbay/neomacs";
-    # neomacs.url = "/home/bobbbay/projects/neomacs";
+    # neomacs.url = "github:bobbbay/neomacs";
+    neomacs.url = "/home/demo/projects/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
     # [TODO]: Use mainstream repository once merged. P.S. Thanks Kevin!
     kmonad.url = "github:pnotequalnp/kmonad/flake?dir=nix";

@@ -45,12 +45,12 @@ in
           key = null; # Automatically figured out
         };
         lfs.enable = true;
-        includes = [
-          {
-            path = "~/.git/areg.conf";
-            condition = "gitdir:~/projects/tu20/";
-          }
-        ];
+#        includes = [
+#          {
+#            path = "~/.git/areg.conf";
+#            condition = "gitdir:~/projects/tu20/";
+#          }
+#        ];
       };
 
       gpg.enable = true;
@@ -59,7 +59,10 @@ in
 
       direnv = {
         enable = true;
-        enableNixDirenvIntegration = true;
+        nix-direnv = {
+          enable = true;
+          enableFlakes = true;
+        };
       };
     };
 
@@ -107,7 +110,7 @@ in
       dotnet-sdk_5
       offlineimap
       notmuch
-      idris2
+      unstable.idris2
       # clang
       binutils
       sqlite

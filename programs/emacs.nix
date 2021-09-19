@@ -60,6 +60,7 @@ let
         delight
         multiple-cursors
         dap-mode
+        ayu-theme
       ]
     )
   );
