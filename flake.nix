@@ -11,7 +11,7 @@
     fenix.url = "github:nix-community/fenix";
     deploy-rs.url = "github:serokell/deploy-rs";
 
-    # neomacs.url = "github:bobbbay/neomacs";
+    doom.url = "github:vlaci/nix-doom-emacs";
     neomacs.url = "/home/demo/projects/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
     # [TODO]: Use mainstream repository once merged. P.S. Thanks Kevin!
@@ -28,6 +28,7 @@
     , home
     , fenix
     , deploy-rs
+    , doom
     , neomacs
     , neovim
     , kmonad
@@ -75,7 +76,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./suites ./profiles ./modules/home ./programs neomacs.hmModule ];
+            home-manager.sharedModules = [ ./suites ./profiles ./modules/home ./programs doom.hmModule neomacs.hmModule ];
           }
         ];
 

@@ -20,7 +20,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    modules.emacs.enable = true;
+    modules.neomacs.enable = true;
     bobos.programs.neovim.enable = false;
 
     programs = {
@@ -45,12 +45,6 @@ in
           key = null; # Automatically figured out
         };
         lfs.enable = true;
-#        includes = [
-#          {
-#            path = "~/.git/areg.conf";
-#            condition = "gitdir:~/projects/tu20/";
-#          }
-#        ];
       };
 
       gpg.enable = true;
