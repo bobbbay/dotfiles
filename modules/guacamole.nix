@@ -78,9 +78,9 @@ in
       uid = uid;
     });
 
-#     users.groups = optionalAttrs (cfg.group == "guacamole") (singleton {
-#       name = cfg.group;
-#       gid = gid;
-#     });
+    #     users.groups = optionalAttrs (cfg.group == "guacamole") (singleton {
+    #       name = cfg.group;
+    #       gid = gid;
+    #     });
   };
 }

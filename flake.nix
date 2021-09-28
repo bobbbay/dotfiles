@@ -1,22 +1,17 @@
 {
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/1.3.0";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     emacs.url = "github:nix-community/emacs-overlay";
-    home.url = "github:nix-community/home-manager/release-21.05";
-
     fenix.url = "github:nix-community/fenix";
-    deploy-rs.url = "github:serokell/deploy-rs";
-
+    home.url = "github:nix-community/home-manager/release-21.05";
     doom.url = "github:vlaci/nix-doom-emacs";
-    neomacs.url = "github:vi-tality/neomacs";
-    # neomacs.url = "/home/demo/projects/neomacs";
+
+    neomacs.url = "/home/demo/projects/neomacs"; # "github:vi-tality/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
-    # [TODO]: Use mainstream repository once merged. P.S. Thanks Kevin!
-    kmonad.url = "github:pnotequalnp/kmonad/flake?dir=nix";
   };
 
   outputs =
@@ -28,36 +23,29 @@
     , emacs
     , home
     , fenix
-    , deploy-rs
     , doom
     , neomacs
     , neovim
-    , kmonad
     , ...
     }:
       with builtins;
-      utils.lib.systemFlake {
+      let
+        pkgs = self.pkgs.x86_64-linux.nixpkgs;
+      in
+      utils.lib.mkFlake {
         inherit self inputs;
 
         supportedSystems = [ "x86_64-linux" ];
 
-        channels.nixpkgs.input = nixpkgs;
         channelsConfig = {
           allowUnfree = true;
           allowUnsupportedSystem = true;
         };
 
-        modules = utils.lib.modulesFromList [
-          ./modules/cachix.nix
-          ./modules/media.nix
-          ./modules/guacamole.nix
-        ];
-
         sharedOverlays = [
           (import ./pkgs)
           (
             final: prev: {
-              inherit (deploy-rs.packages.${prev.system}) deploy-rs;
               unstable = unstable.legacyPackages.${prev.system};
               neovim-nightly = neovim.defaultPackage.${prev.system};
             }
@@ -67,13 +55,16 @@
           fenix.overlay
         ];
 
-        sharedModules = with self.modules; [
-          cachix
-          guacamole
-          kmonad.nixosModule
+        channels.nixpkgs.input = nixpkgs;
+        channels.unstable.input = unstable;
+
+        hostDefaults.modules = [
+          ./modules/cachix.nix
+          ./modules/media.nix
+          ./modules/guacamole.nix
 
           home.nixosModules.home-manager
-          utils.nixosModules.saneFlakeDefaults
+
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -85,33 +76,18 @@
           NotYourPC.modules = with self.modules; [ ./host/NotYourPC ];
           NotYourLaptop.modules = with self.modules; [ ./host/NotYourLaptop ];
           NotYourVM.modules = with self.modules; [ ./host/NotYourVM ];
-          NotYourServer.modules = with self.modules; [ ./host/NotYourServer ];
         };
 
-        devShellBuilder = channels:
-          with channels.nixpkgs;
-          mkShell {
+        outputsBuilder = channels: with channels.nixpkgs; {
+          devShell = mkShell {
+            name = "Sysconfig";
             buildInputs = [
               cachix
               nixpkgs-fmt
               nixos-generators
               git-crypt
-              deploy-rs
             ];
           };
-
-        deploy.nodes.oracleyServer = {
-          hostname = (readFile ./crypt/oracleyServer.ip);
-          profiles.main = {
-            user = "root";
-            sshUser = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos
-              self.nixosConfigurations.NotYourServer;
-          };
         };
-
-        checks = builtins.mapAttrs
-          (system: deployLib: deployLib.deployChecks self.deploy)
-          deploy-rs.lib;
       };
 }
