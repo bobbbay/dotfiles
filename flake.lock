@@ -363,17 +363,17 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1632789439,
-        "narHash": "sha256-aq2oZ1SGunabqMI7qo3WEJzzdfz6hZnuN3DDVUqRXj0=",
-        "ref": "master",
-        "rev": "fa10f8679e6d247d54d443bc41fd0b09dcc130c5",
-        "revCount": 4,
-        "type": "git",
-        "url": "file:///home/demo/projects/neomacs"
+        "lastModified": 1632789602,
+        "narHash": "sha256-FrGHDL9J83f9jLkmtnDtYUTzxK+NEl2wZybpN5EfRCQ=",
+        "owner": "vi-tality",
+        "repo": "neomacs",
+        "rev": "bbb65916116f8ac97b51c7052d21741f24fb769f",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/demo/projects/neomacs"
+        "owner": "vi-tality",
+        "repo": "neomacs",
+        "type": "github"
       }
     },
     "neovim": {

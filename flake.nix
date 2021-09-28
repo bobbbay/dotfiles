@@ -12,7 +12,8 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     doom.url = "github:vlaci/nix-doom-emacs";
-    neomacs.url = "/home/demo/projects/neomacs";
+    neomacs.url = "github:vi-tality/neomacs";
+    # neomacs.url = "/home/demo/projects/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
     # [TODO]: Use mainstream repository once merged. P.S. Thanks Kevin!
     kmonad.url = "github:pnotequalnp/kmonad/flake?dir=nix";
