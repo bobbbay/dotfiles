@@ -284,14 +284,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1632789602,
-        "narHash": "sha256-wmDnyCaN2dS1VBNToCxO5tm0wpKsiQew0SQ99G71g1s=",
-        "type": "git",
-        "url": "file:///home/demo/projects/neomacs"
+        "lastModified": 1632845445,
+        "narHash": "sha256-vlDoSQ63Qo5L64lsUGQ+X7rPh54HtFzE8YHukMrs/r0=",
+        "owner": "vi-tality",
+        "repo": "neomacs",
+        "rev": "e1565bc7c6f79f546170839a5e93065f4c04b5db",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/demo/projects/neomacs"
+        "owner": "vi-tality",
+        "repo": "neomacs",
+        "type": "github"
       }
     },
     "neovim": {

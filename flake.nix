@@ -10,7 +10,7 @@
     home.url = "github:nix-community/home-manager/release-21.05";
     doom.url = "github:vlaci/nix-doom-emacs";
 
-    neomacs.url = "/home/demo/projects/neomacs"; # "github:vi-tality/neomacs";
+    neomacs.url = "github:vi-tality/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
   };
 

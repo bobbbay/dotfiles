@@ -22,4 +22,4 @@ jobs:
       with:
         name: bobbbix
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosConfigurations.NotYourLaptop.config.system.build.toplevel -L
+    - run: nix build .#nixosConfigurations.NotYourVM.config.system.build.toplevel -L
