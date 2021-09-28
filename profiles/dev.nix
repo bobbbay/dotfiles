@@ -67,17 +67,6 @@ in
       };
     };
 
-    home.file.".config/alacritty/alacritty.yml" = {
-      source = ../config/alacritty.yml;
-    };
-
-    home.file.".git/areg.conf".text = ''
-      [user]
-        name = Areg
-        email = me@areg.dev
-        signingKey = 4A0B1F8C91322407
-    '';
-
     home.file.".offlineimaprc".source = ../crypt/offlineimap.rc;
     home.file.".authinfo".source = ../crypt/authinfo;
 

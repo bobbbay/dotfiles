@@ -71,11 +71,11 @@
     },
     "emacs": {
       "locked": {
-        "lastModified": 1629537637,
-        "narHash": "sha256-rHrY0WDvHao0kIFvhlGagP9PxgOUN6OFoQUz3Iec3Vw=",
+        "lastModified": 1632793536,
+        "narHash": "sha256-xg85ltALPEPtZmehymAWoHY3r/b4Z4whro2GV7X0r1U=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "84c0175628349622cc896984f02057fade9ea485",
+        "rev": "ad94b67e6adc794df8c50ec1ac3a12e34d145a4d",
         "type": "github"
       },
       "original": {
@@ -285,7 +285,7 @@
       },
       "locked": {
         "lastModified": 1632789602,
-        "narHash": "sha256-Yl+wfcJlcVTHuSDmkhD0RAY1Oq10oe+zO7l9HHzaT3E=",
+        "narHash": "sha256-wmDnyCaN2dS1VBNToCxO5tm0wpKsiQew0SQ99G71g1s=",
         "type": "git",
         "url": "file:///home/demo/projects/neomacs"
       },
