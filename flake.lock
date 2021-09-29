@@ -285,16 +285,13 @@
       },
       "locked": {
         "lastModified": 1632845445,
-        "narHash": "sha256-vlDoSQ63Qo5L64lsUGQ+X7rPh54HtFzE8YHukMrs/r0=",
-        "owner": "vi-tality",
-        "repo": "neomacs",
-        "rev": "e1565bc7c6f79f546170839a5e93065f4c04b5db",
-        "type": "github"
+        "narHash": "sha256-TCr7X9Y6EuJXf4FuB6j/GM78RnF9X0IxoTxnn0xAZRo=",
+        "type": "git",
+        "url": "file:///home/demo/projects/neomacs"
       },
       "original": {
-        "owner": "vi-tality",
-        "repo": "neomacs",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/demo/projects/neomacs"
       }
     },
     "neovim": {
@@ -621,16 +618,15 @@
         "flake-utils": "flake-utils_4"
       },
       "locked": {
-        "lastModified": 1630860118,
-        "narHash": "sha256-JwLcC/zRR6ypk4/Ks7plWBvThYoLhURaH2zvjuWVmyA=",
+        "lastModified": 1632420560,
+        "narHash": "sha256-8Tsa4Hp/CHCA6J8/E7EODhp75z5N1NBhFiOb3lBv/tI=",
         "owner": "gytis-ivaskevicius",
         "repo": "flake-utils-plus",
-        "rev": "813281281363ec45af155c8d2ceb7c5132d4de45",
+        "rev": "4b1bcafcfcd78bd36ceabfe3872822ba5c7fcbe8",
         "type": "github"
       },
       "original": {
         "owner": "gytis-ivaskevicius",
-        "ref": "1.3.0",
         "repo": "flake-utils-plus",
         "type": "github"
       }

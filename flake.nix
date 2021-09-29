@@ -1,6 +1,6 @@
 {
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/1.3.0";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -10,12 +10,14 @@
     home.url = "github:nix-community/home-manager/release-21.05";
     doom.url = "github:vlaci/nix-doom-emacs";
 
-    neomacs.url = "github:vi-tality/neomacs";
+    # neomacs.url = "github:vi-tality/neomacs";
+    neomacs.url = "/home/demo/projects/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
   };
 
   outputs =
-    inputs@{ self
+    inputs@{
+      self
     , utils
     , nixpkgs
     , unstable
@@ -42,17 +44,20 @@
           allowUnsupportedSystem = true;
         };
 
+        overlay = import ./overlays;
+
         sharedOverlays = [
-          (import ./pkgs)
+          self.overlay
+          nur.overlay
+          emacs.overlay
+          fenix.overlay
+
           (
             final: prev: {
               unstable = unstable.legacyPackages.${prev.system};
               neovim-nightly = neovim.defaultPackage.${prev.system};
             }
           )
-          nur.overlay
-          emacs.overlay
-          fenix.overlay
         ];
 
         channels.nixpkgs.input = nixpkgs;
@@ -72,15 +77,21 @@
           }
         ];
 
+        nixosModules = utils.lib.exportModules [
+          ./hosts/NotYourPC
+          ./hosts/NotYourLaptop
+          ./hosts/NotYourVM
+        ];
+
         hosts = {
-          NotYourPC.modules = with self.modules; [ ./host/NotYourPC ];
-          NotYourLaptop.modules = with self.modules; [ ./host/NotYourLaptop ];
-          NotYourVM.modules = with self.modules; [ ./host/NotYourVM ];
+          NotYourPC.modules = with self.nixosModules; [ NotYourPC ];
+          NotYourLaptop.modules = with self.nixosModules; [ NotYourLaptop ];
+          NotYourVM.modules = with self.nixosModules; [ NotYourVM ];
         };
 
         outputsBuilder = channels: with channels.nixpkgs; {
           devShell = mkShell {
-            name = "Sysconfig";
+            name = "sysconfig";
             buildInputs = [
               cachix
               nixpkgs-fmt
