@@ -1,6 +1,4 @@
-final: prev:
-
-{
+final: prev: {
   dude = prev.pkgs.writeScriptBin "dude" ''
     #!${prev.pkgs.stdenv.shell}
 

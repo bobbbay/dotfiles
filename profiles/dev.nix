@@ -21,7 +21,6 @@ in
 
   config = lib.mkIf cfg.enable {
     modules.neomacs.enable = true;
-    bobos.programs.neovim.enable = false;
 
     programs = {
       neovim = {
@@ -87,7 +86,6 @@ in
       ghc # Haskell
       rofi # Pick the app
       alacritty # Unlimited power/terminal
-      dude
       jetbrains.idea-ultimate
       gcc
       dotnet-sdk_5

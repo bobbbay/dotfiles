@@ -39,11 +39,11 @@
     "doom-emacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1626604817,
-        "narHash": "sha256-z+dvjB02cHU+VQ5EMkzqSdX817PZar9AkmmfK27q0vo=",
+        "lastModified": 1633109456,
+        "narHash": "sha256-rI6aODGS46sCpfMWBtaUFXzou320h4R4ZCSp+5Nej0Y=",
         "owner": "hlissner",
         "repo": "doom-emacs",
-        "rev": "46732c0adaef147144418f9f284ca6b1183ab96f",
+        "rev": "d13816ce3ed0dea7e1c3b4871100d14c6e68fd86",
         "type": "github"
       },
       "original": {
@@ -71,11 +71,11 @@
     },
     "emacs": {
       "locked": {
-        "lastModified": 1632793536,
-        "narHash": "sha256-xg85ltALPEPtZmehymAWoHY3r/b4Z4whro2GV7X0r1U=",
+        "lastModified": 1632906667,
+        "narHash": "sha256-nTq9cKMT/8arwBKZgDppUn6oJF7I0EpFWGr8LAMZF74=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "ad94b67e6adc794df8c50ec1ac3a12e34d145a4d",
+        "rev": "961d6e84bcc5414e452f6cf674aef818575e317b",
         "type": "github"
       },
       "original": {
@@ -285,7 +285,7 @@
       },
       "locked": {
         "lastModified": 1632845445,
-        "narHash": "sha256-TCr7X9Y6EuJXf4FuB6j/GM78RnF9X0IxoTxnn0xAZRo=",
+        "narHash": "sha256-LvUEGPDtSPjEvmKxbBHIFFuxOwEGBsv73hv2lqnYFGw=",
         "type": "git",
         "url": "file:///home/demo/projects/neomacs"
       },
