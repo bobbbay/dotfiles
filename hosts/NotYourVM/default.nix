@@ -3,11 +3,26 @@
 {
   imports = [ <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> ];
 
-  home-manager.users.demo = {
-    suites.full.enable = true;
+  user = {
+    name = "demo";
   };
 
-  nix.trustedUsers = [ "demo" ];
+  modules = {
+    cachix.enable = true;
+
+    dev = {
+      editors = {
+        neomacs.enable = true;
+        # TODO neovitality.enable = true;
+      };
+
+      tools = {
+        git.enable = true;
+        direnv.enable = true;
+        gpg.enable = true;
+      };
+    };
+  };
 
   services = {
     xserver = {

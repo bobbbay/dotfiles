@@ -20,52 +20,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    modules.neomacs.enable = true;
-
-    programs = {
-      neovim = {
-        package = with pkgs; neovim-nightly;
-        viAlias = true;
-        vimAlias = true;
-      };
-
-      zathura = {
-        enable = true;
-        extraConfig = builtins.readFile ../config/zathura.rc;
-      };
-
-      git = {
-        enable = true; # Git is already installed globally from within our root config
-        aliases.stat = "status";
-        userEmail = "abatterysingle@gmail.com";
-        userName = "Bobbbay";
-        signing = {
-          signByDefault = true;
-          key = null; # Automatically figured out
-        };
-        lfs.enable = true;
-      };
-
-      gpg.enable = true;
-
-      tmux.enable = true;
-
-      direnv = {
-        enable = true;
-        nix-direnv = {
-          enable = true;
-          enableFlakes = true;
-        };
-      };
-    };
-
-    services = {
-      gpg-agent = {
-        enable = true;
-        pinentryFlavor = "qt";
-      };
-    };
-
     home.file.".offlineimaprc".source = ../crypt/offlineimap.rc;
     home.file.".authinfo".source = ../crypt/authinfo;
 
@@ -80,7 +34,6 @@ in
 
     home.packages = with pkgs; [
       latexmk # Compile LaTeX + vimtex compiler support
-      git-crypt # Encrypt those git files!
       virtmanager # Vital virtualisation.
       stack # Haskell
       ghc # Haskell

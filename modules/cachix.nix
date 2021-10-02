@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.cachix;
+  cfg = config.modules.cachix;
 in
 {
   options = {
-    cachix.enable = mkEnableOption "Enable custom cachix configuration";
+    modules.cachix.enable = mkEnableOption "custom cachix configuration";
   };
 
   config = mkIf cfg.enable {

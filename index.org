@@ -1,7 +1,0 @@
-#+SETUPFILE: ./misc/rethink.theme
-
-Welcome to my system configurations!
-
-For Emacs, see [[./config/emacs.html]]. For Awesome, see [[./config/awesome.html]].
-
-Check out the README: [[./README.html]]

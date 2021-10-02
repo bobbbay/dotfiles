@@ -1,5 +1,8 @@
+* Wezterm
+
 #+begin_src lua :tangle "wezterm.lua"
 local wezterm = require 'wezterm';
+
 return {
   font = wezterm.font("PragmataPro Mono Liga");
   font_size = 9.0;

@@ -1,6 +1,6 @@
 #+SETUPFILE: ../misc/rethink.theme
 
-* TODO Set terminal, editor and browser to global variables (e.g. EDITOR).
+* Set terminal, editor and browser to global variables (e.g. EDITOR).
 
 #+BEGIN_SRC lua :tangle "rc.lua"
   pcall(require, "luarocks.loader")

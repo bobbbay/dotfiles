@@ -64,8 +64,12 @@
           ];
 
           hostDefaults.modules = [
+            ./modules
+
             ./modules/cachix.nix
             ./modules/media.nix
+
+            ./modules/options.nix
 
             home.nixosModules.home-manager
 

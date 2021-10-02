@@ -14,12 +14,12 @@ in
       source = ../../crypt/pragmata-pro-mono-liga.ttf;
     };
 
-    #home.packages = with pkgs; [
-    #  (
-    #    nerdfonts.override {
-    #      fonts = [ "Iosevka" ];
-    #    }
-    #  )
-    #];
+    home.packages = with pkgs; [
+      (
+        nerdfonts.override {
+          fonts = [ "Iosevka" ];
+        }
+      )
+    ];
   };
 }
