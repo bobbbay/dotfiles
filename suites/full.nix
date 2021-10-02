@@ -12,7 +12,6 @@ in
 
   config = mkIf cfg.enable {
     profiles.cli.enable = true;
-    profiles.dev.enable = true;
     profiles.gui.enable = true;
   };
 }

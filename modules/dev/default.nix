@@ -1,3 +1,3 @@
 {
-  imports = [ ./editors ./tools ];
+  imports = [ ./editors ./tools ./extra.nix ];
 }

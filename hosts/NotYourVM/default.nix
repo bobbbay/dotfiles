@@ -21,6 +21,9 @@
         direnv.enable = true;
         gpg.enable = true;
       };
+
+      # TODO Separate these into their own modules.
+      extra.enable = true;
     };
   };
 
