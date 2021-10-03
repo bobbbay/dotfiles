@@ -15,19 +15,11 @@ in
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {
       home.packages = with pkgs; [
-        latexmk # Compile LaTeX + vimtex compiler support
-        virtmanager # Vital virtualisation.
-        stack # Haskell
-        ghc # Haskell
         rofi # Pick the app
         alacritty # Unlimited power/terminal
-        jetbrains.idea-ultimate
         gcc
         dotnet-sdk_5
-        offlineimap
-        notmuch
         unstable.idris2
-        # clang
         binutils
         sqlite
         postman

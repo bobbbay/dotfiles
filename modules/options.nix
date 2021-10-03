@@ -13,10 +13,6 @@ with lib.modules;
   };
 
   config = {
-    home-manager.users.${config.user.name} = {
-      suites.full.enable = true;
-    };
-
     nix.trustedUsers = [ config.user.name ];
   };
 }

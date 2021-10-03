@@ -76,19 +76,15 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.sharedModules = [ ./suites ./profiles ./modules/home ./programs doom.hmModule neomacs.hmModule ];
+              home-manager.sharedModules = [ ./programs doom.hmModule neomacs.hmModule ];
             }
           ];
 
           nixosModules = exportModules [
-            ./hosts/NotYourPC
-            ./hosts/NotYourLaptop
             ./hosts/NotYourVM
           ];
 
           hosts = {
-            NotYourPC.modules = with self.nixosModules; [ NotYourPC ];
-            NotYourLaptop.modules = with self.nixosModules; [ NotYourLaptop ];
             NotYourVM.modules = with self.nixosModules; [ NotYourVM ];
           };
 

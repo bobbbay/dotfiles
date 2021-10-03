@@ -20,10 +20,23 @@
         git.enable = true;
         direnv.enable = true;
         gpg.enable = true;
+        ssh.enable = true;
       };
 
       # TODO Separate these into their own modules.
       extra.enable = true;
+    };
+
+    desktop = {
+      term = {
+        bash.enable = true;
+        extra.enable = true;
+      };
+
+      apps = {
+        extra.enable = true;
+        fonts.enable = true;
+      };
     };
   };
 

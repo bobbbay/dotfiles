@@ -1,3 +1,3 @@
 {
-  imports = [ ./dev ];
+  imports = [ ./dev ./desktop ];
 }

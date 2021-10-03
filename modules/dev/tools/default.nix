@@ -1,3 +1,3 @@
 {
-  imports = [ ./direnv.nix ./git.nix ./gpg.nix ];
+  imports = [ ./direnv.nix ./git.nix ./gpg.nix ./ssh.nix ];
 }
