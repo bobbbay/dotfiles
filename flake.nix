@@ -15,8 +15,8 @@
     doom.url = "github:vlaci/nix-doom-emacs";
     doom.inputs.doom-emacs.url = "github:hlissner/doom-emacs/develop";
 
-    # neomacs.url = "github:vi-tality/neomacs";
-    neomacs.url = "/home/demo/projects/neomacs";
+    neomacs.url = "github:vi-tality/neomacs";
+    # neomacs.url = "/home/demo/projects/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
   };
 
@@ -82,10 +82,12 @@
 
           nixosModules = exportModules [
             ./hosts/NotYourVM
+            ./hosts/NotYourPC
           ];
 
           hosts = {
             NotYourVM.modules = with self.nixosModules; [ NotYourVM ];
+            NotYourPC.modules = with self.nixosModules; [ NotYourPC ];
           };
 
           outputsBuilder = channels: with channels.nixpkgs; {
