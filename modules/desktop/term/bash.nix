@@ -29,6 +29,13 @@ in
         };
         bashrcExtra = cfg.bashrcExtra;
       };
+
+      programs.starship = {
+        enable = true;
+        settings = {
+          add_newline = false;
+        };
+      };
     };
   };
 }
