@@ -20,6 +20,7 @@ in
         fd # A simple, fast and friendly alternative to find
         hyperfine # Benchmark your executables!
         tokei # Like wc but better
+        fzf # fuzzy finding
         nodePackages.insect # Calculator REPL
         skim # fzf in Rust
         google-chrome
@@ -29,6 +30,8 @@ in
         unstable.exa # ls but better
         unstable.bottom # system monitoring go brrr
       ];
+
+      programs.zoxide.enable = true;
     };
   };
 }
