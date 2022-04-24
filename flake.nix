@@ -2,22 +2,16 @@
   inputs = {
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
-    home.url = "github:nix-community/home-manager/release-21.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    home.url = "github:nix-community/home-manager/release-21.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     emacs.url = "github:nix-community/emacs-overlay";
     fenix.url = "github:nix-community/fenix";
 
-    # God, I really wish we didn't have to do this. Unfortunately,
-    # it seems like nix-doom-emacs is an abandoned project with no
-    # maintainership to fix this. See: nix-doom-emacs/issues/310.
-    doom.url = "github:vlaci/nix-doom-emacs";
-    doom.inputs.doom-emacs.url = "github:hlissner/doom-emacs/develop";
-
-    neomacs.url = "github:vi-tality/neomacs";
-    # neomacs.url = "/home/demo/projects/neomacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
+
+    wsl.url = "github:nix-community/NixOS-WSL";
   };
 
   outputs =
@@ -29,9 +23,8 @@
     , emacs
     , home
     , fenix
-    , doom
-    , neomacs
     , neovim
+    , wsl
     , ...
     }:
       let
@@ -71,21 +64,24 @@
 
             ./modules/options.nix
 
+            wsl.nixosModules.wsl
             home.nixosModules.home-manager
 
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.sharedModules = [ ./programs doom.hmModule neomacs.hmModule ];
+              home-manager.sharedModules = [ ./programs ];
             }
           ];
 
           nixosModules = exportModules [
+            ./hosts/NotYourLaptop
             ./hosts/NotYourVM
             ./hosts/NotYourPC
           ];
 
           hosts = {
+            NotYourLaptop.modules = with self.nixosModules; [ NotYourLaptop ];
             NotYourVM.modules = with self.nixosModules; [ NotYourVM ];
             NotYourPC.modules = with self.nixosModules; [ NotYourPC ];
           };

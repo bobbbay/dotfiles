@@ -1,18 +1,14 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [ <nixpkgs/nixos/modules/installer/virtualbox-demo.nix> ];
-
-  user = {
-    name = "demo";
-  };
+  user.name = "bob";
 
   modules = {
     cachix.enable = true;
 
     dev = {
       editors = {
-        neomacs.enable = true;
+        # neomacs.enable = true;
         # TODO neovitality.enable = true;
       };
 
@@ -40,16 +36,10 @@
     };
   };
 
-  services = {
-    xserver = {
-      enable = true;
-      windowManager.awesome.enable = true;
-      layout = "us";
-      xkbOptions = "compose:ralt";
-      libinput.enable = true;
-
-      desktopManager.plasma5.enable = lib.mkForce false;
-      displayManager.sddm.enable = lib.mkForce false;
-    };
+  wsl = {
+    enable = true;
+    automountPath = "/mnt";
+    defaultUser = "bob";
+    startMenuLaunchers = true;
   };
 }
