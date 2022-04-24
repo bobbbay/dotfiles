@@ -26,6 +26,10 @@
     desktop = {
       term = {
         bash.enable = true;
+        bash.bashrcExtra = ''
+          export DISPLAY=$(ip route list default | awk '{print $3}'):0
+          export LIBGL_ALWAYS_INDIRECT=1
+        '';
         extra.enable = true;
       };
 

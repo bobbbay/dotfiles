@@ -9,6 +9,10 @@ in
 {
   options.modules.desktop.term.bash = {
     enable = mkEnableOption "Bash";
+    bashrcExtra = mkOption {
+      default = "";
+      type = types.lines;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -23,6 +27,7 @@ in
           e = "emacsclient -c";
           ".." = "cd ..";
         };
+        bashrcExtra = cfg.bashrcExtra;
       };
     };
   };
