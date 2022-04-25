@@ -33,7 +33,7 @@ in
         lfs.enable = true;
       };
 
-      home.packages = [ pkgs.git-crypt ];
+      home.packages = with pkgs; [ git-crypt gitAndTools.git-absorb ];
     };
   };
 }
