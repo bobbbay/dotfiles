@@ -45,5 +45,6 @@
     automountPath = "/mnt";
     defaultUser = "bob";
     startMenuLaunchers = true;
+    docker-desktop.enable = true;
   };
 }
