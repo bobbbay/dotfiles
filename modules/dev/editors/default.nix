@@ -1,3 +1,3 @@
 {
-  imports = [ ./neomacs.nix ];
+  imports = [ ./neomacs.nix ./doom.nix ];
 }

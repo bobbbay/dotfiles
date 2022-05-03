@@ -9,6 +9,7 @@
     emacs.url = "github:nix-community/emacs-overlay";
     fenix.url = "github:nix-community/fenix";
 
+    doom.url   = "github:nix-community/nix-doom-emacs";
     neovim.url = "github:neovim/neovim?dir=contrib";
 
     wsl.url = "github:nix-community/NixOS-WSL";
@@ -23,6 +24,7 @@
     , emacs
     , home
     , fenix
+    , doom
     , neovim
     , wsl
     , ...
@@ -70,7 +72,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.sharedModules = [ ./programs ];
+              home-manager.sharedModules = [ doom.hmModule ./programs ];
             }
           ];
 

@@ -8,6 +8,7 @@
 
     dev = {
       editors = {
+        doom.enable = true;
         # neomacs.enable = true;
         # TODO neovitality.enable = true;
       };
@@ -47,4 +48,8 @@
     startMenuLaunchers = true;
     docker-desktop.enable = true;
   };
+
+  hardware.opengl.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [ mesa.drivers ];
+  hardware.opengl.driSupport32Bit = true;
 }
