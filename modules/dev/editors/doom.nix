@@ -1,15 +1,7 @@
-{ config, lib, pkgs, ... }:
-
-# Neomacs provides a home-manager module, which needs to be wrapped in order to
-# keep the same module style in these dotfiles.
-
-with lib;
-
+{ config, lib, pkgs, ... }: with lib;
 let
   cfg = config.modules.dev.editors.doom;
-in
-
-{
+in {
   options.modules.dev.editors.doom.enable = mkEnableOption "Neomacs";
 
   config = mkIf cfg.enable {

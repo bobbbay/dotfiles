@@ -21,7 +21,7 @@ in
         enable = true;
         shellAliases = {
           nrs = "sudo nixos-rebuild switch";
-          ls = "exa --long --icons --header --git";
+          ls = "exa --long --icons --header --git --links --blocks --inode --grid";
           sk = ''rga --files | \sk --preview="bat {} --color=always"'';
           d = "dude";
           e = "emacsclient -c";
