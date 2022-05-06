@@ -1,7 +1,3 @@
-#+begin_src emacs-lisp :tangle config.el
-()
-#+end_src
-
 Let's start our configuration!
 
 #+begin_src emacs-lisp :tangle init.el
@@ -25,6 +21,7 @@ A dashboard would be nice. Add on a modeline, highlighting, and some other featu
     modeline
     (popup +defaults)
     workspaces
+    tabs
     zen
 #+end_src
 
@@ -62,7 +59,7 @@ Let's make the TTY a better place.
 Language support!
 
 #+begin_src emacs-lisp :tangle init.el
-    :lang emacs-lisp org nix rust
+    :lang emacs-lisp org nix (rust +lsp)
 #+end_src
 
 Let's end this.
@@ -73,4 +70,11 @@ Let's end this.
 
 #+begin_src emacs-lisp :tangle packages.el
 ()
+#+end_src
+
+Let's now configure thigns by hand. Let's get a nice theme and switch to a good font:
+
+#+begin_src emacs-lisp :tangle config.el
+(setq doom-theme 'doom-tokyo-night
+      doom-font (font-spec :family "PragmataPro Mono Liga" :size 12 :weight 'medium))
 #+end_src

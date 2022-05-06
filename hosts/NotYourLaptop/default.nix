@@ -3,6 +3,8 @@
 {
   user.name = "bob";
 
+  environment.noXlibs = true;
+
   modules = {
     cachix.enable = true;
 
@@ -28,8 +30,8 @@
       term = {
         bash.enable = true;
         bash.bashrcExtra = ''
-          export DISPLAY=$(ip route list default | awk '{print $3}'):0
-          export LIBGL_ALWAYS_INDIRECT=1
+          export DISPLAY=:0 #$(ip route list default | awk '{print $3}'):0
+          # export LIBGL_ALWAYS_INDIRECT=1
         '';
         extra.enable = true;
       };
@@ -46,10 +48,11 @@
     automountPath = "/mnt";
     defaultUser = "bob";
     startMenuLaunchers = true;
-    docker-desktop.enable = true;
+    # docker-desktop.enable = true;
+    interop.register = false;
   };
 
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [ mesa.drivers ];
-  hardware.opengl.driSupport32Bit = true;
+  # hardware.opengl.driSupport32Bit = true;
 }
