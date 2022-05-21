@@ -53,6 +53,7 @@
   };
 
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [ mesa.drivers ];
-  # hardware.opengl.driSupport32Bit = true;
+
+  virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
 }
