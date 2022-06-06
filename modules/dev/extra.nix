@@ -24,6 +24,7 @@ in
         sqlite
         postman
         file
+        texlab texlive.combined.scheme-full
 
         git-lfs1
         gitAndTools.gitui

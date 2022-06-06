@@ -7,7 +7,7 @@ Let's start our configuration!
 We want vertico as our search engine, because it's awesome.
 
 #+begin_src emacs-lisp :tangle init.el
-    :completion vertico
+    :completion vertico (company +childframe)
 #+end_src
 
 A dashboard would be nice. Add on a modeline, highlighting, and some other features, and you have a good-looking editor.
@@ -59,7 +59,7 @@ Let's make the TTY a better place.
 Language support!
 
 #+begin_src emacs-lisp :tangle init.el
-    :lang emacs-lisp org nix (rust +lsp)
+    :lang emacs-lisp org nix (rust +lsp) (latex +cdlatex +lsp +fold)
 #+end_src
 
 Let's end this.

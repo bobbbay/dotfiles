@@ -69,6 +69,8 @@
             wsl.nixosModules.wsl
             home.nixosModules.home-manager
 
+            { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
+
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
