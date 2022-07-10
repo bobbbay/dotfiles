@@ -22,7 +22,6 @@
         ssh.enable = true;
       };
 
-      # TODO Separate these into their own modules.
       extra.enable = true;
     };
 
@@ -30,7 +29,7 @@
       term = {
         bash.enable = true;
         bash.bashrcExtra = ''
-          export DISPLAY=:0 #$(ip route list default | awk '{print $3}'):0
+          export DISPLAY=$(ip route list default | awk '{print $3}'):0
           # export LIBGL_ALWAYS_INDIRECT=1
         '';
         extra.enable = true;

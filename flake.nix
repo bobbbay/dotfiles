@@ -9,7 +9,7 @@
     emacs.url = "github:nix-community/emacs-overlay";
     fenix.url = "github:nix-community/fenix";
 
-    doom.url   = "github:nix-community/nix-doom-emacs";
+    doom.url = "github:nix-community/nix-doom-emacs/8e818c";
     neovim.url = "github:neovim/neovim?dir=contrib";
 
     wsl.url = "github:nix-community/NixOS-WSL";

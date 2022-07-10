@@ -2,7 +2,7 @@
 let
   cfg = config.modules.dev.editors.doom;
 in {
-  options.modules.dev.editors.doom.enable = mkEnableOption "Neomacs";
+  options.modules.dev.editors.doom.enable = mkEnableOption "Doom emacs";
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {

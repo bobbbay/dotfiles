@@ -26,6 +26,7 @@ in
         google-chrome
         slack
         xplr # The hackable file explorer
+        graphviz
 
         unstable.exa # ls but better
         unstable.bottom # system monitoring go brrr

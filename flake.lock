@@ -33,6 +33,7 @@
       },
       "original": {
         "owner": "nix-community",
+        "ref": "8e818c",
         "repo": "nix-doom-emacs",
         "type": "github"
       }
