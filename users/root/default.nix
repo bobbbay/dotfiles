@@ -1,0 +1,4 @@
+{ ... }:
+{
+  users.users.root.password = "";
+}
