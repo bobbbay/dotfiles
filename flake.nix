@@ -90,12 +90,12 @@
       };
 
       home = {
-        imports = [ (digga.lib.importExportableModules ./users/modules) ];
+        imports = [ (digga.lib.importExportableModules ./home/modules) ];
         modules = [ ];
         importables = rec {
-          profiles = digga.lib.rakeLeaves ./users/profiles;
+          profiles = digga.lib.rakeLeaves ./home/profiles;
           suites = with profiles; rec {
-            base = [ git ];
+            base = [ git zoxide ];
           };
         };
         users = {

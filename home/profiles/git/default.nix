@@ -1,9 +1,15 @@
-{
+{ config, ... }: {
+  home.file.".gitconfig".text = config.xdg.configFile."git/config".text;
+
   programs.git = {
     enable = true;
 
+    userName = "Bobbbay";
+    userEmail = "abatterysingle@gmail.com";
+
     extraConfig = {
-      pull.rebase = false;
+      init.defaultBranch = "main";
+      safe.directory = "/nix/nixpkgs";
     };
 
     aliases = {
