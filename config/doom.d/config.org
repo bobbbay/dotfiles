@@ -60,7 +60,7 @@ Let's make the TTY a better place.
 Language support!
 
 #+begin_src emacs-lisp :tangle init.el
-    :lang emacs-lisp (org +brain +roam2 +present +pretty) nix (rust +lsp) (latex +cdlatex +lsp +fold)
+    :lang emacs-lisp (org +brain +roam2 +present +pretty) nix (rust +lsp) (latex +cdlatex +lsp +fold) ocaml
 #+end_src
 
 Let's end this.

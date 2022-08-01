@@ -29,6 +29,8 @@ in
         git-lfs1
         gitAndTools.gitui
 
+        ocaml findlib ocaml-lsp dune_3 ocamlgraph ocamlPackages.core ocamlPackages.core_extended ocamlPackages.merlin ocamlPackages.ocp-indent
+
         (
           with fenix;
           combine (
