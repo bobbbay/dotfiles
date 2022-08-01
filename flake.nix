@@ -70,7 +70,7 @@
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
             wsl.nixosModules.wsl
-            # agenix.nixosModules.age
+            agenix.nixosModules.age
           ];
         };
 
@@ -107,4 +107,6 @@
 
       devshell = ./shell.nix;
     };
+
+  nixConfig.extra-experimental-features = "nix-command flakes";
 }

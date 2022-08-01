@@ -30,12 +30,9 @@ in
       tealdeer
       whois
       bat
-      zoxide
       alejandra
     ];
 
-    # Starship is a fast and featureful shell prompt
-    # starship.toml has sane defaults that can be changed there
     shellInit = ''
       export STARSHIP_CONFIG=${
         pkgs.writeText "starship.toml"
