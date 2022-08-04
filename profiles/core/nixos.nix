@@ -1,12 +1,16 @@
-{ config, lib, pkgs, self, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: {
   imports = [
     ./common.nix
   ];
 
   # This is just a representation of the nix default
-  nix.systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+  nix.systemFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
 
   environment = {
     # Selection of sysadmin tools that can come in handy
@@ -18,37 +22,37 @@
       utillinux
     ];
 
-    shellAliases =
-      let ifSudo = lib.mkIf config.security.sudo.enable; in
-      {
-        # nix
-        nrb = ifSudo "sudo nixos-rebuild --flake .#";
+    shellAliases = let
+      ifSudo = lib.mkIf config.security.sudo.enable;
+    in {
+      # nix
+      nrb = ifSudo "sudo nixos-rebuild --flake .#";
 
-        # fix nixos-option for flake compat
-        nixos-option = "nixos-option -I nixpkgs=${self}/lib/compat";
+      # fix nixos-option for flake compat
+      nixos-option = "nixos-option -I nixpkgs=${self}/lib/compat";
 
-        # systemd
-        ctl = "systemctl";
-        stl = ifSudo "s systemctl";
-        utl = "systemctl --user";
-        ut = "systemctl --user start";
-        un = "systemctl --user stop";
-        up = ifSudo "s systemctl start";
-        dn = ifSudo "s systemctl stop";
-        jtl = "journalctl";
-      };
+      # systemd
+      ctl = "systemctl";
+      stl = ifSudo "s systemctl";
+      utl = "systemctl --user";
+      ut = "systemctl --user start";
+      un = "systemctl --user stop";
+      up = ifSudo "s systemctl start";
+      dn = ifSudo "s systemctl stop";
+      jtl = "journalctl";
+    };
   };
 
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "DejaVu Sans Mono for Powerline" ];
-    sansSerif = [ "DejaVu Sans" ];
+    monospace = ["DejaVu Sans Mono for Powerline"];
+    sansSerif = ["DejaVu Sans"];
   };
 
   nix = {
     # Improve nix store disk usage
     autoOptimiseStore = true;
     optimise.automatic = true;
-    allowedUsers = [ "@wheel" ];
+    allowedUsers = ["@wheel"];
   };
 
   programs.bash = {

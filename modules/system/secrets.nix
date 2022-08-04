@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.system.secrets;
 in {
   options.system.secrets = {
@@ -11,6 +14,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets = { };
+    age.secrets = {};
   };
 }

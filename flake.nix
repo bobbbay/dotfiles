@@ -23,26 +23,27 @@
     wsl.inputs.nixpkgs.follows = "nixos";
   };
 
-  outputs =
-    { self
-    , digga
-    , nixos
-    , latest
-    , nur
-    , home
-    , agenix
-    , nvfetcher
-    , wsl
-    , ... } @ inputs:
+  outputs = {
+    self,
+    digga,
+    nixos,
+    latest,
+    nur,
+    home,
+    agenix,
+    nvfetcher,
+    wsl,
+    ...
+  } @ inputs:
     digga.lib.mkFlake {
       inherit self inputs;
 
-      channelsConfig = { allowUnfree = true; };
+      channelsConfig = {allowUnfree = true;};
 
-      channels.nixos = { };
-      channels.latest = { };
+      channels.nixos = {};
+      channels.latest = {};
 
-      lib = import ./lib { lib = digga.lib // nixos.lib; };
+      lib = import ./lib {lib = digga.lib // nixos.lib;};
 
       sharedOverlays = [
         (final: prev: {
@@ -63,9 +64,9 @@
         hostDefaults = {
           system = "x86_64-linux";
           channelName = "nixos";
-          imports = [ (digga.lib.importExportableModules ./modules) ];
+          imports = [(digga.lib.importExportableModules ./modules)];
           modules = [
-            { lib.our = self.lib; }
+            {lib.our = self.lib;}
             digga.nixosModules.bootstrapIso
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
@@ -74,34 +75,37 @@
           ];
         };
 
-        imports = [ (digga.lib.importHosts ./hosts/nixos) ];
+        imports = [(digga.lib.importHosts ./hosts/nixos)];
 
-        hosts.NotYourLaptop = { };
+        hosts.NotYourLaptop = {};
 
         importables = rec {
-          profiles = digga.lib.rakeLeaves ./profiles // {
-            users = digga.lib.rakeLeaves ./users;
-          };
+          profiles =
+            digga.lib.rakeLeaves ./profiles
+            // {
+              users = digga.lib.rakeLeaves ./users;
+            };
 
           suites = with profiles; rec {
-            base = [ core.nixos users.bob users.root ];
+            base = [core.nixos users.bob users.root];
           };
         };
       };
 
       home = {
-        imports = [ (digga.lib.importExportableModules ./home/modules) ];
-        modules = [ ];
+        imports = [(digga.lib.importExportableModules ./home/modules)];
+        modules = [];
         importables = rec {
           profiles = digga.lib.rakeLeaves ./home/profiles;
           suites = with profiles; rec {
-            base = [ git bash ];
-            tools = [ zoxide exa ];
-            all = base ++ tools;
+            base = [git bash];
+            tools = [zoxide exa];
+            development = [emacs];
+            all = base ++ tools ++ development;
           };
         };
         users = {
-          bob = { suites, ... }: {
+          bob = {suites, ...}: {
             imports = suites.all;
             system.wsl.enable = true;
           };

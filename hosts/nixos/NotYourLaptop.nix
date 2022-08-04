@@ -1,5 +1,4 @@
-{ suites, ... }:
-{
+{suites, ...}: {
   imports = suites.base;
 
   environment.noXlibs = true;
