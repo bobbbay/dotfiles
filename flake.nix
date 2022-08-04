@@ -95,11 +95,16 @@
         importables = rec {
           profiles = digga.lib.rakeLeaves ./home/profiles;
           suites = with profiles; rec {
-            base = [ git zoxide ];
+            base = [ git bash ];
+            tools = [ zoxide exa ];
+            all = base ++ tools;
           };
         };
         users = {
-          bob = { suites, ... }: { imports = suites.base; };
+          bob = { suites, ... }: {
+            imports = suites.all;
+            system.wsl.enable = true;
+          };
         };
       };
 
