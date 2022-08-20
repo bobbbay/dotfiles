@@ -13,7 +13,7 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {
-      programs.awesome.enable = true;
+      programs.awesome.enable = false;
       programs.wezterm.enable = true;
 
       xdg.userDirs = {
