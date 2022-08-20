@@ -59,7 +59,7 @@ in {
       (os cachix)
     ]
     ++ lib.optionals (pkgs.stdenv.hostPlatform.isLinux && !pkgs.stdenv.buildPlatform.isDarwin) [
-      (os inputs.nixos-generators.defaultPackage.${pkgs.system})
+      #      (os inputs.nixos-generators.defaultPackage.${pkgs.system})
       (os inputs.deploy.packages.${pkgs.system}.deploy-rs)
     ];
 }

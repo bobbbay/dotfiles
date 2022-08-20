@@ -21,6 +21,8 @@
 
     wsl.url = "github:nix-community/NixOS-WSL";
     wsl.inputs.nixpkgs.follows = "nixos";
+
+    doom.url = "github:nix-community/nix-doom-emacs";
   };
 
   outputs = {
@@ -33,6 +35,7 @@
     agenix,
     nvfetcher,
     wsl,
+    doom,
     ...
   } @ inputs:
     digga.lib.mkFlake {
@@ -70,8 +73,8 @@
             digga.nixosModules.bootstrapIso
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
-            wsl.nixosModules.wsl
             agenix.nixosModules.age
+            wsl.nixosModules.wsl
           ];
         };
 
@@ -94,11 +97,13 @@
 
       home = {
         imports = [(digga.lib.importExportableModules ./home/modules)];
-        modules = [];
+        modules = [
+          doom.hmModule
+        ];
         importables = rec {
           profiles = digga.lib.rakeLeaves ./home/profiles;
           suites = with profiles; rec {
-            base = [git bash];
+            base = [git bash fonts];
             tools = [zoxide exa];
             development = [emacs];
             all = base ++ tools ++ development;

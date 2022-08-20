@@ -13,7 +13,7 @@
     };
 
     aliases = {
-      a = "add -p";
+      a = "add";
       ad = "add .";
       co = "checkout";
       cob = "checkout -b";
