@@ -1,0 +1,3 @@
+[manix]
+src.git = "https://github.com/mlvzk/manix"
+fetch.github = "mlvzk/manix"

@@ -1,8 +1,0 @@
-* Nyxt
-
-Currently, the only configuration is enabling dark mode for Nyxt.
-
-#+begin_src lisp :tangle "init.lisp"
-  (define-configuration buffer
-    ((default-modes (append '(emacs-mode) %slot-default%))))
-#+end_src

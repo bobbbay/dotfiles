@@ -1,105 +1,126 @@
 {
+  description = "Bobbbay's ~. Nix all the things!";
+
   inputs = {
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    digga.url = "github:divnix/digga";
+    digga.inputs.nixpkgs.follows = "nixos";
+    digga.inputs.home-manager.follows = "home";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
-    home.url = "github:nix-community/home-manager/release-21.11";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos.url = "github:nixos/nixpkgs/nixos-22.05";
+    latest.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    emacs.url = "github:nix-community/emacs-overlay";
-    fenix.url = "github:nix-community/fenix";
 
-    doom.url = "github:nix-community/nix-doom-emacs/8e818c";
-    neovim.url = "github:neovim/neovim?dir=contrib";
+    home.url = "github:nix-community/home-manager/release-22.05";
+    home.inputs.nixpkgs.follows = "nixos";
+
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixos";
+
+    nvfetcher.url = "github:berberman/nvfetcher";
+    nvfetcher.inputs.nixpkgs.follows = "nixos";
 
     wsl.url = "github:nix-community/NixOS-WSL";
+    wsl.inputs.nixpkgs.follows = "nixos";
+
+    doom.url = "github:nix-community/nix-doom-emacs";
   };
 
-  outputs =
-    inputs@{ self
-    , utils
-    , nixpkgs
-    , unstable
-    , nur
-    , emacs
-    , home
-    , fenix
-    , doom
-    , neovim
-    , wsl
-    , ...
-    }:
-      let
-        inherit (utils.lib) mkFlake exportModules;
-        pkgs = self.pkgs.x86_64-linux.nixpkgs;
-      in
-        mkFlake {
-          inherit self inputs;
+  outputs = {
+    self,
+    digga,
+    nixos,
+    latest,
+    nur,
+    home,
+    agenix,
+    nvfetcher,
+    wsl,
+    doom,
+    ...
+  } @ inputs:
+    digga.lib.mkFlake {
+      inherit self inputs;
 
-          supportedSystems = [ "x86_64-linux" ];
+      channelsConfig = {allowUnfree = true;};
 
-          channelsConfig = {
-            allowUnfree = true;
-            allowUnsupportedSystem = true;
-          };
+      channels.nixos = {};
+      channels.latest = {};
 
-          overlay = import ./overlays;
+      lib = import ./lib {lib = digga.lib // nixos.lib;};
 
-          channels.nixpkgs.overlaysBuilder = channels: [
-            self.overlay
-            nur.overlay
-            emacs.overlay
-            fenix.overlay
+      sharedOverlays = [
+        (final: prev: {
+          __dontExport = true;
+          lib = prev.lib.extend (lfinal: lprev: {
+            our = self.lib;
+          });
+        })
 
-            (
-              final: prev: {
-                unstable = unstable.legacyPackages.${prev.system};
-              }
-            )
-          ];
+        nur.overlay
+        agenix.overlay
+        nvfetcher.overlay
 
-          hostDefaults.modules = [
-            ./modules
+        (import ./pkgs)
+      ];
 
-            ./modules/cachix.nix
-            ./modules/media.nix
-
-            ./modules/options.nix
-
-            wsl.nixosModules.wsl
+      nixos = {
+        hostDefaults = {
+          system = "x86_64-linux";
+          channelName = "nixos";
+          imports = [(digga.lib.importExportableModules ./modules)];
+          modules = [
+            {lib.our = self.lib;}
+            digga.nixosModules.bootstrapIso
+            digga.nixosModules.nixConfig
             home.nixosModules.home-manager
-
-            { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
-
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.sharedModules = [ doom.hmModule ./programs ];
-            }
+            agenix.nixosModules.age
+            wsl.nixosModules.wsl
           ];
+        };
 
-          nixosModules = exportModules [
-            ./hosts/NotYourLaptop
-            ./hosts/NotYourVM
-            ./hosts/NotYourPC
-          ];
+        imports = [(digga.lib.importHosts ./hosts/nixos)];
 
-          hosts = {
-            NotYourLaptop.modules = with self.nixosModules; [ NotYourLaptop ];
-            NotYourVM.modules = with self.nixosModules; [ NotYourVM ];
-            NotYourPC.modules = with self.nixosModules; [ NotYourPC ];
-          };
+        hosts.NotYourLaptop = {};
 
-          outputsBuilder = channels: with channels.nixpkgs; {
-            devShell = mkShell {
-              name = "sysconfig";
-              buildInputs = [
-                cachix
-                nixpkgs-fmt
-                nixos-generators
-                git-crypt
-              ];
+        importables = rec {
+          profiles =
+            digga.lib.rakeLeaves ./profiles
+            // {
+              users = digga.lib.rakeLeaves ./users;
             };
+
+          suites = with profiles; rec {
+            base = [core.nixos users.bob users.root];
           };
         };
+      };
+
+      home = {
+        imports = [(digga.lib.importExportableModules ./home/modules)];
+        modules = [
+          doom.hmModule
+        ];
+        importables = rec {
+          profiles = digga.lib.rakeLeaves ./home/profiles;
+          suites = with profiles; rec {
+            base = [git gpg bash fonts];
+            tools = [zoxide exa];
+            development = [emacs];
+            all = base ++ tools ++ development;
+          };
+        };
+        users = {
+          bob = {suites, ...}: {
+            imports = suites.all;
+            system.wsl.enable = true;
+          };
+        };
+      };
+
+      homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
+
+      devshell = ./shell.nix;
+    };
+
+  nixConfig.extra-experimental-features = "nix-command flakes";
 }
