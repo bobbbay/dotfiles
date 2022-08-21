@@ -103,7 +103,7 @@
         importables = rec {
           profiles = digga.lib.rakeLeaves ./home/profiles;
           suites = with profiles; rec {
-            base = [git bash fonts];
+            base = [git gpg bash fonts];
             tools = [zoxide exa];
             development = [emacs];
             all = base ++ tools ++ development;

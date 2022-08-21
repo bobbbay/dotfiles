@@ -6,11 +6,13 @@
   drv = pkgs.stdenv.mkDerivation {
     pname = "pragmatapro";
     version = "0.829";
+    src = ../../../secrets/fonts/pragmata-pro-mono-liga.age;
+
+    phases = [ "installPhase" ];
 
     installPhase = ''
-      font=${../../../secrets/fonts/pragmata-pro-mono-liga.age}
-      cp $font ~/.local/share/fonts
-      fc-cache
+      mkdir -p $out/.local/share/fonts
+      cp $src $out/.local/share/fonts
     '';
   };
 in {
