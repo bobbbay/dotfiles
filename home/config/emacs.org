@@ -75,13 +75,17 @@ Let's now configure thigns by hand. Let's get a nice theme and switch to a good 
 
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-theme 'doom-tokyo-night
-      doom-font (font-spec :family "PragmataPro Mono Liga" :size 12 :weight 'medium))
+      doom-font (font-spec :family "Iosevka Term" :size 12))
 
 (use-package! org-roam
     :config (setq org-roam-directory (file-truename "~/projects/bobbbay/content/notes")))
 #+end_src
 
-In terms of custom-defined packages, let's install a package for Inkscape:
+Let's tell ~org-agenda~ to search for TODO items in my notes.
+
+#+begin_src emacs-lisp :tangle config.el
+(setq org-agenda-files (list "~/projects/bobbbay/content/notes/"))
+#+end_src
 
 #+begin_src emacs-lisp :tangle packages.el
 ()
