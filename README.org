@@ -1,0 +1,49 @@
+#+title: Dotfiles
+
+[[https://builtwithnix.org/badge.svg]]
+
+/Code is like humor. When you have to explain it, it’s bad./ - Cory House
+
+This repository houses the codebase for my dotfiles. Nix all the things!
+
+** Features
+
+ * Nix/NixOS. Keep it declarative and reproducible.
+ * Agenix. Keep secrets well-kept.
+ * Home-manager. A separate, fully configurable home configuration.
+ * Org-babel. Literate configuration for any application, written in Org-mode and exported with Org-babel.
+ * Doom Emacs. (To the dark side!)
+ * WSL NixOS. For an optimal development environment on Windows.
+ * ... and more!
+
+** In detail...
+
+This repository is a huge [[https://github.com/divnix/digga][digga]] flake that provides outputs for all of my hosts, users, etc.
+
+*** Secret management
+
+In order to manage secrets, I use ryantm's [[https://github.com/ryantm/agenix][agenix]]. It conveniently encrypts everything - even in the Nix store - until my user signs in and has been recognized. I have previously used [[https://github.com/AGWA/git-crypt][git-crypt]], but unfortunately, all secrets are decrypted /in the nix store/, which is dangerous - especially when share stores to, say, Cachix. This supported my migration to agenix.
+
+*** Org tangling
+
+Any non-Nix configuration is actually written in Org-mode. This adds the convenience of writing *any* configuration literately, and being able to export them during compiletime. More can be found on this topic [[file:home/config/default.nix][here]].
+
+
+** Useful links
+
+*** Nix
+
+ * [[https://github.com/gytis-ivaskevicius/flake-utils-plus][Gytis Ivaskevicius' flake-utils-plus]]
+ * [[https://github.com/terlar/nix-config][Terlar's nixfiles]] for the inspiration on how to modularize his =home/=.
+ * [[http://chriswarbo.net/projects/nixos/useful_hacks.html][Chris Warbo's "Useful Nix Hacks"]]
+
+*** Emacs
+
+ * [[https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html][David O'Toole Org Tutorial]]
+ * [[https://www.cs.cmu.edu/~15131/f17/topics/extratations/advanced-emacs.pdf]["Advanced Emacs" but not really advanced]]
+ * [[https://github.com/willbush/system/blob/0c1aadad079f3c484a98bb43ca51f0f9eac44dc4/users/profiles/emacs.nix][Will Bush's beautiful template emacs.nix]]
+ * [[https://github.com/rememberYou/.emacs.d][rememberYou's .emacs.d]] and usual r/emacs TIP of the week posts
+
+*** Miscellaneous
+
+ * [[https://notes.srid.ca/apps][Sridhar's Apps]]
