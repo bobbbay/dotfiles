@@ -119,7 +119,7 @@
 
       homeConfigurations = digga.lib.mkHomeConfigurations self.nixosConfigurations;
 
-      devshell = ./shell.nix;
+      devshell = ./shell;
     };
 
   nixConfig.extra-experimental-features = "nix-command flakes";

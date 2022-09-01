@@ -14,6 +14,7 @@ This repository houses the codebase for my dotfiles. Nix all the things!
  * Org-babel. Literate configuration for any application, written in Org-mode and exported with Org-babel.
  * Doom Emacs. (To the dark side!)
  * WSL NixOS. For an optimal development environment on Windows.
+ * Devshell + Direnv. Automatically enter a fully-fledged, pure development environment.
  * ... and more!
 
 ** In detail...
