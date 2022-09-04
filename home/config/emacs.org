@@ -9,7 +9,7 @@ Let's start our configuration!
 We want vertico as our search engine, because it's awesome.
 
 #+begin_src emacs-lisp :tangle init.el
-    :completion vertico (company +childframe)
+    :completion (vertico +icons) (company +childframe)
 #+end_src
 
 A dashboard would be nice. Add on a modeline, highlighting, and some other features, and you have a good-looking editor.
@@ -19,6 +19,11 @@ A dashboard would be nice. Add on a modeline, highlighting, and some other featu
     doom
     doom-dashboard
     doom-quit
+    hl-todo
+    indent-guides
+    minimap
+    (treemacs +lsp)
+    (window-select +switch-window +numbers)
     (emoji +unicode)
     modeline
     (popup +defaults)
@@ -44,7 +49,7 @@ Let's change some emacs configurations.
 #+begin_src emacs-lisp :tangle init.el
     :emacs dired undo
     :term vterm
-    :chekers sytax (spell +flyspell)
+    :checkers (syntax +childframe) (spell +flyspell)
 #+end_src
 
 Let's install some tools:
