@@ -80,7 +80,8 @@ Let's now configure thigns by hand. Let's get a nice theme and switch to a good 
 
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-theme 'doom-tokyo-night
-      doom-font (font-spec :family "Iosevka Term" :size 12))
+      doom-font (font-spec :family "Iosevka Term" :size 12)
+      display-line-numbers-type 'relative)
 
 (use-package! org-roam
     :config (setq org-roam-directory (file-truename "~/projects/bobbbay/content/notes")))

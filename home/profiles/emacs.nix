@@ -8,4 +8,6 @@
     enable = true;
     client.enable = true;
   };
+
+  home.packages = with pkgs; [ ispell ];
 }
