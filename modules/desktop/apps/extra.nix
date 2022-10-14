@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.modules.desktop.apps.extra;
-in
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.apps.extra;
+in {
   options.modules.desktop.apps.extra = {
     enable = mkEnableOption "extra apps";
   };

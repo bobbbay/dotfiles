@@ -8,6 +8,6 @@
     automountPath = "/mnt";
     defaultUser = "bob";
     startMenuLaunchers = true;
-    interop.register = false;
+    interop.register = true;
   };
 }

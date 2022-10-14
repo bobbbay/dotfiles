@@ -1,13 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.modules.dev.extra;
-  latexmk = with pkgs; (texlive.combine { inherit (texlive) scheme-small latexmk; });
-in
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.dev.extra;
+  latexmk = with pkgs; (texlive.combine {inherit (texlive) scheme-small latexmk;});
+in {
   options.modules.dev.extra = {
     enable = mkEnableOption "Extra configuration";
   };
@@ -24,26 +24,27 @@ in
         sqlite
         postman
         file
-        texlab texlive.combined.scheme-full
+        texlab
+        texlive.combined.scheme-full
 
         git-lfs1
         gitAndTools.gitui
 
         (
           with fenix;
-          combine (
-            with default; [
-              cargo
-              cargo-edit
-              cargo-cross
-              clippy-preview
-              rust-std
-              rustc
-              rustfmt-preview
+            combine (
+              with default; [
+                cargo
+                cargo-edit
+                cargo-cross
+                clippy-preview
+                rust-std
+                rustc
+                rustfmt-preview
 
-              latest.rust-src
-            ]
-          )
+                latest.rust-src
+              ]
+            )
         )
       ];
     };

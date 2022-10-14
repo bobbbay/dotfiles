@@ -8,7 +8,7 @@
     version = "0.829";
     src = ../../../secrets/fonts/pragmata-pro-mono-liga.age;
 
-    phases = [ "installPhase" ];
+    phases = ["installPhase"];
 
     installPhase = ''
       mkdir -p $out/.local/share/fonts
@@ -17,6 +17,6 @@
   };
 in {
   home.packages = [
-     drv
+    drv
   ];
 }

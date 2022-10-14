@@ -9,5 +9,5 @@
     client.enable = true;
   };
 
-  home.packages = with pkgs; [ ispell ];
+  home.packages = with pkgs; [ispell];
 }
