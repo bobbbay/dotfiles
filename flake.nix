@@ -6,11 +6,11 @@
     digga.inputs.nixpkgs.follows = "nixos";
     digga.inputs.home-manager.follows = "home";
 
-    nixos.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixos.url = "github:nixos/nixpkgs/nixos-22.11";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
-    home.url = "github:nix-community/home-manager/release-22.05";
+    home.url = "github:nix-community/home-manager/release-22.11";
     home.inputs.nixpkgs.follows = "nixos";
 
     agenix.url = "github:ryantm/agenix";
@@ -57,8 +57,8 @@
         })
 
         nur.overlay
-        agenix.overlay
-        nvfetcher.overlay
+        # agenix.overlay
+        # nvfetcher.overlay
 
         (import ./pkgs)
       ];
@@ -114,6 +114,7 @@
           bob = {suites, ...}: {
             imports = suites.all;
             system.wsl.enable = true;
+            home.stateVersion = "22.11";
           };
         };
       };
