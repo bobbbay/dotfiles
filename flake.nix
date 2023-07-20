@@ -6,11 +6,11 @@
     digga.inputs.nixpkgs.follows = "nixos";
     digga.inputs.home-manager.follows = "home";
 
-    nixos.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixos.url = "github:nixos/nixpkgs/nixos-23.05";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
-    home.url = "github:nix-community/home-manager/release-22.11";
+    home.url = "github:nix-community/home-manager/release-23.05";
     home.inputs.nixpkgs.follows = "nixos";
 
     agenix.url = "github:ryantm/agenix";
@@ -18,9 +18,6 @@
 
     nvfetcher.url = "github:berberman/nvfetcher";
     nvfetcher.inputs.nixpkgs.follows = "nixos";
-
-    wsl.url = "github:nix-community/NixOS-WSL";
-    wsl.inputs.nixpkgs.follows = "nixos";
 
     doom.url = "github:nix-community/nix-doom-emacs";
   };
@@ -34,7 +31,6 @@
     home,
     agenix,
     nvfetcher,
-    wsl,
     doom,
     ...
   } @ inputs:
@@ -74,7 +70,6 @@
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
             agenix.nixosModules.age
-            wsl.nixosModules.wsl
           ];
         };
 
@@ -113,8 +108,7 @@
         users = {
           bob = {suites, ...}: {
             imports = suites.all;
-            system.wsl.enable = true;
-            home.stateVersion = "22.11";
+            home.stateVersion = "23.05";
           };
         };
       };

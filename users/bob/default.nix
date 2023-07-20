@@ -5,6 +5,6 @@
     password = "bob";
     description = "Bobbbay's personal account.";
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "audio"];
   };
 }

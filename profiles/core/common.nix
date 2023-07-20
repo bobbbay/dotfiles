@@ -100,6 +100,4 @@ in {
       fallback = true
     '';
   };
-
-  system.stateVersion = "22.11";
 }
