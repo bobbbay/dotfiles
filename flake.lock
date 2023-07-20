@@ -515,6 +515,21 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1684264534,
+        "narHash": "sha256-K0zr+ry3FwIo3rN2U/VWAkCJSgBslBisvfRIPwMbuCQ=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "89253fb1518063556edd5e54509c30ac3089d5e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "latest": {
       "locked": {
         "lastModified": 1683408522,
@@ -764,6 +779,7 @@
         "digga": "digga",
         "doom": "doom",
         "home": "home",
+        "impermanence": "impermanence",
         "latest": "latest",
         "nixos": "nixos",
         "nur": "nur",

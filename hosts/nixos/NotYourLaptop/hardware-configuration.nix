@@ -37,6 +37,7 @@
     { device = "/dev/disk/by-uuid/b731c818-c97c-4902-acbf-5de1fa089f39";
       fsType = "btrfs";
       options = [ "subvol=persist" ];
+      neededForBoot = true;
     };
 
   fileSystems."/var/log" =

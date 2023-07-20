@@ -20,6 +20,8 @@
     nvfetcher.inputs.nixpkgs.follows = "nixos";
 
     doom.url = "github:nix-community/nix-doom-emacs";
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = {
@@ -32,6 +34,7 @@
     agenix,
     nvfetcher,
     doom,
+    impermanence,
     ...
   } @ inputs:
     digga.lib.mkFlake {
@@ -70,6 +73,7 @@
             digga.nixosModules.nixConfig
             home.nixosModules.home-manager
             agenix.nixosModules.age
+            impermanence.nixosModules.impermanence
           ];
         };
 

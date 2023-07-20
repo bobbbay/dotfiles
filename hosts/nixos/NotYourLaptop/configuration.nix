@@ -36,11 +36,23 @@
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
 
-  environment.etc = {
-    "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections/";
-    nixos.source = "/persist/etc/dotfiles";
-    machine-id.source = "/persist/etc/machine-id";
+  environment.persistence."/persist" = {
+    hideMounts = true;
+
+    directories = [
+      "/var/lib/bluetooth"
+      "/var/lib/NetworkManager"
+      "/var/lib/iwd"
+      "/var/lib/nixos"
+      "/etc/NetworkManager/system-connections"
+    ];
+
+    files = [
+      "/etc/machine-id"
+    ];
   };
+
+  environment.etc.nixos.source = "/persist/etc/dotfiles";
 
   hardware.bluetooth.enable = true;
 
