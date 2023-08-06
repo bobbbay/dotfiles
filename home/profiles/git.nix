@@ -12,6 +12,11 @@
       safe.directory = "/nix/nixpkgs";
     };
 
+    ignores = [
+      "*~"
+      "*.swp"
+    ];
+
     aliases = {
       a = "add";
       ad = "add .";

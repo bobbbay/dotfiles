@@ -3,7 +3,7 @@
     enable = true;
     extraConfig = ''
       return {
-          color_scheme = "nightfox"
+          color_scheme = "Catppuccin Mocha"
       }
     '';
   };

@@ -104,7 +104,7 @@
           suites = with profiles; rec {
             base = [git gpg bash fonts];
             tools = [zoxide exa wezterm];
-            development = [emacs];
+            development = [emacs nvim];
             writing = [latex zathura];
             all = base ++ tools ++ development ++ writing;
           };

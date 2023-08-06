@@ -1,5 +1,5 @@
 {suites, ...}: {
-  imports = suites.base ++ [ ./configuration.nix ];
+  imports = suites.base ++ [./configuration.nix];
 
   system.stateVersion = "23.05";
 }
