@@ -1,14 +1,29 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: let
+  # TODO: Use this as flake input, or find another proper way to lock this.
+  fromGitHub = ref: repo: rev: pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "${lib.strings.sanitizeDerivationName repo}";
+    version = ref;
+    src = builtins.fetchGit {
+      url = "https://github.com/${repo}.git";
+      ref = ref;
+      rev = rev;
+    };
+  };
+in {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
 
     viAlias = true;
     vimAlias = true;
+    vimdiffAlias = true;
 
     extraLuaConfig = ''
       vim.g.mapleader = " "
       vim.wo.relativenumber = true
+
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
 
       require('gitsigns').setup()
 
@@ -24,7 +39,10 @@
 
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup {
+      
+      local wk = require("which-key")
+
+      wk.setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
@@ -41,6 +59,31 @@
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }
+
+-- A small twist on the cookbook tablineoffset.
+local TabLineOffset = {
+    condition = function(self)
+        local win = vim.api.nvim_tabpage_list_wins(0)[1]
+        local bufnr = vim.api.nvim_win_get_buf(win)
+        self.winid = win
+
+        if vim.api.nvim_get_current_win() == self.winid then
+            if vim.bo[bufnr].filetype == "NvimTree" then
+                self.title = "Files"
+                return true
+	    end
+        end
+    end,
+
+    provider = function(self)
+        local title = self.title
+        local width = vim.api.nvim_win_get_width(self.winid)
+        local pad = math.ceil((width - #title) / 2)
+        return string.rep(" ", pad) .. title .. string.rep(" ", pad)
+    end,
+
+    hl = "TabLineSel",
+}
 
 local ViMode = {
     -- get vim current mode, this information will be required by the provider
@@ -308,6 +351,7 @@ local Git = {
 }
 
 local StatusLine = {
+    TabLineOffset,
     ViMode,
     Space,
     WorkDir,
@@ -325,18 +369,74 @@ local StatusLine = {
 require("heirline").setup({
     statusline = StatusLine,
 })
+
+require("telescope").load_extension('zoxide')
+
+require("workspaces").setup({
+    hooks = {
+        open = { "NvimTreeOpen", "Telescope find_files" },
+    }
+})
+
+require("telescope").load_extension('workspaces')
+
+wk.register({
+  w = {
+    name = "workspace",
+    w = {"<cmd>WorkspacesOpen<cr>", "Open workspace"},
+    a = {"<cmd>WorkspacesAdd<cr>", "Add workspace"},
+  },
+  f = {
+    name = "file",
+    f = {"<cmd>Telescope fd<cr>", "Find file"},
+    r = {"<cmd>Telescope oldfiles<cr>", "Open recent file"},
+    n = {"<cmd>enew<cr>", "Create new file"},
+  },
+}, { prefix = "<leader>" })
+
+require("nvim-tree").setup()
+
+vim.g.startify_custom_header = {
+"",
+"",
+'                                       ██            ',
+'                                      ░░             ',
+'    ███████   █████   ██████  ██    ██ ██ ██████████ ',
+'   ░░██░░░██ ██░░░██ ██░░░░██░██   ░██░██░░██░░██░░██',
+'    ░██  ░██░███████░██   ░██░░██ ░██ ░██ ░██ ░██ ░██',
+'    ░██  ░██░██░░░░ ░██   ░██ ░░████  ░██ ░██ ░██ ░██',
+'    ███  ░██░░██████░░██████   ░░██   ░██ ███ ░██ ░██',
+'   ░░░   ░░  ░░░░░░  ░░░░░░     ░░    ░░ ░░░  ░░  ░░ ',
+"",
+"",
+"Use <Leader>ww to open a workspace.",
+}
+vim.g.webdevicons_enable_startify = 1
+vim.g.startify_enable_special = 0
+vim.g.startify_session_autoload = 1
+vim.g.startify_session_delete_buffers = 1
+vim.g.startify_change_to_vcs_root = 1
+vim.g.startify_fortune_use_unicode = 1
+vim.g.startify_session_persistence = 1
     '';
 
     plugins = with pkgs.vimPlugins; [ dressing-nvim
+                                      { plugin = catppuccin-nvim;
+                                        config = "colorscheme catppuccin-mocha";
+                                      }
                                       nvim-notify
 				      heirline-nvim
 				      nvim-web-devicons
 				      gitsigns-nvim
 				      mini-nvim
 				      which-key-nvim
-                                      { plugin = catppuccin-nvim;
-                                        config = "colorscheme catppuccin-mocha";
-                                      }
+				      popup-nvim
+				      plenary-nvim
+				      telescope-nvim
+				      telescope-zoxide
+				      (fromGitHub "HEAD" "natecraddock/workspaces.nvim" "c8bd98990d322b107e58ff5373038b753a8ef66d")
+				      nvim-tree-lua
+				      vim-startify
                                     ];
   };
 }
