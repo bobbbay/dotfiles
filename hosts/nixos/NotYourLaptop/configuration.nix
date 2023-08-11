@@ -46,6 +46,7 @@
       "/var/lib/iwd"
       "/var/lib/nixos"
       "/etc/NetworkManager/system-connections"
+      "/etc/pulse"
     ];
 
     files = [
@@ -55,10 +56,22 @@
 
   environment.etc.nixos.source = "/persist/etc/dotfiles";
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
+  };
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Canada/Eastern";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -85,8 +98,26 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    jack.enable = true;
+  };
+
+  environment.etc = {
+	"wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+		bluez_monitor.properties = {
+			["bluez5.enable-sbc-xq"] = true,
+			["bluez5.enable-msbc"] = true,
+			["bluez5.enable-hw-volume"] = true,
+			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+		}
+	'';
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -94,7 +125,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    pavucontrol
+    bluez
+    bluez-alsa
+    bluez-tools
     wget
     wpa_supplicant
     google-chrome

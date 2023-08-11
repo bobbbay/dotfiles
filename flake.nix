@@ -105,8 +105,9 @@
             base = [git gpg bash fonts];
             tools = [zoxide exa wezterm];
             development = [emacs nvim];
+	    work = [teams];
             writing = [latex zathura];
-            all = base ++ tools ++ development ++ writing;
+            all = base ++ tools ++ development ++ work ++ writing;
           };
         };
         users = {
