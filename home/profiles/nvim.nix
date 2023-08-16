@@ -25,6 +25,10 @@ in {
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
 
+      -- TODO: Make this run only when nvim treesitter is changed.
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+
       require('gitsigns').setup()
 
       require('mini.map').setup()
@@ -418,9 +422,28 @@ vim.g.startify_session_delete_buffers = 1
 vim.g.startify_change_to_vcs_root = 1
 vim.g.startify_fortune_use_unicode = 1
 vim.g.startify_session_persistence = 1
+
+require('neorg').setup {
+    load = {
+        ["core.defaults"] = {},
+        ["core.concealer"] = {}, -- Adds pretty icons to your documents
+        ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+                workspaces = {
+                    work = "~/notes/work",
+                    home = "~/notes/home",
+                },
+            },
+        },
+    }
+}
+
+vim.api.nvim_command("Neorg sync-parsers")
     '';
 
-    plugins = with pkgs.vimPlugins; [ dressing-nvim
+    plugins = with pkgs; with pkgs.vimPlugins; [ gcc # TODO: does this go here?
+
+                                      dressing-nvim
                                       { plugin = catppuccin-nvim;
                                         config = "colorscheme catppuccin-mocha";
                                       }
@@ -437,6 +460,8 @@ vim.g.startify_session_persistence = 1
 				      (fromGitHub "HEAD" "natecraddock/workspaces.nvim" "c8bd98990d322b107e58ff5373038b753a8ef66d")
 				      nvim-tree-lua
 				      vim-startify
+				      nvim-treesitter
+				      neorg
                                     ];
   };
 }

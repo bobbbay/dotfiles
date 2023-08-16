@@ -26,6 +26,7 @@ in {
         file
         texlab
         texlive.combined.scheme-full
+	tokei
 
         git-lfs1
         gitAndTools.gitui

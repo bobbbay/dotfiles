@@ -103,7 +103,7 @@
           profiles = digga.lib.rakeLeaves ./home/profiles;
           suites = with profiles; rec {
             base = [git gpg bash fonts];
-            tools = [zoxide exa wezterm];
+            tools = [zoxide exa wezterm tokei];
             development = [emacs nvim];
 	    work = [teams];
             writing = [latex zathura];
